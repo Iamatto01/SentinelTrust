@@ -1,1002 +1,1002 @@
 [
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T06:55:35.087Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T06:56:03.322Z"
-  },
-  {
-    "type": "action",
-    "message": "⏳ Groq cooldown active (2s) — using fallback analyzer",
-    "timestamp": "2026-04-14T06:56:03.323Z"
-  },
-  {
-    "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T06:56:03.324Z"
+    "timestamp": "2026-04-14T08:36:24.606Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T06:56:03.325Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T06:56:03.326Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T06:56:33.329Z"
-  },
-  {
-    "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T06:56:33.331Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T06:56:33.518Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T06:56:33.519Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T06:56:33.521Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
-    "timestamp": "2026-04-14T06:57:03.335Z"
-  },
-  {
-    "type": "action",
-    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T06:57:03.336Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T06:57:03.337Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T06:57:03.337Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
-    "timestamp": "2026-04-14T06:57:03.338Z"
-  },
-  {
-    "type": "system",
-    "message": "🚀 AI Agent started — beginning continuous analysis",
-    "timestamp": "2026-04-14T07:00:19.011Z"
-  },
-  {
-    "type": "system",
-    "message": "⚡ Parallel pipeline active: Gemini discovery + Groq analysis (batch 1)",
-    "timestamp": "2026-04-14T07:00:19.013Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian political topics via Gemini + Google Search...",
-    "timestamp": "2026-04-14T07:00:19.014Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Search completed — API 429",
-    "timestamp": "2026-04-14T07:00:20.449Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Gemini quota exhausted — collecting fallback topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-14T07:00:21.074Z"
-  },
-  {
-    "type": "discovery",
-    "message": "📥 Fallback feed search queued 15 topics",
-    "timestamp": "2026-04-14T07:00:23.075Z"
-  },
-  {
-    "type": "action",
-    "message": "📋 Queue updated: 15 topics pending analysis",
-    "timestamp": "2026-04-14T07:00:23.076Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T07:00:23.879Z"
-  },
-  {
-    "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T07:00:23.881Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:00:23.991Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:00:24.304Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T07:00:24.306Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T07:00:49.038Z"
-  },
-  {
-    "type": "action",
-    "message": "⏳ Groq cooldown active (5s) — using fallback analyzer",
-    "timestamp": "2026-04-14T07:00:49.039Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:00:49.040Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:00:49.042Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T07:00:49.043Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T07:01:19.044Z"
-  },
-  {
-    "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T07:01:19.046Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:01:19.141Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:01:19.142Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T07:01:19.143Z"
-  },
-  {
-    "type": "system",
-    "message": "🚀 AI Agent started — beginning continuous analysis",
-    "timestamp": "2026-04-14T07:01:59.370Z"
-  },
-  {
-    "type": "system",
-    "message": "⚡ Parallel pipeline active: Gemini discovery + Groq analysis (batch 1)",
-    "timestamp": "2026-04-14T07:01:59.371Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian political topics via Gemini + Google Search...",
-    "timestamp": "2026-04-14T07:01:59.372Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Search completed — API 429",
-    "timestamp": "2026-04-14T07:01:59.551Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Gemini quota exhausted — collecting fallback topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-14T07:01:59.552Z"
-  },
-  {
-    "type": "discovery",
-    "message": "📥 Fallback feed search queued 15 topics",
-    "timestamp": "2026-04-14T07:02:02.251Z"
-  },
-  {
-    "type": "action",
-    "message": "📋 Queue updated: 15 topics pending analysis",
-    "timestamp": "2026-04-14T07:02:02.252Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T07:02:03.067Z"
-  },
-  {
-    "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T07:02:03.068Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:02:03.248Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:02:04.838Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T07:02:04.841Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T07:02:29.408Z"
-  },
-  {
-    "type": "action",
-    "message": "⏳ Groq cooldown active (4s) — using fallback analyzer",
-    "timestamp": "2026-04-14T07:02:29.410Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:02:29.412Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:02:29.413Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T07:02:29.416Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T07:02:59.416Z"
-  },
-  {
-    "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T07:02:59.417Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:02:59.523Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:02:59.524Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T07:02:59.525Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
-    "timestamp": "2026-04-14T07:03:29.418Z"
-  },
-  {
-    "type": "action",
-    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T07:03:29.421Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:03:29.422Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:03:29.425Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
-    "timestamp": "2026-04-14T07:03:29.426Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Sabah govt wants to emulate GPS&#8217;s approach to generating revenue\"",
-    "timestamp": "2026-04-14T07:03:59.430Z"
-  },
-  {
-    "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T07:03:59.432Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:03:59.568Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:03:59.571Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Sabah govt wants to emulate GPS&#8217;s approach to generating revenue\"",
-    "timestamp": "2026-04-14T07:03:59.573Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Call to delay state polls my personal view, says Ahmad Maslan\"",
-    "timestamp": "2026-04-14T07:04:29.438Z"
-  },
-  {
-    "type": "action",
-    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T07:04:29.440Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:04:29.442Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:04:29.443Z"
+    "timestamp": "2026-04-14T08:36:24.607Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Call to delay state polls my personal view, says Ahmad Maslan\"",
-    "timestamp": "2026-04-14T07:04:29.446Z"
+    "timestamp": "2026-04-14T08:36:24.609Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Passenger who shot viral video of lap-sitting on moving bus says he acted to prevent danger\"",
-    "timestamp": "2026-04-14T07:04:59.439Z"
+    "timestamp": "2026-04-14T08:36:54.491Z"
   },
   {
     "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T07:04:59.441Z"
+    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
+    "timestamp": "2026-04-14T08:36:54.493Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:04:59.543Z"
+    "timestamp": "2026-04-14T08:36:54.494Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:04:59.544Z"
+    "timestamp": "2026-04-14T08:36:54.497Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Passenger who shot viral video of lap-sitting on moving bus says he acted to prevent danger\"",
-    "timestamp": "2026-04-14T07:04:59.546Z"
+    "timestamp": "2026-04-14T08:36:54.499Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Nothing &#8216;new&#8217; about Hamzah&#8217;s movement, says analyst\"",
-    "timestamp": "2026-04-14T07:05:29.445Z"
+    "timestamp": "2026-04-14T08:37:24.499Z"
   },
   {
     "type": "action",
-    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T07:05:29.447Z"
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T08:37:24.501Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:05:29.448Z"
+    "timestamp": "2026-04-14T08:37:24.620Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:05:29.449Z"
+    "timestamp": "2026-04-14T08:37:24.622Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Nothing &#8216;new&#8217; about Hamzah&#8217;s movement, says analyst\"",
-    "timestamp": "2026-04-14T07:05:29.511Z"
+    "timestamp": "2026-04-14T08:37:24.657Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"As fuel costs rise, Malaysians urged to rethink spending, travel and daily habits\"",
-    "timestamp": "2026-04-14T07:05:59.452Z"
+    "timestamp": "2026-04-14T08:37:54.502Z"
   },
   {
     "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T07:05:59.454Z"
+    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
+    "timestamp": "2026-04-14T08:37:54.504Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:05:59.556Z"
+    "timestamp": "2026-04-14T08:37:54.504Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:05:59.558Z"
+    "timestamp": "2026-04-14T08:37:54.506Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"As fuel costs rise, Malaysians urged to rethink spending, travel and daily habits\"",
-    "timestamp": "2026-04-14T07:05:59.588Z"
+    "timestamp": "2026-04-14T08:37:54.535Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Newborn girl found abandoned near JB surau\"",
-    "timestamp": "2026-04-14T07:06:29.453Z"
+    "timestamp": "2026-04-14T08:38:24.515Z"
   },
   {
     "type": "action",
-    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T07:06:29.455Z"
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T08:38:24.516Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:06:29.456Z"
+    "timestamp": "2026-04-14T08:38:24.634Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:06:29.458Z"
+    "timestamp": "2026-04-14T08:38:24.636Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Newborn girl found abandoned near JB surau\"",
-    "timestamp": "2026-04-14T07:06:29.496Z"
+    "timestamp": "2026-04-14T08:38:24.665Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"State polls must proceed, PAS leader says amid geopolitical crisis\"",
-    "timestamp": "2026-04-14T07:06:59.454Z"
+    "timestamp": "2026-04-14T08:38:54.524Z"
   },
   {
     "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T07:06:59.456Z"
+    "message": "⏳ Groq cooldown active (12s) — using fallback analyzer",
+    "timestamp": "2026-04-14T08:38:54.525Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:06:59.564Z"
+    "timestamp": "2026-04-14T08:38:54.527Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:06:59.566Z"
+    "timestamp": "2026-04-14T08:38:54.529Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"State polls must proceed, PAS leader says amid geopolitical crisis\"",
-    "timestamp": "2026-04-14T07:06:59.600Z"
+    "timestamp": "2026-04-14T08:38:54.550Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Govt will continue to review prices of fuel, essential goods, says PM\"",
-    "timestamp": "2026-04-14T07:07:29.464Z"
+    "timestamp": "2026-04-14T08:39:24.536Z"
   },
   {
     "type": "action",
-    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T07:07:29.465Z"
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T08:39:24.538Z"
   },
   {
     "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:07:29.465Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:07:29.465Z"
+    "message": "🌐 Translating to BM, Hindi, Chinese...",
+    "timestamp": "2026-04-14T08:39:25.456Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Govt will continue to review prices of fuel, essential goods, says PM\"",
-    "timestamp": "2026-04-14T07:07:29.486Z"
+    "timestamp": "2026-04-14T08:39:25.576Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Local authorities told to roll out energy-saving measures immediately\"",
-    "timestamp": "2026-04-14T07:07:59.465Z"
+    "timestamp": "2026-04-14T08:39:54.546Z"
   },
   {
     "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T07:07:59.467Z"
+    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
+    "timestamp": "2026-04-14T08:39:54.549Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:08:09.616Z"
+    "timestamp": "2026-04-14T08:39:54.550Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:08:09.616Z"
+    "timestamp": "2026-04-14T08:39:54.552Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Local authorities told to roll out energy-saving measures immediately\"",
-    "timestamp": "2026-04-14T07:08:09.650Z"
+    "timestamp": "2026-04-14T08:39:54.580Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"PKR to pick GE16 candidates from strong, active divisions, says Anwar\"",
-    "timestamp": "2026-04-14T07:08:29.479Z"
-  },
-  {
-    "type": "action",
-    "message": "⏳ Groq cooldown active (11s) — using fallback analyzer",
-    "timestamp": "2026-04-14T07:08:29.480Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:08:29.480Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:08:29.481Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"PKR to pick GE16 candidates from strong, active divisions, says Anwar\"",
-    "timestamp": "2026-04-14T07:08:29.501Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Home minister: 48 ex-armed forces personnel picked as first batch of Malaysia Border Guard\"",
-    "timestamp": "2026-04-14T07:08:59.479Z"
+    "timestamp": "2026-04-14T08:40:24.551Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T07:08:59.481Z"
+    "timestamp": "2026-04-14T08:40:24.552Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T07:09:00.817Z"
+    "timestamp": "2026-04-14T08:40:24.760Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T07:09:00.819Z"
+    "timestamp": "2026-04-14T08:40:24.761Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Home minister: 48 ex-armed forces personnel picked as first batch of Malaysia Border Guard\"",
-    "timestamp": "2026-04-14T07:09:00.851Z"
-  },
-  {
-    "type": "system",
-    "message": "🚀 AI Agent started — beginning continuous analysis",
-    "timestamp": "2026-04-14T08:03:23.986Z"
-  },
-  {
-    "type": "system",
-    "message": "⚡ Parallel pipeline active: Gemini discovery + Groq analysis (batch 1)",
-    "timestamp": "2026-04-14T08:03:23.989Z"
+    "message": "⏭️ Skipped duplicate: \"PKR to pick GE16 candidates from strong, active divisions, says Anwar\"",
+    "timestamp": "2026-04-14T08:40:24.781Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian political topics via Gemini + Google Search...",
-    "timestamp": "2026-04-14T08:03:23.990Z"
+    "timestamp": "2026-04-14T09:03:24.049Z"
   },
   {
     "type": "action",
     "message": "🔍 Search completed — API 429",
-    "timestamp": "2026-04-14T08:03:26.396Z"
+    "timestamp": "2026-04-14T09:03:24.458Z"
   },
   {
     "type": "action",
     "message": "🛰️ Gemini quota exhausted — collecting fallback topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-14T08:03:26.397Z"
+    "timestamp": "2026-04-14T09:03:24.458Z"
   },
   {
     "type": "discovery",
     "message": "📥 Fallback feed search queued 15 topics",
-    "timestamp": "2026-04-14T08:03:27.161Z"
+    "timestamp": "2026-04-14T09:03:25.469Z"
   },
   {
     "type": "action",
     "message": "📋 Queue updated: 15 topics pending analysis",
-    "timestamp": "2026-04-14T08:03:27.163Z"
+    "timestamp": "2026-04-14T09:03:25.470Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Putrajaya steps in with festive rebates for travellers, financial relief for airlines amid strain from Middle East conflict\"",
-    "timestamp": "2026-04-14T08:03:27.970Z"
+    "timestamp": "2026-04-14T09:03:26.273Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T08:03:27.971Z"
+    "timestamp": "2026-04-14T09:03:26.274Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating to BM, Hindi, Chinese...",
-    "timestamp": "2026-04-14T08:03:29.149Z"
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:03:26.446Z"
   },
   {
-    "type": "discovery",
-    "message": "✅ Completed: \"Putrajaya steps in with festive rebates for travellers, financial relief for airlines amid strain from Middle East conflict\" → UNVERIFIED (by Groq)",
-    "timestamp": "2026-04-14T08:03:29.302Z"
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:03:26.446Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Putrajaya steps in with festive rebates for travellers, financial relief for airlines amid strain from Middle East conflict\"",
+    "timestamp": "2026-04-14T09:03:26.447Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T08:03:54.031Z"
-  },
-  {
-    "type": "action",
-    "message": "⏳ Groq cooldown active (6s) — using fallback analyzer",
-    "timestamp": "2026-04-14T08:03:54.033Z"
-  },
-  {
-    "type": "action",
-    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:03:54.033Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:03:55.551Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T08:03:55.552Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T08:04:24.045Z"
-  },
-  {
-    "type": "action",
-    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T08:04:24.047Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating to BM, Hindi, Chinese...",
-    "timestamp": "2026-04-14T08:04:24.985Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T08:04:25.069Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T08:04:54.054Z"
+    "timestamp": "2026-04-14T09:03:54.890Z"
   },
   {
     "type": "action",
     "message": "⏳ Groq cooldown active (2s) — using fallback analyzer",
-    "timestamp": "2026-04-14T08:04:54.056Z"
+    "timestamp": "2026-04-14T09:03:54.892Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:04:54.056Z"
+    "timestamp": "2026-04-14T09:03:54.893Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:04:54.057Z"
+    "timestamp": "2026-04-14T09:03:54.894Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
+    "timestamp": "2026-04-14T09:03:54.895Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
+    "timestamp": "2026-04-14T09:04:24.897Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T09:04:24.899Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:04:25.020Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:04:25.357Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
+    "timestamp": "2026-04-14T09:04:25.360Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
+    "timestamp": "2026-04-14T09:04:54.911Z"
+  },
+  {
+    "type": "action",
+    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
+    "timestamp": "2026-04-14T09:04:54.912Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:04:54.913Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:04:54.914Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T08:04:54.059Z"
+    "timestamp": "2026-04-14T09:04:54.914Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
-    "timestamp": "2026-04-14T08:05:24.070Z"
+    "timestamp": "2026-04-14T09:05:24.915Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T08:05:24.071Z"
+    "timestamp": "2026-04-14T09:05:24.916Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:05:24.205Z"
+    "timestamp": "2026-04-14T09:05:25.035Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:05:24.207Z"
+    "timestamp": "2026-04-14T09:05:25.036Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
-    "timestamp": "2026-04-14T08:05:24.207Z"
+    "timestamp": "2026-04-14T09:05:25.037Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Sabah govt wants to emulate GPS&#8217;s approach to generating revenue\"",
-    "timestamp": "2026-04-14T08:05:54.079Z"
+    "timestamp": "2026-04-14T09:05:54.924Z"
   },
   {
     "type": "action",
     "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T08:05:54.081Z"
+    "timestamp": "2026-04-14T09:05:54.926Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:05:54.082Z"
+    "timestamp": "2026-04-14T09:05:54.926Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:05:54.083Z"
+    "timestamp": "2026-04-14T09:05:54.927Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Sabah govt wants to emulate GPS&#8217;s approach to generating revenue\"",
-    "timestamp": "2026-04-14T08:05:54.084Z"
+    "timestamp": "2026-04-14T09:05:54.927Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Call to delay state polls my personal view, says Ahmad Maslan\"",
-    "timestamp": "2026-04-14T08:06:24.090Z"
+    "timestamp": "2026-04-14T09:06:24.932Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T08:06:24.092Z"
+    "timestamp": "2026-04-14T09:06:24.934Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:06:24.222Z"
+    "timestamp": "2026-04-14T09:06:25.052Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:06:24.223Z"
+    "timestamp": "2026-04-14T09:06:25.052Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Call to delay state polls my personal view, says Ahmad Maslan\"",
-    "timestamp": "2026-04-14T08:06:24.224Z"
+    "timestamp": "2026-04-14T09:06:25.053Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Passenger who shot viral video of lap-sitting on moving bus says he acted to prevent danger\"",
-    "timestamp": "2026-04-14T08:06:54.091Z"
+    "timestamp": "2026-04-14T09:06:54.939Z"
   },
   {
     "type": "action",
     "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T08:06:54.092Z"
+    "timestamp": "2026-04-14T09:06:54.940Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:06:54.093Z"
+    "timestamp": "2026-04-14T09:06:54.941Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:06:54.094Z"
+    "timestamp": "2026-04-14T09:06:54.942Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Passenger who shot viral video of lap-sitting on moving bus says he acted to prevent danger\"",
-    "timestamp": "2026-04-14T08:06:54.094Z"
+    "timestamp": "2026-04-14T09:06:54.942Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Nothing &#8216;new&#8217; about Hamzah&#8217;s movement, says analyst\"",
-    "timestamp": "2026-04-14T08:07:24.091Z"
+    "timestamp": "2026-04-14T09:07:24.952Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T08:07:24.093Z"
+    "timestamp": "2026-04-14T09:07:24.954Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:07:24.215Z"
+    "timestamp": "2026-04-14T09:07:25.068Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:07:24.216Z"
+    "timestamp": "2026-04-14T09:07:25.069Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Nothing &#8216;new&#8217; about Hamzah&#8217;s movement, says analyst\"",
-    "timestamp": "2026-04-14T08:07:24.243Z"
+    "timestamp": "2026-04-14T09:07:25.093Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"As fuel costs rise, Malaysians urged to rethink spending, travel and daily habits\"",
-    "timestamp": "2026-04-14T08:07:54.095Z"
+    "timestamp": "2026-04-14T09:07:54.961Z"
   },
   {
     "type": "action",
     "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T08:07:54.097Z"
+    "timestamp": "2026-04-14T09:07:54.962Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:07:54.097Z"
+    "timestamp": "2026-04-14T09:07:54.963Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:07:54.098Z"
+    "timestamp": "2026-04-14T09:07:54.964Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"As fuel costs rise, Malaysians urged to rethink spending, travel and daily habits\"",
-    "timestamp": "2026-04-14T08:07:54.120Z"
+    "timestamp": "2026-04-14T09:07:54.988Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Newborn girl found abandoned near JB surau\"",
-    "timestamp": "2026-04-14T08:08:24.101Z"
+    "timestamp": "2026-04-14T09:08:24.972Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T08:08:24.104Z"
+    "timestamp": "2026-04-14T09:08:24.974Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:08:24.221Z"
+    "timestamp": "2026-04-14T09:08:25.102Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:08:24.223Z"
+    "timestamp": "2026-04-14T09:08:25.103Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Newborn girl found abandoned near JB surau\"",
-    "timestamp": "2026-04-14T08:08:24.257Z"
+    "timestamp": "2026-04-14T09:08:25.167Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"State polls must proceed, PAS leader says amid geopolitical crisis\"",
-    "timestamp": "2026-04-14T08:08:54.111Z"
+    "timestamp": "2026-04-14T09:08:54.977Z"
   },
   {
     "type": "action",
     "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T08:08:54.113Z"
+    "timestamp": "2026-04-14T09:08:54.979Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:08:54.114Z"
+    "timestamp": "2026-04-14T09:08:54.980Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:08:54.114Z"
+    "timestamp": "2026-04-14T09:08:54.982Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"State polls must proceed, PAS leader says amid geopolitical crisis\"",
-    "timestamp": "2026-04-14T08:08:54.141Z"
+    "timestamp": "2026-04-14T09:08:55.017Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Govt will continue to review prices of fuel, essential goods, says PM\"",
-    "timestamp": "2026-04-14T08:09:24.117Z"
+    "timestamp": "2026-04-14T09:09:24.984Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T08:09:24.119Z"
+    "timestamp": "2026-04-14T09:09:24.987Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:09:24.375Z"
+    "timestamp": "2026-04-14T09:09:25.235Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:09:24.375Z"
+    "timestamp": "2026-04-14T09:09:25.237Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Govt will continue to review prices of fuel, essential goods, says PM\"",
-    "timestamp": "2026-04-14T08:09:24.417Z"
+    "timestamp": "2026-04-14T09:09:25.267Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"Local authorities told to roll out energy-saving measures immediately\"",
-    "timestamp": "2026-04-14T08:09:54.125Z"
+    "timestamp": "2026-04-14T09:09:54.986Z"
   },
   {
     "type": "action",
     "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
-    "timestamp": "2026-04-14T08:09:54.127Z"
+    "timestamp": "2026-04-14T09:09:54.987Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:09:54.129Z"
+    "timestamp": "2026-04-14T09:09:54.988Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:09:54.131Z"
+    "timestamp": "2026-04-14T09:09:54.990Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"Local authorities told to roll out energy-saving measures immediately\"",
-    "timestamp": "2026-04-14T08:09:54.166Z"
+    "timestamp": "2026-04-14T09:09:55.047Z"
   },
   {
     "type": "action",
     "message": "🧠 Analyzing: \"PKR to pick GE16 candidates from strong, active divisions, says Anwar\"",
-    "timestamp": "2026-04-14T08:10:24.139Z"
+    "timestamp": "2026-04-14T09:10:24.989Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
-    "timestamp": "2026-04-14T08:10:24.140Z"
+    "timestamp": "2026-04-14T09:10:24.991Z"
   },
   {
     "type": "action",
     "message": "🔄 Groq unavailable, falling back to HuggingFace...",
-    "timestamp": "2026-04-14T08:10:24.273Z"
+    "timestamp": "2026-04-14T09:10:25.386Z"
   },
   {
     "type": "action",
     "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T08:10:24.275Z"
+    "timestamp": "2026-04-14T09:10:25.388Z"
   },
   {
     "type": "action",
     "message": "⏭️ Skipped duplicate: \"PKR to pick GE16 candidates from strong, active divisions, says Anwar\"",
-    "timestamp": "2026-04-14T08:10:24.301Z"
+    "timestamp": "2026-04-14T09:10:25.417Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian political topics via Gemini + Google Search...",
+    "timestamp": "2026-04-14T09:33:24.050Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Search completed — API 429",
+    "timestamp": "2026-04-14T09:33:24.199Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Gemini quota exhausted — collecting fallback topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T09:33:24.202Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Fallback feed search queued 15 topics",
+    "timestamp": "2026-04-14T09:33:28.163Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 15 topics pending analysis",
+    "timestamp": "2026-04-14T09:33:28.164Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Putrajaya steps in with festive rebates for travellers, financial relief for airlines amid strain from Middle East conflict\"",
+    "timestamp": "2026-04-14T09:33:28.973Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T09:33:28.974Z"
+  },
+  {
+    "type": "action",
+    "message": "🌐 Translating to BM, Hindi, Chinese...",
+    "timestamp": "2026-04-14T09:33:40.082Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Putrajaya steps in with festive rebates for travellers, financial relief for airlines amid strain from Middle East conflict\"",
+    "timestamp": "2026-04-14T09:33:40.161Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
+    "timestamp": "2026-04-14T09:33:55.388Z"
+  },
+  {
+    "type": "action",
+    "message": "⏳ Groq cooldown active (15s) — using fallback analyzer",
+    "timestamp": "2026-04-14T09:33:55.390Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:33:55.391Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:33:55.392Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
+    "timestamp": "2026-04-14T09:33:55.393Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
+    "timestamp": "2026-04-14T09:34:25.403Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T09:34:25.404Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:34:25.619Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:34:25.620Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
+    "timestamp": "2026-04-14T09:34:25.621Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
+    "timestamp": "2026-04-14T09:34:55.410Z"
+  },
+  {
+    "type": "action",
+    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
+    "timestamp": "2026-04-14T09:34:55.412Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:34:55.413Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:34:55.415Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
+    "timestamp": "2026-04-14T09:34:55.417Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
+    "timestamp": "2026-04-14T09:35:25.414Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T09:35:25.416Z"
+  },
+  {
+    "type": "action",
+    "message": "🌐 Translating to BM, Hindi, Chinese...",
+    "timestamp": "2026-04-14T09:35:26.420Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
+    "timestamp": "2026-04-14T09:35:26.499Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Sabah govt wants to emulate GPS&#8217;s approach to generating revenue\"",
+    "timestamp": "2026-04-14T09:35:55.428Z"
+  },
+  {
+    "type": "action",
+    "message": "⏳ Groq cooldown active (2s) — using fallback analyzer",
+    "timestamp": "2026-04-14T09:35:55.430Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:35:55.432Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:35:55.434Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Sabah govt wants to emulate GPS&#8217;s approach to generating revenue\"",
+    "timestamp": "2026-04-14T09:35:55.436Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Call to delay state polls my personal view, says Ahmad Maslan\"",
+    "timestamp": "2026-04-14T09:36:25.437Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T09:36:25.440Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:36:25.557Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:36:25.563Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Call to delay state polls my personal view, says Ahmad Maslan\"",
+    "timestamp": "2026-04-14T09:36:25.576Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Passenger who shot viral video of lap-sitting on moving bus says he acted to prevent danger\"",
+    "timestamp": "2026-04-14T09:36:55.442Z"
+  },
+  {
+    "type": "action",
+    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
+    "timestamp": "2026-04-14T09:36:55.444Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:36:55.444Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:36:55.445Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Passenger who shot viral video of lap-sitting on moving bus says he acted to prevent danger\"",
+    "timestamp": "2026-04-14T09:36:55.447Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Nothing &#8216;new&#8217; about Hamzah&#8217;s movement, says analyst\"",
+    "timestamp": "2026-04-14T09:37:25.445Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T09:37:25.446Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:37:25.851Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:37:25.852Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Nothing &#8216;new&#8217; about Hamzah&#8217;s movement, says analyst\"",
+    "timestamp": "2026-04-14T09:37:25.900Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"As fuel costs rise, Malaysians urged to rethink spending, travel and daily habits\"",
+    "timestamp": "2026-04-14T09:37:55.458Z"
+  },
+  {
+    "type": "action",
+    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
+    "timestamp": "2026-04-14T09:37:55.459Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:37:55.460Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:37:55.462Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"As fuel costs rise, Malaysians urged to rethink spending, travel and daily habits\"",
+    "timestamp": "2026-04-14T09:37:55.503Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Newborn girl found abandoned near JB surau\"",
+    "timestamp": "2026-04-14T09:38:25.467Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T09:38:25.469Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:38:25.833Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:38:25.835Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Newborn girl found abandoned near JB surau\"",
+    "timestamp": "2026-04-14T09:38:25.881Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"State polls must proceed, PAS leader says amid geopolitical crisis\"",
+    "timestamp": "2026-04-14T09:38:55.471Z"
+  },
+  {
+    "type": "action",
+    "message": "⏳ Groq cooldown active (24s) — using fallback analyzer",
+    "timestamp": "2026-04-14T09:38:55.475Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:38:55.477Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:38:55.479Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"State polls must proceed, PAS leader says amid geopolitical crisis\"",
+    "timestamp": "2026-04-14T09:38:55.531Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Govt will continue to review prices of fuel, essential goods, says PM\"",
+    "timestamp": "2026-04-14T09:39:25.481Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T09:39:25.482Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:39:25.644Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:39:25.645Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Govt will continue to review prices of fuel, essential goods, says PM\"",
+    "timestamp": "2026-04-14T09:39:25.681Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Local authorities told to roll out energy-saving measures immediately\"",
+    "timestamp": "2026-04-14T09:39:55.496Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq (Llama 3.3 70B) for analysis...",
+    "timestamp": "2026-04-14T09:39:55.498Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:39:55.633Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:39:55.634Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"Local authorities told to roll out energy-saving measures immediately\"",
+    "timestamp": "2026-04-14T09:39:55.682Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"PKR to pick GE16 candidates from strong, active divisions, says Anwar\"",
+    "timestamp": "2026-04-14T09:40:25.504Z"
+  },
+  {
+    "type": "action",
+    "message": "⏳ Groq cooldown active (1s) — using fallback analyzer",
+    "timestamp": "2026-04-14T09:40:25.505Z"
+  },
+  {
+    "type": "action",
+    "message": "🔄 Groq unavailable, falling back to HuggingFace...",
+    "timestamp": "2026-04-14T09:40:25.506Z"
+  },
+  {
+    "type": "action",
+    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
+    "timestamp": "2026-04-14T09:40:25.507Z"
+  },
+  {
+    "type": "action",
+    "message": "⏭️ Skipped duplicate: \"PKR to pick GE16 candidates from strong, active divisions, says Anwar\"",
+    "timestamp": "2026-04-14T09:40:25.527Z"
   }
 ]

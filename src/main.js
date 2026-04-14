@@ -130,6 +130,7 @@ function navigate(section) {
   document.getElementById('nav-links')?.classList.remove('active');
   if (section === 'dashboard') renderDashboard();
   else if (section === 'topics') renderTopics();
+  else if (section === 'parties') renderParties();
   else if (section === 'statistics') renderStatistics();
   else if (section === 'agent') renderAgent();
 }
@@ -143,6 +144,14 @@ function init() {
   setupModal();
   connectSSE();
   updateNavLabels();
+
+  // Restore saved language flag + highlight on load
+  const savedLang = state.lang;
+  const flagEl = document.getElementById('current-lang-flag');
+  if (flagEl) flagEl.textContent = LANGUAGES[savedLang]?.flag || '🌐';
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === savedLang);
+  });
 
   const hash = window.location.hash.slice(1) || 'dashboard';
   navigate(hash);
@@ -166,6 +175,7 @@ function createSections() {
   main.innerHTML = `
     <section class="section active" id="section-dashboard"><div class="section-container" id="dashboard-content"></div></section>
     <section class="section" id="section-topics"><div class="section-container" id="topics-content"></div></section>
+    <section class="section" id="section-parties"><div class="section-container" id="parties-content"></div></section>
     <section class="section" id="section-statistics"><div class="section-container" id="statistics-content"></div></section>
     <section class="section" id="section-agent"><div class="section-container" id="agent-content"></div></section>
   `;
@@ -190,7 +200,7 @@ function setupModal() {
 }
 
 function updateNavLabels() {
-  const sectionToKeyMap = { dashboard: 'dashboard', topics: 'topics', statistics: 'statistics', agent: 'aiAgent' };
+  const sectionToKeyMap = { dashboard: 'dashboard', topics: 'topics', parties: 'parties', statistics: 'statistics', agent: 'aiAgent' };
   document.querySelectorAll('.nav-link').forEach(link => {
     const section = link.dataset.section;
     const labelEl = link.querySelector('.nav-label');
@@ -204,6 +214,13 @@ function updateNavLabels() {
 window.switchLanguage = function(lang) {
   state.lang = lang;
   setLang(lang);
+  // Update the flag icon in the toggle button
+  const flagEl = document.getElementById('current-lang-flag');
+  if (flagEl) flagEl.textContent = LANGUAGES[lang]?.flag || '🌐';
+  // Update active state of lang options
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
   // Re-render current section
   updateNavLabels();
   updateAgentBadge();
@@ -360,25 +377,34 @@ async function renderTopics() {
   if (state.filters.verdict !== 'ALL') params.set('verdict', state.filters.verdict);
   if (state.filters.category !== 'ALL') params.set('category', state.filters.category);
   if (state.filters.search) params.set('search', state.filters.search);
+  params.set('limit', '500');
 
-  const topics = await api(`/api/topics?${params.toString()}`);
+  const [topics, allTopicsRaw] = await Promise.all([
+    api(`/api/topics?${params.toString()}`),
+    api('/api/topics?limit=500'),
+  ]);
   if (!topics) return;
 
-  const allTopicsForCats = await api('/api/topics');
-  const allCategories = [...new Set((allTopicsForCats || []).map(t => t.category))];
-  const regionGroups = buildRegionTopicGroups(topics);
-  const partyGroups = buildPartyTopicGroups(topics);
+  const sorted = [...topics].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const allCategories = [...new Set((allTopicsRaw || []).map(t => t.category))].filter(Boolean).sort();
 
   container.innerHTML = `
+    <div class="hero-search-section">
+      <div class="hero-search-title">${_('searchHeroTitle')}</div>
+      <div class="hero-search-sub">${_('searchHeroSub')}</div>
+      <div class="hero-search-bar">
+        <span class="hero-search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="${_('searchPlaceholder')}" value="${state.filters.search}" autofocus />
+        ${state.filters.search ? `<button class="search-clear" id="search-clear-btn">✕</button>` : ''}
+      </div>
+      <div class="hero-search-hint">${_('searchHint')}</div>
+    </div>
+
     <div class="topics-header">
       <div>
-        <h1 class="topics-title">${_('politicalTopics')}</h1>
-        <div class="topics-count">${_('topicsFound', { n: topics.length })}</div>
+        <h2 class="topics-title">${_('politicalTopics')}</h2>
+        <div class="topics-count">${_('topicsFound', { n: sorted.length })} · ${_('sortedNewest')}</div>
       </div>
-    </div>
-    <div class="search-bar">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="search-input" placeholder="${_('searchPlaceholder')}" value="${state.filters.search}" />
     </div>
     <div class="filter-row">
       <div class="filter-group">
@@ -406,44 +432,247 @@ async function renderTopics() {
         ${allCategories.map(cat => `<button class="filter-chip ${state.filters.category === cat ? 'active' : ''}" data-filter="category" data-value="${cat}">${cat}</button>`).join('')}
       </div>
     </div>
-    ${topics.length > 0
-      ? `
-        <div class="topics-separated-grid">
-          <section class="topics-group-panel">
-            <div class="topics-group-panel-header">
-              <h2 class="topics-group-panel-title">🗺️ Topics by Region</h2>
-              <span class="topics-group-panel-meta">${regionGroups.length} groups</span>
-            </div>
-            <div class="topics-group-stack">
-              ${regionGroups.map(group => renderGroupedTopicGroup(group, 'region')).join('')}
-            </div>
-          </section>
-
-          <section class="topics-group-panel">
-            <div class="topics-group-panel-header">
-              <h2 class="topics-group-panel-title">🏛️ Topics by Party</h2>
-              <span class="topics-group-panel-meta">${partyGroups.length} groups</span>
-            </div>
-            <div class="topics-group-stack">
-              ${partyGroups.map(group => renderGroupedTopicGroup(group, 'party')).join('')}
-            </div>
-          </section>
-        </div>
-      `
+    ${sorted.length > 0
+      ? `<div class="topics-feed">${sorted.map(t => renderTopicFeedItem(t)).join('')}</div>`
       : `<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">${_('noTopics')}</div><div class="empty-state-sub">${_('tryAdjusting')}</div></div>`}
   `;
 
   container.querySelector('#search-input')?.addEventListener('input', debounce((e) => { state.filters.search = e.target.value; renderTopics(); }, 300));
+  container.querySelector('#search-clear-btn')?.addEventListener('click', () => { state.filters.search = ''; renderTopics(); });
   container.querySelectorAll('.filter-chip').forEach(chip => {
     chip.addEventListener('click', () => { state.filters[chip.dataset.filter] = chip.dataset.value; renderTopics(); });
   });
-  container.querySelectorAll('.group-topic-item').forEach(item => {
+  container.querySelectorAll('.feed-topic-item').forEach(item => {
     item.addEventListener('click', () => openTopicModal(item.dataset.topicId));
   });
 }
 
+function getConfidenceInfo(conf) {
+  if (conf === 'high') return { color: 'var(--color-true)', label: '●●●', text: 'High' };
+  if (conf === 'medium') return { color: 'var(--color-misleading)', label: '●●○', text: 'Medium' };
+  return { color: 'var(--color-unverified)', label: '●○○', text: 'Low' };
+}
+
+function renderTopicFeedItem(topic) {
+  const party = PARTIES[topic.party];
+  const verdict = VERDICTS[topic.verdict];
+  const verdictClass = topic.verdict.toLowerCase().replace('_', '-');
+  const title = topic.translations?.[state.lang]?.title || topic.title;
+  const summary = topic.translations?.[state.lang]?.summary || topic.summary;
+  const conf = getConfidenceInfo(topic.confidence);
+  const vScore = topic.verification?.score;
+  return `
+    <div class="feed-topic-item" data-topic-id="${topic.id}">
+      <div class="feed-verdict-col">
+        <span class="group-topic-verdict ${verdictClass}">${verdict?.icon || '•'}</span>
+      </div>
+      <div class="feed-body">
+        <div class="feed-title">${title}</div>
+        <div class="feed-summary">${truncate(summary || '', 180)}</div>
+        <div class="feed-meta">
+          <span class="feed-party" style="color: ${party?.color || '#888'}">${topic.party}</span>
+          <span>·</span><span>${topic.category}</span>
+          ${topic.region ? `<span>·</span><span>📍 ${topic.region}</span>` : ''}
+          <span>·</span><span class="feed-date">📅 ${formatDate(topic.date)}</span>
+          ${topic.impact === 'high' ? `<span>·</span><span style="color:#ef4444">⚡ ${_('highImpact')}</span>` : ''}
+          <span>·</span><span style="color:${conf.color}" title="${_('confidence')}: ${conf.text}">${conf.label} ${conf.text}</span>
+          ${vScore !== undefined ? `<span>·</span><span title="Source verification score">🛡️ ${vScore}/100</span>` : ''}
+        </div>
+      </div>
+      <div class="feed-verdict-badge">
+        <span class="verdict-badge ${verdictClass}">${verdict?.icon || ''} ${verdict?.label || topic.verdict}</span>
+      </div>
+    </div>
+  `;
+}
+
 function normalizeRegionLabel(region) {
   return String(region || '').trim() || 'National';
+}
+
+// ============================================================
+// PARTIES SECTION
+// ============================================================
+const PARTY_MEMBERS = {
+  PKR: [
+    { name: 'Anwar Ibrahim', role: 'President / Prime Minister', title: 'YAB' },
+    { name: 'Rafizi Ramli', role: 'Deputy President / Economy Minister', title: 'YB' },
+    { name: 'Nurul Izzah Anwar', role: 'Vice President', title: 'YB' },
+    { name: 'Saifuddin Nasution', role: 'Secretary-General / Home Minister', title: 'YB' },
+    { name: 'Fuziah Salleh', role: 'Vice President', title: 'YB' },
+    { name: 'Johari Abdul', role: 'Treasurer / Finance Minister II', title: 'YB' },
+    { name: 'Nik Nazmi Nik Ahmad', role: 'Natural Resources & Environment Minister', title: 'YB' },
+    { name: 'Hannah Yeoh', role: 'Women, Family & Community Development Minister', title: 'YB' },
+  ],
+  DAP: [
+    { name: 'Anthony Loke', role: 'Secretary-General / Transport Minister', title: 'YB' },
+    { name: 'Lim Guan Eng', role: 'Chairman', title: 'YB' },
+    { name: 'Gobind Singh Deo', role: 'Communications Minister', title: 'YB' },
+    { name: 'RSN Rayer', role: 'Deputy Minister', title: 'YB' },
+    { name: 'Nga Kor Ming', role: 'Local Government & Housing Minister', title: 'YB' },
+    { name: 'Steven Sim', role: 'Human Resources Minister', title: 'YB' },
+    { name: 'Ong Kian Ming', role: 'Deputy Minister II', title: 'YB' },
+  ],
+  AMANAH: [
+    { name: 'Mohamad Sabu', role: 'President / Defence Minister', title: 'YB' },
+    { name: 'Salahuddin Ayub', role: 'Deputy President / Agriculture Minister', title: 'YB' },
+    { name: 'Mujahid Yusof Rawa', role: 'Secretary-General', title: 'YB' },
+    { name: 'Siti Zailah Mohd Yusoff', role: 'Deputy Women Minister', title: 'YB' },
+  ],
+  UMNO: [
+    { name: 'Ahmad Zahid Hamidi', role: 'President / Deputy PM', title: 'YAB' },
+    { name: 'Mohamad Hassan', role: 'Deputy President', title: 'YB' },
+    { name: 'Khaled Nordin', role: 'Vice President / Higher Education Minister', title: 'YB' },
+    { name: 'Zambry Abd Kadir', role: 'Foreign Affairs Minister', title: 'YB' },
+    { name: 'Annuar Musa', role: 'Federal Territories Minister', title: 'YB' },
+    { name: 'Noraini Ahmad', role: 'Science & Technology Minister', title: 'YB' },
+    { name: 'Hishammuddin Hussein', role: 'Special Envoy', title: 'YB' },
+  ],
+  PAS: [
+    { name: 'Abdul Hadi Awang', role: 'President', title: 'YB' },
+    { name: 'Tuan Ibrahim Tuan Man', role: 'Deputy President', title: 'YB' },
+    { name: 'Khairuddin Aman Razali', role: 'Secretary-General', title: 'YB' },
+    { name: 'Idris Ahmad', role: 'Information Chief', title: 'YB' },
+    { name: 'Ahmad Samsuri Mokhtar', role: 'Terengganu MB', title: 'YAB' },
+    { name: 'Mohd Sanusi Md Nor', role: 'Kedah MB', title: 'YAB' },
+    { name: 'Nasruddin Hassan', role: 'Youth Wing Chief', title: 'YB' },
+  ],
+  BERSATU: [
+    { name: 'Hamzah Zainudin', role: 'President', title: 'YB' },
+    { name: 'Faizal Azumu', role: 'Deputy President', title: 'YB' },
+    { name: 'Muhyiddin Yassin', role: 'Supreme Council Member / Former PM', title: 'Tan Sri' },
+    { name: 'Radzi Jidin', role: 'Information Chief', title: 'YB' },
+    { name: 'Amirudin Hamzah', role: 'Secretary-General', title: 'YB' },
+  ],
+  GPS: [
+    { name: 'Abang Johari Openg', role: 'Chairman / Sarawak CM', title: 'YAB' },
+    { name: 'Fadillah Yusof', role: 'Deputy Chairman / Deputy PM II', title: 'YAB' },
+    { name: 'Abdul Karim Rahman Hamzah', role: 'Tourism Minister', title: 'YB' },
+    { name: 'Julaihi Narawi', role: 'Deputy CM I Sarawak', title: 'YB' },
+    { name: 'Awang Tengah Ali Hasan', role: 'Deputy CM II Sarawak', title: 'YB' },
+    { name: 'Wan Junaidi Tuanku Jaafar', role: 'Deputy Speaker', title: 'YB' },
+  ],
+  MUDA: [
+    { name: 'Syed Saddiq Abdul Rahman', role: 'Chairman / MP Muar', title: 'YB' },
+    { name: 'Amira Aisya', role: 'Dept. Secretary-General', title: 'YB' },
+  ],
+};
+
+async function renderParties() {
+  const container = document.getElementById('parties-content');
+  if (!container) return;
+
+  const stats = state.cachedStats || await api('/api/stats');
+  if (stats) state.cachedStats = stats;
+
+  const coalitionOrder = ['PH', 'BN', 'PN', 'GPS', 'Independent'];
+  const byCoalition = {};
+  coalitionOrder.forEach(c => byCoalition[c] = []);
+  Object.values(PARTIES).forEach(p => {
+    if (byCoalition[p.coalition]) byCoalition[p.coalition].push(p);
+    else byCoalition['Independent'] = [...(byCoalition['Independent'] || []), p];
+  });
+
+  container.innerHTML = `
+    <div class="parties-page-header">
+      <h1 class="stats-page-title">🏛️ ${_('partiesTitle')}</h1>
+      <p class="stats-page-subtitle">${_('partiesSubtitle')}</p>
+    </div>
+    ${coalitionOrder.map(coalId => {
+      const parties = byCoalition[coalId];
+      if (!parties || parties.length === 0) return '';
+      const coalition = COALITIONS[coalId];
+      return `
+        <div class="coalition-section">
+          <div class="coalition-header">
+            <div class="coalition-dot" style="background: ${coalition?.color || '#888'}"></div>
+            <div>
+              <div class="coalition-name">${coalition?.name || coalId}</div>
+              <div class="coalition-status">${coalition?.status || ''}</div>
+            </div>
+          </div>
+          <div class="party-member-grid">
+            ${parties.map(p => renderPartyMemberCard(p, stats)).join('')}
+          </div>
+        </div>
+      `;
+    }).join('')}
+  `;
+
+  container.querySelectorAll('.party-expand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const list = btn.closest('.party-member-card').querySelector('.member-list-full');
+      const preview = btn.closest('.party-member-card').querySelector('.member-list-preview');
+      if (list.style.display === 'none') {
+        list.style.display = 'block';
+        preview.style.display = 'none';
+        btn.textContent = _('showLess');
+      } else {
+        list.style.display = 'none';
+        preview.style.display = 'block';
+        btn.textContent = _('showMore');
+      }
+    });
+  });
+}
+
+function renderPartyMemberCard(party, stats) {
+  const ps = stats?.partyStats?.[party.id];
+  const members = PARTY_MEMBERS[party.id] || [];
+  const coalition = COALITIONS[party.coalition];
+  const scoreColor = !ps ? '#888' : ps.credibilityScore >= 60 ? 'var(--color-true)' : ps.credibilityScore >= 40 ? 'var(--color-misleading)' : 'var(--color-hoax)';
+  const preview = members.slice(0, 3);
+  const rest = members.slice(3);
+
+  return `
+    <div class="party-member-card" style="--party-color: ${party.color}">
+      <div class="party-member-card-top">
+        <div class="party-member-badge" style="background: ${party.colorLight}; border-color: ${party.color}40">
+          <div class="party-member-abbr" style="color: ${party.color}">${party.abbr}</div>
+          <div class="party-member-fullname">${party.name}</div>
+        </div>
+        <div class="party-member-score">
+          ${ps ? `<div class="score-value" style="color:${scoreColor}">${ps.credibilityScore}%</div><div class="score-label">${_('credibilityScore')}</div>` : '<div class="score-label" style="color:var(--text-muted)">No data yet</div>'}
+        </div>
+      </div>
+      ${ps ? `
+        <div class="party-mini-stats">
+          <span style="color:var(--color-true)">✅ ${ps.true}</span>
+          <span style="color:var(--color-hoax)">🚫 ${ps.hoax}</span>
+          <span style="color:var(--color-misleading)">⚠️ ${ps.misleading}</span>
+          <span style="color:var(--text-muted)">❓ ${ps.unverified || 0}</span>
+        </div>
+      ` : ''}
+      <div class="party-member-info">${party.description}</div>
+      <div class="coalition-tag" style="color:${coalition?.color || '#888'}">${coalition?.name || party.coalition}</div>
+      <div class="members-heading">${_('keyMembers')}</div>
+      <div class="member-list-preview">
+        ${preview.map(m => `
+          <div class="member-row">
+            <div class="member-avatar" style="background: ${party.colorLight}; border: 2px solid ${party.color}40">${m.name.split(' ').map(w=>w[0]).join('').substring(0,2)}</div>
+            <div class="member-info">
+              <div class="member-name">${m.title ? m.title + ' ' : ''}${m.name}</div>
+              <div class="member-role">${m.role}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      ${rest.length > 0 ? `
+        <div class="member-list-full" style="display:none">
+          ${rest.map(m => `
+            <div class="member-row">
+              <div class="member-avatar" style="background: ${party.colorLight}; border: 2px solid ${party.color}40">${m.name.split(' ').map(w=>w[0]).join('').substring(0,2)}</div>
+              <div class="member-info">
+                <div class="member-name">${m.title ? m.title + ' ' : ''}${m.name}</div>
+                <div class="member-role">${m.role}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <button class="party-expand-btn">${_('showMore')}</button>
+      ` : ''}
+    </div>
+  `;
 }
 
 function buildRegionTopicGroups(topics) {
@@ -703,7 +932,6 @@ async function renderAgent() {
         <button class="agent-btn pause" id="agent-pause" ${as.status !== 'running' ? 'disabled style="opacity:0.5"' : ''}>⏸ ${_('pause')}</button>
         <button class="agent-btn stop" id="agent-stop" ${as.status === 'idle' ? 'disabled style="opacity:0.5"' : ''}>⏹ ${_('stop')}</button>
         <button class="agent-btn ingest" id="agent-ingest" ${as.bulkIngesting ? 'disabled style="opacity:0.5"' : ''}>📥 Collect 1000 Real</button>
-        <button class="agent-btn reset" id="agent-reset">🔄 ${_('resetData')}</button>
       </div>
     </div>
 
@@ -808,13 +1036,6 @@ async function renderAgent() {
     await apiPost('/api/agent/stop');
     showToast(`🔴 ${_('agentIdle')}`, 'info');
     renderAgent();
-  });
-  document.getElementById('agent-reset')?.addEventListener('click', async () => {
-    if (confirm(_('resetConfirm'))) {
-      await apiPost('/api/agent/reset');
-      showToast('🔄 Data reset', 'info');
-      renderAgent();
-    }
   });
   document.getElementById('agent-ingest')?.addEventListener('click', async () => {
     const targetRaw = prompt('How many real records to collect?', '1000');
@@ -922,8 +1143,79 @@ function renderLogEntry(entry) {
 }
 
 // ============================================================
-// TOPIC DETAIL MODAL
+// TOPIC DETAIL MODAL — with verification evidence
 // ============================================================
+function buildVerificationPanel(topic) {
+  const conf = getConfidenceInfo(topic.confidence || 'low');
+  const v = topic.verification || {};
+  const vScore = v.score ?? 0;
+  const vStatus = v.status || 'UNKNOWN';
+  const vMethod = v.method || 'unknown';
+  const vChecks = v.checks || {};
+  const vReasons = v.reasons || [];
+  const provider = topic.aiProvider || 'None';
+
+  // Status color
+  const statusColors = { VERIFIED: 'var(--color-true)', LIKELY_REAL: '#22c55e', WEAK: 'var(--color-misleading)', REJECTED: 'var(--color-hoax)', UNKNOWN: 'var(--color-unverified)' };
+  const sColor = statusColors[vStatus] || statusColors.UNKNOWN;
+
+  // Score bar segments
+  const scorePercent = Math.min(100, Math.max(0, vScore));
+  const scoreColor = vScore >= 80 ? 'var(--color-true)' : vScore >= 65 ? '#22c55e' : vScore >= 50 ? 'var(--color-misleading)' : 'var(--color-hoax)';
+
+  return `
+    <div class="verification-panel">
+      <div class="vp-header">
+        <div class="vp-title">🔬 ${_('howWeVerified')}</div>
+        <div class="vp-method">Method: ${vMethod}</div>
+      </div>
+
+      <div class="vp-score-row">
+        <div class="vp-score-bar-container">
+          <div class="vp-score-bar" style="width: ${scorePercent}%; background: ${scoreColor}"></div>
+        </div>
+        <div class="vp-score-value" style="color: ${scoreColor}">${vScore}/100</div>
+      </div>
+
+      <div class="vp-grid">
+        <div class="vp-item">
+          <div class="vp-item-label">${_('sourceStatus')}</div>
+          <div class="vp-item-value" style="color: ${sColor}">${vStatus.replace('_', ' ')}</div>
+        </div>
+        <div class="vp-item">
+          <div class="vp-item-label">${_('aiConfidence')}</div>
+          <div class="vp-item-value"><span style="color:${conf.color}">${conf.label}</span> ${conf.text}</div>
+        </div>
+        <div class="vp-item">
+          <div class="vp-item-label">${_('analyzedByLabel')}</div>
+          <div class="vp-item-value">${provider === 'Groq' ? '🤖 Groq Llama 3.3 70B' : provider === 'HuggingFace' ? '🧩 HuggingFace' : provider === 'SourceVerifier' ? '🛡️ Source Verifier' : provider === 'Heuristic' ? '⚡ Heuristic (basic)' : '❓ ' + provider}</div>
+        </div>
+        <div class="vp-item">
+          <div class="vp-item-label">${_('sourceTrusted')}</div>
+          <div class="vp-item-value">${vChecks.sourceTrusted ? '✅ Yes — trusted domain' : '⚠️ Not in allowlist'}</div>
+        </div>
+        <div class="vp-item">
+          <div class="vp-item-label">${_('multiSource')}</div>
+          <div class="vp-item-value">${vChecks.multiSourceSupport ? `✅ Yes (${vChecks.uniqueDomainsInCluster || '2+'} domains)` : '❌ Single source only'}</div>
+        </div>
+        <div class="vp-item">
+          <div class="vp-item-label">${_('contentChecks')}</div>
+          <div class="vp-item-value">${[vChecks.hasTitle ? '✅ Title' : '❌ Title', vChecks.hasSummary ? '✅ Summary' : '❌ Summary', vChecks.hasUrl ? '✅ URL' : '❌ URL', vChecks.hasPublishedAt ? '✅ Date' : '❌ Date'].join(' · ')}</div>
+        </div>
+      </div>
+
+      ${vReasons.length > 0 ? `
+        <div class="vp-reasons">
+          <div class="vp-reasons-title">⚠️ ${_('flaggedIssues')}</div>
+          ${vReasons.map(r => `<div class="vp-reason">• ${r}</div>`).join('')}
+        </div>
+      ` : ''}
+
+      ${vChecks.hasSuspiciousSignal ? `<div class="vp-warning">🚨 ${_('suspiciousLang')}</div>` : ''}
+    </div>
+  `;
+}
+
 async function openTopicModal(topicId) {
   const topic = await api(`/api/topics/${topicId}`);
   if (!topic) return;
@@ -932,27 +1224,50 @@ async function openTopicModal(topicId) {
   const verdict = VERDICTS[topic.verdict];
   const verdictClass = topic.verdict.toLowerCase().replace('_', '-');
   const coalition = party ? COALITIONS[party.coalition] : null;
+  const conf = getConfidenceInfo(topic.confidence || 'low');
 
-  // Get translated content
   const title = topic.translations?.[state.lang]?.title || topic.title;
   const summary = topic.translations?.[state.lang]?.summary || topic.summary;
   const analysis = topic.translations?.[state.lang]?.analysis || topic.analysis;
 
+  // Verdict explanation
+  const verdictExplanations = {
+    TRUE: _('verdictExplainTrue'),
+    HOAX: _('verdictExplainHoax'),
+    MISLEADING: _('verdictExplainMisleading'),
+    PARTIALLY_TRUE: _('verdictExplainPartial'),
+    UNVERIFIED: _('verdictExplainUnverified'),
+  };
+
   const modal = document.getElementById('modal-content');
   modal.innerHTML = `
     <button class="modal-close" id="modal-close-btn">✕</button>
-    <div class="modal-verdict"><span class="verdict-badge ${verdictClass}" style="font-size: 0.85rem; padding: 6px 16px;">${verdict?.icon || ''} ${verdict?.label || topic.verdict}</span></div>
+
+    <div class="modal-verdict-hero ${verdictClass}">
+      <div class="mvh-icon">${verdict?.icon || '❓'}</div>
+      <div class="mvh-info">
+        <div class="mvh-label">${verdict?.label || topic.verdict}</div>
+        <div class="mvh-explain">${verdictExplanations[topic.verdict] || ''}</div>
+      </div>
+      <div class="mvh-confidence">
+        <span style="color:${conf.color}">${conf.label}</span>
+        <span class="mvh-conf-text">${_('confidence')}: ${conf.text}</span>
+      </div>
+    </div>
+
     <h2 class="modal-title">${title}</h2>
     <div class="modal-meta">
       <span class="party-tag" style="background: ${party?.colorLight}; color: ${party?.color}; font-size: 0.8rem; padding: 4px 12px;">${topic.party} ${coalition ? '(' + coalition.name + ')' : ''}</span>
       <span class="category-tag" style="font-size: 0.8rem; padding: 4px 12px;">📁 ${topic.category}</span>
       <span class="category-tag" style="font-size: 0.8rem; padding: 4px 12px;">📅 ${formatDate(topic.date)}</span>
       <span class="category-tag" style="font-size: 0.8rem; padding: 4px 12px;">📍 ${topic.region || 'National'}</span>
-      ${topic.aiProvider ? `<span class="category-tag" style="font-size: 0.8rem; padding: 4px 12px; border-color: rgba(124,58,237,0.3); color: var(--text-accent);">🤖 ${_('analyzedBy')}: ${topic.aiProvider}</span>` : ''}
-      ${topic.confidence ? `<span class="category-tag" style="font-size: 0.8rem; padding: 4px 12px;">${_('confidence')}: ${topic.confidence}</span>` : ''}
     </div>
+
     <div class="modal-section"><div class="modal-section-title">📝 ${_('summary')}</div><div class="modal-section-content">${summary}</div></div>
-    <div class="modal-section"><div class="modal-section-title">🧠 ${_('aiAnalysis')}</div><div class="modal-section-content">${analysis || 'No detailed analysis available.'}</div></div>
+    <div class="modal-section"><div class="modal-section-title">🧠 ${_('aiAnalysis')}</div><div class="modal-section-content">${analysis || _('noAnalysis')}</div></div>
+
+    ${buildVerificationPanel(topic)}
+
     <div class="modal-section">
       <div class="modal-section-title">📚 ${_('sourcesRef')}</div>
       <ul class="modal-sources-list">

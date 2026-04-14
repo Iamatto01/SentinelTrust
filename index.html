@@ -25,6 +25,9 @@
         <a href="#topics" class="nav-link" data-section="topics">
           <span class="nav-icon">📰</span> <span class="nav-label">Topics</span>
         </a>
+        <a href="#parties" class="nav-link" data-section="parties">
+          <span class="nav-icon">🏛️</span> <span class="nav-label">Parties</span>
+        </a>
         <a href="#statistics" class="nav-link" data-section="statistics">
           <span class="nav-icon">📈</span> <span class="nav-label">Statistics</span>
         </a>
@@ -39,10 +42,10 @@
             🌐 <span id="current-lang-flag">🇬🇧</span>
           </button>
           <div class="lang-dropdown" id="lang-dropdown">
-            <button class="lang-option" onclick="switchLanguage('en')">🇬🇧 English</button>
-            <button class="lang-option" onclick="switchLanguage('ms')">🇲🇾 Bahasa Melayu</button>
-            <button class="lang-option" onclick="switchLanguage('hi')">🇮🇳 हिन्दी</button>
-            <button class="lang-option" onclick="switchLanguage('zh')">🇨🇳 中文</button>
+            <button class="lang-option" data-lang="en" onclick="switchLanguage('en')">🇬🇧 English</button>
+            <button class="lang-option" data-lang="ms" onclick="switchLanguage('ms')">🇲🇾 Bahasa Melayu</button>
+            <button class="lang-option" data-lang="hi" onclick="switchLanguage('hi')">🇮🇳 हिन्दी</button>
+            <button class="lang-option" data-lang="zh" onclick="switchLanguage('zh')">🇨🇳 中文</button>
           </div>
         </div>
         <div class="agent-status-badge" id="agent-status-badge">
