@@ -1,7 +1,6 @@
 // AI Agent — Server-side continuous analysis pipeline
 // Searches → Analyzes → Translates → Stores → Broadcasts
 
-import { geminiSearch } from './gemini-search.js';
 import { groqAnalyzer } from './groq-analyzer.js';
 import { huggingFaceFallback } from './huggingface-fallback.js';
 import { dataManager } from './data-manager.js';
@@ -146,7 +145,7 @@ class AIAgent {
     if (this.status === 'running') return;
     this.status = 'running';
     this._updateAction('🚀 AI Agent started — beginning continuous analysis', 'system');
-    this._updateAction(`⚡ Parallel pipeline active: Gemini discovery + Groq analysis (batch ${this.analyzeBatchSize})`, 'system');
+    this._updateAction(`⚡ Parallel pipeline active: feed discovery + Groq analysis (batch ${this.analyzeBatchSize})`, 'system');
     this._broadcast('status', this.getStatus());
 
     // Start search cycle
@@ -194,7 +193,6 @@ class AIAgent {
       bulkIngesting: this._bulkIngesting,
       lastIngestionReport: this._lastIngestionReport,
       providers: {
-        gemini: geminiSearch.getUsage(),
         groq: groqAnalyzer.getUsage(),
         huggingface: huggingFaceFallback.getUsage(),
       }
@@ -215,56 +213,16 @@ class AIAgent {
   async _doSearch() {
     if (this.status !== 'running') return;
 
-    this._updateAction('🔍 Searching for new Malaysian political topics via Gemini + Google Search...', 'action');
+    this._updateAction('🔍 Searching for new Malaysian political topics via RSS/Google News feeds...', 'action');
 
-    const result = await geminiSearch.searchPoliticalNews();
+    const fallbackQueued = await this._fallbackSearchFromFeeds('Feed discovery');
 
-    if (result.success && result.topics.length > 0) {
-      const filteredTopics = result.topics.filter((topic) => this._isMalaysiaPoliticalTopic(topic));
-      const droppedCount = result.topics.length - filteredTopics.length;
-      this._updateAction(`📥 Found ${filteredTopics.length} Malaysia political topics from live news`, 'discovery');
-
-      if (droppedCount > 0) {
-        this._updateAction(`🧹 Filtered out ${droppedCount} non-Malaysia/non-political topics`, 'action');
-      }
-
-      for (const topic of filteredTopics) {
-        if (!this._isTopicAlreadyQueued(topic)) {
-          this._queue.push(topic);
-        }
-      }
-
-      this._updateAction(`📋 Queue updated: ${this._queue.length} topics pending analysis`, 'action');
-      if (this._queue.length > 0) {
-        this._scheduleAnalyzeSoon(800);
-      }
-    } else {
-      this._updateAction(`🔍 Search completed — ${result.error || 'No new topics found'}`, 'action');
-
-      const geminiUnavailable = !geminiSearch.isAvailable();
-      const errorText = (result.error || '').toLowerCase();
-      const geminiQuotaIssue =
-        result.quotaExceeded ||
-        errorText.includes('api 429') ||
-        errorText.includes('quota') ||
-        errorText.includes('resource_exhausted');
-
-      let fallbackQueued = 0;
-
-      if (geminiUnavailable || geminiQuotaIssue) {
-        const reason = geminiUnavailable ? 'Gemini unavailable' : 'Gemini quota exhausted';
-        fallbackQueued = await this._fallbackSearchFromFeeds(reason);
-      }
-
-      if (fallbackQueued === 0 && geminiUnavailable && this.allowSimulatedData) {
-        this._addSimulatedTopics();
-      } else if (fallbackQueued === 0 && geminiUnavailable && !this.allowSimulatedData) {
-        this._updateAction('⚠️ Gemini key missing, fallback feeds empty, and simulated data disabled (strict real mode)', 'system');
-      } else if (fallbackQueued === 0 && geminiQuotaIssue) {
-        this._updateAction('⚠️ Gemini quota exhausted and fallback feed collection returned no topics', 'system');
-      } else if (fallbackQueued > 0) {
-        this._scheduleAnalyzeSoon(800);
-      }
+    if (fallbackQueued === 0 && this.allowSimulatedData) {
+      this._addSimulatedTopics();
+    } else if (fallbackQueued === 0 && !this.allowSimulatedData) {
+      this._updateAction('⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)', 'system');
+    } else if (fallbackQueued > 0) {
+      this._scheduleAnalyzeSoon(800);
     }
 
     this._broadcast('status', this.getStatus());
@@ -308,8 +266,8 @@ class AIAgent {
     return hasMalaysiaSignal && hasPoliticalSignal;
   }
 
-  async _fallbackSearchFromFeeds(reason = 'Gemini unavailable') {
-    this._updateAction(`🛰️ ${reason} — collecting fallback topics from RSS/Google News feeds...`, 'action');
+  async _fallbackSearchFromFeeds(reason = 'Feed discovery') {
+    this._updateAction(`🛰️ ${reason} — collecting topics from RSS/Google News feeds...`, 'action');
 
     const fallbackResult = await sourceCollector.collect({
       targetCount: 40,
@@ -318,7 +276,7 @@ class AIAgent {
     });
 
     if (!fallbackResult.success || fallbackResult.records.length === 0) {
-      this._updateAction('⚠️ Fallback feed collection returned no records', 'system');
+      this._updateAction('⚠️ Feed collection returned no records', 'system');
       return 0;
     }
 
@@ -335,10 +293,10 @@ class AIAgent {
     }
 
     if (queued > 0) {
-      this._updateAction(`📥 Fallback feed search queued ${queued} topics`, 'discovery');
+      this._updateAction(`📥 Feed search queued ${queued} topics`, 'discovery');
       this._updateAction(`📋 Queue updated: ${this._queue.length} topics pending analysis`, 'action');
     } else {
-      this._updateAction('🔁 Fallback feed search found only duplicates', 'action');
+      this._updateAction('🔁 Feed search found only duplicates', 'action');
     }
 
     return queued;
@@ -490,7 +448,7 @@ class AIAgent {
       success: true,
       verdict,
       summary: topic.snippet || topic.title,
-      analysis: 'This topic was analyzed using basic heuristics as no AI API keys are configured. For accurate fact-checking, please configure Groq and/or Gemini API keys.',
+      analysis: 'This topic was analyzed using basic heuristics as no AI API keys are configured. For accurate fact-checking, please configure Groq and/or HuggingFace API keys.',
       party: topic.party || 'PKR',
       category: topic.category || 'General',
       impact: 'medium',

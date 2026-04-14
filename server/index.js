@@ -7,7 +7,6 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { dataManager } from './services/data-manager.js';
 import { aiAgent } from './services/ai-agent.js';
-import { geminiSearch } from './services/gemini-search.js';
 import { groqAnalyzer } from './services/groq-analyzer.js';
 import { huggingFaceFallback } from './services/huggingface-fallback.js';
 
@@ -165,7 +164,6 @@ app.post('/api/agent/reset', (req, res) => {
 // ============================================================
 app.get('/api/providers', (req, res) => {
   res.json({
-    gemini: geminiSearch.getUsage(),
     groq: groqAnalyzer.getUsage(),
     huggingface: huggingFaceFallback.getUsage(),
   });
@@ -196,7 +194,6 @@ function printStartupBanner(activePort) {
   console.log(`║  ❤️  Health: http://localhost:${activePort}/health      ║`);
   console.log('╠══════════════════════════════════════════╣');
   console.log(`║  🤖 Groq:     ${groqAnalyzer.isAvailable() ? '✅ Connected' : '❌ No API key'}          ║`);
-  console.log(`║  🔍 Gemini:   ${geminiSearch.isAvailable() ? '✅ Connected' : '❌ No API key'}          ║`);
   console.log(`║  🧩 HF:       ${huggingFaceFallback.isAvailable() ? '✅ Connected' : '❌ No API key'}          ║`);
   console.log('╚══════════════════════════════════════════╝');
   console.log('');

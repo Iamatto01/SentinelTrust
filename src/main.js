@@ -715,7 +715,6 @@ async function renderAgent() {
     <!-- API Provider Status -->
     <div class="provider-status-row">
       ${renderProviderBadge('Groq', providers.groq, '🤖')}
-      ${renderProviderBadge('Gemini', providers.gemini, '🔍')}
       ${renderProviderBadge('HuggingFace', providers.huggingface, '🧩')}
     </div>
 
@@ -774,7 +773,7 @@ async function renderAgent() {
           <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: var(--radius-md);">
             <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: var(--space-sm);">📡 ${_('dataSources')}</div>
             <div style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6;">
-              • Gemini + Google Search (real news)<br>• Sebenarnya.my fact-check DB<br>• JomCheck archives<br>• MyCheck.my verifications<br>• Social media monitoring
+              • RSS + Google News feeds (real news)<br>• Sebenarnya.my fact-check DB<br>• JomCheck archives<br>• MyCheck.my verifications<br>• Social media monitoring
             </div>
           </div>
           <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: var(--radius-md);">
