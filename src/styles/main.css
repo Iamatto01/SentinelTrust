@@ -1,5 +1,5 @@
 /* ======================================================
-   SentinelTruth — Design System & Global Styles
+  SentinelTruth - Design System & Global Styles
    Premium dark theme with glassmorphism
    ====================================================== */
 
@@ -477,6 +477,14 @@ img {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: var(--space-lg);
+}
+
+.dashboard-charts-grid {
+  margin-top: var(--space-lg);
+}
+
+.dashboard-charts-grid .chart-wrapper {
+  height: 280px;
 }
 
 .dashboard-panel {
@@ -1870,6 +1878,10 @@ img {
   .agent-controls {
     flex-wrap: wrap;
   }
+
+  .pagination-btn.nav {
+    min-width: 64px;
+  }
 }
 
 /* ======================================
@@ -2332,6 +2344,50 @@ img {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+}
+
+.topics-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.pagination-btn {
+  padding: 7px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-glass);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: var(--transition-fast);
+  min-width: 38px;
+  text-align: center;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  border-color: var(--border-medium);
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.pagination-btn.active {
+  background: rgba(124, 58, 237, 0.18);
+  border-color: rgba(124, 58, 237, 0.45);
+  color: var(--text-accent);
+}
+
+.pagination-btn.disabled,
+.pagination-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pagination-btn.nav {
+  min-width: 72px;
 }
 
 .feed-topic-item {

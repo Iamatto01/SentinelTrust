@@ -12,27 +12,148 @@ Chart.register(...registerables);
 const state = {
   currentSection: 'dashboard',
   lang: getCurrentLang(),
-  filters: { party: 'ALL', verdict: 'ALL', category: 'ALL', search: '' },
+  filters: { party: 'ALL', verdict: 'ALL', category: 'ALL', search: '', page: 1 },
   charts: {},
   sse: null,
-  agentStatus: { status: 'idle', currentAction: 'Agent idle', topicsAnalyzed: 0, queueLength: 0, providers: {} },
+  agentStatus: { status: 'idle', currentAction: '', topicsAnalyzed: 0, queueLength: 0, providers: {} },
   cachedTopics: [],
   cachedStats: null,
   cachedQuality: null,
 };
 
 const API = '';
+const TOPICS_PAGE_SIZE = 20;
+
+const LOCALE_BY_LANG = {
+  en: 'en-MY',
+  ms: 'ms-MY',
+  hi: 'hi-IN',
+  zh: 'zh-CN',
+};
+
+const CATEGORY_KEY_MAP = {
+  'Coalition Politics': 'categoryCoalitionPolitics',
+  Corruption: 'categoryCorruption',
+  'Digital Security': 'categoryDigitalSecurity',
+  Economy: 'categoryEconomy',
+  Education: 'categoryEducation',
+  Elections: 'categoryElections',
+  Federalism: 'categoryFederalism',
+  Governance: 'categoryGovernance',
+  Legal: 'categoryLegal',
+  Policy: 'categoryPolicy',
+  'Racial Politics': 'categoryRacialPolitics',
+  'Social Issues': 'categorySocialIssues',
+  Legislation: 'categoryLegislation',
+  'Foreign Relations': 'categoryForeignRelations',
+  'Digital Rights': 'categoryDigitalRights',
+  'Party Leadership': 'categoryPartyLeadership',
+  'Disaster Management': 'categoryDisasterManagement',
+  General: 'categoryGeneral',
+};
+
+const COALITION_NAME_KEY_MAP = {
+  PH: 'coalitionPH',
+  BN: 'coalitionBN',
+  PN: 'coalitionPN',
+  GPS: 'coalitionGPS',
+  Independent: 'coalitionIndependent',
+};
+
+const COALITION_STATUS_KEY_MAP = {
+  Ruling: 'coalitionStatusRuling',
+  'Ruling (Partner)': 'coalitionStatusRulingPartner',
+  Opposition: 'coalitionStatusOpposition',
+};
+
+function getUiLocale() {
+  return LOCALE_BY_LANG[state.lang] || LOCALE_BY_LANG.en;
+}
+
+function getCategoryLabel(category) {
+  const normalized = String(category || '').trim();
+  if (!normalized) return '';
+  const key = CATEGORY_KEY_MAP[normalized];
+  return key ? _(key) : normalized;
+}
+
+function getVerdictLabel(verdictKey) {
+  if (verdictKey === 'TRUE') return _('verifiedTrueLabel');
+  if (verdictKey === 'HOAX') return _('hoax');
+  if (verdictKey === 'MISLEADING') return _('misleading');
+  if (verdictKey === 'PARTIALLY_TRUE') return _('partiallyTrue');
+  if (verdictKey === 'UNVERIFIED') return _('unverified');
+  return String(verdictKey || '');
+}
+
+function getRegionLabel(region) {
+  const normalized = String(region || '').trim();
+  if (!normalized || normalized.toLowerCase() === 'national') return _('regionNational');
+  return normalized;
+}
+
+function getCoalitionNameLabel(coalitionId, fallbackName = '') {
+  const key = COALITION_NAME_KEY_MAP[String(coalitionId || '').trim()];
+  if (!key) return fallbackName || coalitionId || '';
+  return _(key);
+}
+
+function getCoalitionStatusLabel(status) {
+  const key = COALITION_STATUS_KEY_MAP[String(status || '').trim()];
+  return key ? _(key) : (status || '');
+}
+
+function getVerificationStatusLabel(status) {
+  const normalized = String(status || 'UNKNOWN').toUpperCase();
+  if (normalized === 'VERIFIED') return _('statusVerified');
+  if (normalized === 'LIKELY_REAL') return _('statusLikelyReal');
+  if (normalized === 'WEAK') return _('statusWeak');
+  if (normalized === 'REJECTED') return _('statusRejected');
+  return _('statusUnknown');
+}
+
+function getProviderDisplay(provider) {
+  if (provider === 'Groq') return `🤖 ${_('providerGroq')}`;
+  if (provider === 'Ollama') return `🦙 ${_('providerOllama')}`;
+  if (provider === 'HuggingFace') return `🧩 ${_('providerHuggingFace')}`;
+  if (provider === 'SourceVerifier') return `🛡️ ${_('providerSourceVerifier')}`;
+  if (provider === 'Heuristic') return `⚡ ${_('providerHeuristic')}`;
+  return `❓ ${_('providerUnknown')}`;
+}
 
 // ============================================================
-// API Helpers
+// API Helpers + Client-side cache
 // ============================================================
+const _apiCache = new Map();
+const API_CACHE_TTL = 5000; // 5 seconds
+
 async function api(path, opts = {}) {
+  // GET requests can be cached
+  const isGet = !opts.method || opts.method === 'GET';
+  if (isGet) {
+    const cached = _apiCache.get(path);
+    if (cached && (Date.now() - cached.ts) < API_CACHE_TTL) {
+      return cached.data;
+    }
+  }
+
   try {
     const res = await fetch(`${API}${path}`, opts);
-    return await res.json();
+    const data = await res.json();
+    if (isGet && data) {
+      _apiCache.set(path, { data, ts: Date.now() });
+    }
+    return data;
   } catch (err) {
     console.error('API error:', err);
     return null;
+  }
+}
+
+function invalidateApiCache(pathPrefix = '') {
+  if (!pathPrefix) { _apiCache.clear(); return; }
+  for (const key of _apiCache.keys()) {
+    if (key.startsWith(pathPrefix)) _apiCache.delete(key);
   }
 }
 
@@ -42,7 +163,18 @@ async function apiPost(path, body = null) {
     opts.headers = { 'Content-Type': 'application/json' };
     opts.body = JSON.stringify(body);
   }
+  invalidateApiCache(); // POST invalidates all caches
   return api(path, opts);
+}
+
+// Debounced SSE render helper — coalesces rapid events
+let _sseRenderTimer = null;
+function debouncedSSERender(renderFn, delayMs = 500) {
+  if (_sseRenderTimer) clearTimeout(_sseRenderTimer);
+  _sseRenderTimer = setTimeout(() => {
+    _sseRenderTimer = null;
+    renderFn();
+  }, delayMs);
 }
 
 // ============================================================
@@ -83,21 +215,27 @@ function connectSSE() {
   state.sse.addEventListener('newTopic', (e) => {
     const topic = JSON.parse(e.data);
     if (topic?.id) {
-      showToast(`✅ New: ${topic.title?.substring(0, 50)}...`, 'success');
-      // Refresh current view
-      if (state.currentSection === 'dashboard') renderDashboard();
-      if (state.currentSection === 'topics') renderTopics();
-      if (state.currentSection === 'statistics') renderStatistics();
+      showToast(`✅ ${_('newTopicToast', { title: topic.title?.substring(0, 50) || '' })}`, 'success');
+      invalidateApiCache();
+      // Debounced refresh — coalesces rapid SSE bursts into one render
+      debouncedSSERender(() => {
+        if (state.currentSection === 'dashboard') renderDashboard();
+        if (state.currentSection === 'topics') renderTopics();
+        if (state.currentSection === 'statistics') renderStatistics();
+      }, 500);
     }
   });
 
   state.sse.addEventListener('ingestionReport', (e) => {
     const report = JSON.parse(e.data);
     state.agentStatus.lastIngestionReport = report;
-    showToast(`📥 Real ingestion finished: ${report.stored} stored`, 'success');
-    if (state.currentSection === 'agent') renderAgent();
-    if (state.currentSection === 'dashboard') renderDashboard();
-    if (state.currentSection === 'statistics') renderStatistics();
+    showToast(`📥 ${_('ingestionFinishedToast', { n: report.stored })}`, 'success');
+    invalidateApiCache();
+    debouncedSSERender(() => {
+      if (state.currentSection === 'agent') renderAgent();
+      if (state.currentSection === 'dashboard') renderDashboard();
+      if (state.currentSection === 'statistics') renderStatistics();
+    }, 500);
   });
 
   state.sse.onerror = () => {
@@ -146,7 +284,10 @@ function init() {
   updateNavLabels();
 
   // Restore saved language flag + highlight on load
-  const savedLang = state.lang;
+  const savedLang = LANGUAGES[state.lang] ? state.lang : 'en';
+  state.lang = savedLang;
+  setLang(savedLang);
+  document.documentElement.lang = savedLang;
   const flagEl = document.getElementById('current-lang-flag');
   if (flagEl) flagEl.textContent = LANGUAGES[savedLang]?.flag || '🌐';
   document.querySelectorAll('.lang-option').forEach(btn => {
@@ -212,8 +353,10 @@ function updateNavLabels() {
 // Language Switcher
 // ============================================================
 window.switchLanguage = function(lang) {
+  if (!LANGUAGES[lang]) return;
   state.lang = lang;
   setLang(lang);
+  document.documentElement.lang = lang;
   // Update the flag icon in the toggle button
   const flagEl = document.getElementById('current-lang-flag');
   if (flagEl) flagEl.textContent = LANGUAGES[lang]?.flag || '🌐';
@@ -225,6 +368,24 @@ window.switchLanguage = function(lang) {
   updateNavLabels();
   updateAgentBadge();
   navigate(state.currentSection);
+
+  // Backfill missing topic translations for existing records when switching from English.
+  if (lang !== 'en') {
+    apiPost('/api/topics/backfill-translations', { limit: 20 })
+      .then((result) => {
+        if (!result?.success || !result.updated) return;
+
+        if (state.currentSection === 'dashboard') renderDashboard();
+        if (state.currentSection === 'topics') renderTopics();
+        if (state.currentSection === 'parties') renderParties();
+        if (state.currentSection === 'statistics') renderStatistics();
+        if (state.currentSection === 'agent') renderAgent();
+      })
+      .catch(() => {
+        // Intentionally silent: UI already switched language for static labels.
+      });
+  }
+
   // Close dropdown
   document.getElementById('lang-dropdown')?.classList.remove('active');
 };
@@ -286,15 +447,15 @@ async function renderDashboard() {
 
     ${quality ? `
       <div class="quality-panel">
-        <div class="quality-title">🔎 Real Data Transparency</div>
-        <div class="quality-subtitle">Strict mode: ${quality.strictRealMode ? 'ON' : 'OFF'} · Min verification score: ${quality.minimumVerificationScore}</div>
+        <div class="quality-title">🔎 ${_('realDataTransparency')}</div>
+        <div class="quality-subtitle">${_('strictModeLine', { mode: quality.strictRealMode ? _('modeOn') : _('modeOff'), score: quality.minimumVerificationScore })}</div>
         <div class="quality-grid">
-          <div class="quality-item"><div class="quality-value">${quality.totalStored}</div><div class="quality-label">Stored Records</div></div>
-          <div class="quality-item"><div class="quality-value">${quality.visibleTopics}</div><div class="quality-label">Visible Real Records</div></div>
-          <div class="quality-item"><div class="quality-value">${quality.countedForStats}</div><div class="quality-label">Counted In Statistics</div></div>
-          <div class="quality-item"><div class="quality-value">${quality.excludedFromStats}</div><div class="quality-label">Excluded From Statistics</div></div>
-          <div class="quality-item"><div class="quality-value">${quality.syntheticExcluded}</div><div class="quality-label">Synthetic Excluded</div></div>
-          <div class="quality-item"><div class="quality-value">${quality.acceptanceRate}%</div><div class="quality-label">Acceptance Rate</div></div>
+          <div class="quality-item"><div class="quality-value">${quality.totalStored}</div><div class="quality-label">${_('storedRecords')}</div></div>
+          <div class="quality-item"><div class="quality-value">${quality.visibleTopics}</div><div class="quality-label">${_('visibleRealRecords')}</div></div>
+          <div class="quality-item"><div class="quality-value">${quality.countedForStats}</div><div class="quality-label">${_('countedInStatistics')}</div></div>
+          <div class="quality-item"><div class="quality-value">${quality.excludedFromStats}</div><div class="quality-label">${_('excludedFromStatistics')}</div></div>
+          <div class="quality-item"><div class="quality-value">${quality.syntheticExcluded}</div><div class="quality-label">${_('syntheticExcluded')}</div></div>
+          <div class="quality-item"><div class="quality-value">${quality.acceptanceRate}%</div><div class="quality-label">${_('acceptanceRate')}</div></div>
         </div>
       </div>
     ` : ''}
@@ -319,21 +480,104 @@ async function renderDashboard() {
         </div>
       </div>
     </div>
+
+    <div class="charts-grid dashboard-charts-grid">
+      <div class="chart-panel">
+        <div class="chart-title">📊 ${_('overallVerdict')}</div>
+        <div class="chart-wrapper"><canvas id="dashboard-chart-verdict"></canvas></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-title">📁 ${_('topicsByCategory')}</div>
+        <div class="chart-wrapper"><canvas id="dashboard-chart-category"></canvas></div>
+      </div>
+    </div>
   `;
 
   setTimeout(() => {
     container.querySelectorAll('[data-counter]').forEach(el => animateCounter(el, parseInt(el.dataset.counter)));
   }, 200);
 
+  setTimeout(() => {
+    renderDashboardCharts(stats);
+  }, 150);
+
   container.querySelectorAll('.recent-topic-item').forEach(item => {
     item.addEventListener('click', () => openTopicModal(item.dataset.topicId));
   });
+}
+
+function renderDashboardCharts(stats) {
+  if (state.charts.dashboardVerdict) {
+    state.charts.dashboardVerdict.destroy();
+    delete state.charts.dashboardVerdict;
+  }
+  if (state.charts.dashboardCategory) {
+    state.charts.dashboardCategory.destroy();
+    delete state.charts.dashboardCategory;
+  }
+
+  const verdictCanvas = document.getElementById('dashboard-chart-verdict');
+  if (verdictCanvas) {
+    state.charts.dashboardVerdict = new Chart(verdictCanvas, {
+      type: 'doughnut',
+      data: {
+        labels: Object.keys(VERDICTS).map(getVerdictLabel),
+        datasets: [{
+          data: Object.keys(VERDICTS).map(k => stats.verdictCounts[k] || 0),
+          backgroundColor: ['rgba(34,197,94,0.8)','rgba(239,68,68,0.8)','rgba(245,158,11,0.8)','rgba(107,114,128,0.8)','rgba(234,179,8,0.8)'],
+          borderWidth: 0,
+          hoverOffset: 8,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '62%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { padding: 12, usePointStyle: true, pointStyle: 'circle' },
+          },
+        },
+      },
+    });
+  }
+
+  const categoryCanvas = document.getElementById('dashboard-chart-category');
+  if (categoryCanvas) {
+    const categories = Object.entries(stats.categoryCounts || {})
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8);
+
+    state.charts.dashboardCategory = new Chart(categoryCanvas, {
+      type: 'bar',
+      data: {
+        labels: categories.map(([name]) => getCategoryLabel(name)),
+        datasets: [{
+          label: _('topicsByCategory'),
+          data: categories.map(([, count]) => count),
+          backgroundColor: categories.map((_, i) => `hsla(${(i * 37 + 220) % 360}, 65%, 56%, 0.72)`),
+          borderRadius: 6,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true } },
+          y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.05)' } },
+        },
+      },
+    });
+  }
 }
 
 function renderRecentTopicItem(topic) {
   const verdictClass = topic.verdict.toLowerCase().replace('_', '-');
   const party = PARTIES[topic.party];
   const title = topic.translations?.[state.lang]?.title || topic.title;
+  const categoryLabel = getCategoryLabel(topic.category);
   return `
     <div class="recent-topic-item" data-topic-id="${topic.id}">
       <div class="topic-verdict-dot ${verdictClass}"></div>
@@ -341,7 +585,7 @@ function renderRecentTopicItem(topic) {
         <div class="recent-topic-title">${title}</div>
         <div class="recent-topic-meta">
           <span style="color: ${party?.color || '#888'}">${topic.party}</span>
-          <span>·</span><span>${topic.category}</span>
+          <span>·</span><span>${categoryLabel}</span>
           <span>·</span><span>${timeAgo(topic.date)}</span>
         </div>
       </div>
@@ -379,13 +623,17 @@ async function renderTopics() {
   if (state.filters.search) params.set('search', state.filters.search);
   params.set('limit', '500');
 
-  const [topics, allTopicsRaw] = await Promise.all([
-    api(`/api/topics?${params.toString()}`),
-    api('/api/topics?limit=500'),
-  ]);
+  // Single API call (was double-fetching before)
+  const topics = await api(`/api/topics?${params.toString()}`);
   if (!topics) return;
+  // Use the same result for categories — avoid second request
+  const allTopicsRaw = topics;
 
   const sorted = [...topics].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const totalPages = Math.max(1, Math.ceil(sorted.length / TOPICS_PAGE_SIZE));
+  state.filters.page = Math.min(Math.max(state.filters.page || 1, 1), totalPages);
+  const pageStart = (state.filters.page - 1) * TOPICS_PAGE_SIZE;
+  const pagedTopics = sorted.slice(pageStart, pageStart + TOPICS_PAGE_SIZE);
   const allCategories = [...new Set((allTopicsRaw || []).map(t => t.category))].filter(Boolean).sort();
 
   container.innerHTML = `
@@ -403,7 +651,7 @@ async function renderTopics() {
     <div class="topics-header">
       <div>
         <h2 class="topics-title">${_('politicalTopics')}</h2>
-        <div class="topics-count">${_('topicsFound', { n: sorted.length })} · ${_('sortedNewest')}</div>
+        <div class="topics-count">${_('topicsFound', { n: sorted.length })} · ${_('sortedNewest')} · ${_('pageStatus', { page: state.filters.page, pages: totalPages })}</div>
       </div>
     </div>
     <div class="filter-row">
@@ -429,36 +677,90 @@ async function renderTopics() {
       <div class="filter-group">
         <span class="filter-label">${_('category')}</span>
         <button class="filter-chip ${state.filters.category === 'ALL' ? 'active' : ''}" data-filter="category" data-value="ALL">${_('all')}</button>
-        ${allCategories.map(cat => `<button class="filter-chip ${state.filters.category === cat ? 'active' : ''}" data-filter="category" data-value="${cat}">${cat}</button>`).join('')}
+        ${allCategories.map(cat => `<button class="filter-chip ${state.filters.category === cat ? 'active' : ''}" data-filter="category" data-value="${cat}">${getCategoryLabel(cat)}</button>`).join('')}
       </div>
     </div>
     ${sorted.length > 0
-      ? `<div class="topics-feed">${sorted.map(t => renderTopicFeedItem(t)).join('')}</div>`
+      ? `<div class="topics-feed">${pagedTopics.map(t => renderTopicFeedItem(t)).join('')}</div>${renderTopicsPagination(state.filters.page, totalPages)}`
       : `<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">${_('noTopics')}</div><div class="empty-state-sub">${_('tryAdjusting')}</div></div>`}
   `;
 
-  container.querySelector('#search-input')?.addEventListener('input', debounce((e) => { state.filters.search = e.target.value; renderTopics(); }, 300));
-  container.querySelector('#search-clear-btn')?.addEventListener('click', () => { state.filters.search = ''; renderTopics(); });
+  container.querySelector('#search-input')?.addEventListener('input', debounce((e) => {
+    state.filters.search = e.target.value;
+    state.filters.page = 1;
+    renderTopics();
+  }, 300));
+  container.querySelector('#search-clear-btn')?.addEventListener('click', () => {
+    state.filters.search = '';
+    state.filters.page = 1;
+    renderTopics();
+  });
   container.querySelectorAll('.filter-chip').forEach(chip => {
-    chip.addEventListener('click', () => { state.filters[chip.dataset.filter] = chip.dataset.value; renderTopics(); });
+    chip.addEventListener('click', () => {
+      state.filters[chip.dataset.filter] = chip.dataset.value;
+      state.filters.page = 1;
+      renderTopics();
+    });
+  });
+  container.querySelectorAll('.pagination-btn[data-page]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      const nextPage = Number(btn.dataset.page);
+      if (!Number.isFinite(nextPage)) return;
+      state.filters.page = Math.min(totalPages, Math.max(1, nextPage));
+      renderTopics();
+    });
   });
   container.querySelectorAll('.feed-topic-item').forEach(item => {
     item.addEventListener('click', () => openTopicModal(item.dataset.topicId));
   });
 }
 
+function getVisiblePageNumbers(currentPage, totalPages, maxButtons = 5) {
+  if (totalPages <= maxButtons) {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  const half = Math.floor(maxButtons / 2);
+  let start = Math.max(1, currentPage - half);
+  let end = Math.min(totalPages, start + maxButtons - 1);
+
+  if (end - start + 1 < maxButtons) {
+    start = Math.max(1, end - maxButtons + 1);
+  }
+
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+}
+
+function renderTopicsPagination(currentPage, totalPages) {
+  if (totalPages <= 1) return '';
+
+  const pages = getVisiblePageNumbers(currentPage, totalPages, 5);
+
+  return `
+    <div class="topics-pagination" role="navigation" aria-label="${_('paginationAria')}">
+      <button class="pagination-btn nav ${currentPage === 1 ? 'disabled' : ''}" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>${_('paginationPrev')}</button>
+      ${pages.map(p => `<button class="pagination-btn number ${p === currentPage ? 'active' : ''}" data-page="${p}" ${p === currentPage ? 'aria-current="page"' : ''}>${p}</button>`).join('')}
+      <button class="pagination-btn nav ${currentPage === totalPages ? 'disabled' : ''}" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>${_('paginationNext')}</button>
+    </div>
+  `;
+}
+
 function getConfidenceInfo(conf) {
-  if (conf === 'high') return { color: 'var(--color-true)', label: '●●●', text: 'High' };
-  if (conf === 'medium') return { color: 'var(--color-misleading)', label: '●●○', text: 'Medium' };
-  return { color: 'var(--color-unverified)', label: '●○○', text: 'Low' };
+  if (conf === 'high') return { color: 'var(--color-true)', label: '●●●', text: _('confidenceHigh') };
+  if (conf === 'medium') return { color: 'var(--color-misleading)', label: '●●○', text: _('confidenceMedium') };
+  return { color: 'var(--color-unverified)', label: '●○○', text: _('confidenceLow') };
 }
 
 function renderTopicFeedItem(topic) {
   const party = PARTIES[topic.party];
   const verdict = VERDICTS[topic.verdict];
   const verdictClass = topic.verdict.toLowerCase().replace('_', '-');
+  const verdictLabel = getVerdictLabel(topic.verdict);
   const title = topic.translations?.[state.lang]?.title || topic.title;
   const summary = topic.translations?.[state.lang]?.summary || topic.summary;
+  const categoryLabel = getCategoryLabel(topic.category);
+  const regionLabel = getRegionLabel(topic.region);
   const conf = getConfidenceInfo(topic.confidence);
   const vScore = topic.verification?.score;
   return `
@@ -471,16 +773,16 @@ function renderTopicFeedItem(topic) {
         <div class="feed-summary">${truncate(summary || '', 180)}</div>
         <div class="feed-meta">
           <span class="feed-party" style="color: ${party?.color || '#888'}">${topic.party}</span>
-          <span>·</span><span>${topic.category}</span>
-          ${topic.region ? `<span>·</span><span>📍 ${topic.region}</span>` : ''}
+          <span>·</span><span>${categoryLabel}</span>
+          ${topic.region ? `<span>·</span><span>📍 ${regionLabel}</span>` : ''}
           <span>·</span><span class="feed-date">📅 ${formatDate(topic.date)}</span>
           ${topic.impact === 'high' ? `<span>·</span><span style="color:#ef4444">⚡ ${_('highImpact')}</span>` : ''}
           <span>·</span><span style="color:${conf.color}" title="${_('confidence')}: ${conf.text}">${conf.label} ${conf.text}</span>
-          ${vScore !== undefined ? `<span>·</span><span title="Source verification score">🛡️ ${vScore}/100</span>` : ''}
+          ${vScore !== undefined ? `<span>·</span><span title="${_('sourceVerificationScore')}">🛡️ ${vScore}/100</span>` : ''}
         </div>
       </div>
       <div class="feed-verdict-badge">
-        <span class="verdict-badge ${verdictClass}">${verdict?.icon || ''} ${verdict?.label || topic.verdict}</span>
+        <span class="verdict-badge ${verdictClass}">${verdict?.icon || ''} ${verdictLabel}</span>
       </div>
     </div>
   `;
@@ -587,8 +889,8 @@ async function renderParties() {
           <div class="coalition-header">
             <div class="coalition-dot" style="background: ${coalition?.color || '#888'}"></div>
             <div>
-              <div class="coalition-name">${coalition?.name || coalId}</div>
-              <div class="coalition-status">${coalition?.status || ''}</div>
+              <div class="coalition-name">${getCoalitionNameLabel(coalId, coalition?.name || coalId)}</div>
+              <div class="coalition-status">${getCoalitionStatusLabel(coalition?.status || '')}</div>
             </div>
           </div>
           <div class="party-member-grid">
@@ -632,7 +934,7 @@ function renderPartyMemberCard(party, stats) {
           <div class="party-member-fullname">${party.name}</div>
         </div>
         <div class="party-member-score">
-          ${ps ? `<div class="score-value" style="color:${scoreColor}">${ps.credibilityScore}%</div><div class="score-label">${_('credibilityScore')}</div>` : '<div class="score-label" style="color:var(--text-muted)">No data yet</div>'}
+          ${ps ? `<div class="score-value" style="color:${scoreColor}">${ps.credibilityScore}%</div><div class="score-label">${_('credibilityScore')}</div>` : `<div class="score-label" style="color:var(--text-muted)">${_('noDataYet')}</div>`}
         </div>
       </div>
       ${ps ? `
@@ -644,7 +946,7 @@ function renderPartyMemberCard(party, stats) {
         </div>
       ` : ''}
       <div class="party-member-info">${party.description}</div>
-      <div class="coalition-tag" style="color:${coalition?.color || '#888'}">${coalition?.name || party.coalition}</div>
+      <div class="coalition-tag" style="color:${coalition?.color || '#888'}">${getCoalitionNameLabel(party.coalition, coalition?.name || party.coalition)}</div>
       <div class="members-heading">${_('keyMembers')}</div>
       <div class="member-list-preview">
         ${preview.map(m => `
@@ -713,7 +1015,7 @@ function buildPartyTopicGroups(topics) {
     .filter((group) => group.items.length > 0);
 
   if (unknown.length > 0) {
-    groups.push({ key: 'UNKNOWN', label: 'Unknown Party', party: null, items: unknown });
+    groups.push({ key: 'UNKNOWN', label: _('unknownParty'), party: null, items: unknown });
   }
 
   return groups;
@@ -741,9 +1043,10 @@ function renderGroupedTopicItem(topic, mode) {
   const party = PARTIES[topic.party];
   const verdict = VERDICTS[topic.verdict];
   const verdictClass = topic.verdict.toLowerCase().replace('_', '-');
+  const verdictLabel = getVerdictLabel(topic.verdict);
   const title = topic.translations?.[state.lang]?.title || topic.title;
   const region = normalizeRegionLabel(topic.region);
-  const context = mode === 'region' ? (party?.abbr || topic.party || 'N/A') : region;
+  const context = mode === 'region' ? (party?.abbr || topic.party || _('unknownParty')) : getRegionLabel(region);
   const contextStyle = mode === 'region' ? `color:${party?.color || '#8b8ba3'};` : '';
 
   return `
@@ -754,7 +1057,7 @@ function renderGroupedTopicItem(topic, mode) {
         <span class="group-topic-meta">
           <span class="group-topic-context" style="${contextStyle}">${context}</span>
           <span>·</span>
-          <span>${topic.category}</span>
+          <span>${getCategoryLabel(topic.category)}</span>
           <span>·</span>
           <span>${formatDate(topic.date)}</span>
         </span>
@@ -767,6 +1070,7 @@ function renderTopicCard(topic) {
   const party = PARTIES[topic.party];
   const verdict = VERDICTS[topic.verdict];
   const verdictClass = topic.verdict.toLowerCase().replace('_', '-');
+  const verdictLabel = getVerdictLabel(topic.verdict);
   const title = topic.translations?.[state.lang]?.title || topic.title;
   const summary = topic.translations?.[state.lang]?.summary || topic.summary;
 
@@ -774,15 +1078,15 @@ function renderTopicCard(topic) {
     <div class="topic-card verdict-${verdictClass}" data-topic-id="${topic.id}">
       <div class="topic-card-header">
         <div class="topic-card-title">${title}</div>
-        <span class="verdict-badge ${verdictClass}">${verdict?.icon || ''} ${verdict?.label || topic.verdict}</span>
+        <span class="verdict-badge ${verdictClass}">${verdict?.icon || ''} ${verdictLabel}</span>
       </div>
       <div class="topic-card-summary">${summary}</div>
       <div class="topic-card-footer">
         <div class="topic-tags">
           <span class="party-tag" style="background: ${party?.colorLight || 'rgba(255,255,255,0.05)'}; color: ${party?.color || '#888'}"><span style="width:6px;height:6px;border-radius:50%;background:${party?.color || '#888'};display:inline-block"></span> ${topic.party}</span>
-          <span class="category-tag">${topic.category}</span>
+          <span class="category-tag">${getCategoryLabel(topic.category)}</span>
           ${topic.impact === 'high' ? `<span class="category-tag" style="border-color: rgba(239,68,68,0.3); color: #ef4444;">⚡ ${_('highImpact')}</span>` : ''}
-          ${topic.aiProvider ? `<span class="category-tag" style="border-color: rgba(124,58,237,0.3); color: var(--text-accent);">🤖 ${topic.aiProvider}</span>` : ''}
+          ${topic.aiProvider ? `<span class="category-tag" style="border-color: rgba(124,58,237,0.3); color: var(--text-accent);">${getProviderDisplay(topic.aiProvider)}</span>` : ''}
         </div>
         <span class="topic-date">${formatDate(topic.date)}</span>
       </div>
@@ -805,7 +1109,7 @@ async function renderStatistics() {
     <div class="stats-page-header">
       <h1 class="stats-page-title">📈 ${_('statsTitle')}</h1>
       <p class="stats-page-subtitle">${_('statsSubtitle')}</p>
-      ${quality ? `<p class="stats-page-subtitle" style="font-size:0.9rem; margin-top: 8px; color: var(--text-muted);">Counted records: ${quality.countedForStats}/${quality.totalStored} · Excluded: ${quality.excludedFromStats} · Strict mode: ${quality.strictRealMode ? 'ON' : 'OFF'}</p>` : ''}
+      ${quality ? `<p class="stats-page-subtitle" style="font-size:0.9rem; margin-top: 8px; color: var(--text-muted);">${_('statsQualityLine', { counted: quality.countedForStats, total: quality.totalStored, excluded: quality.excludedFromStats, mode: quality.strictRealMode ? _('modeOn') : _('modeOff') })}</p>` : ''}
     </div>
     <div class="charts-grid">
       <div class="chart-panel"><div class="chart-title">🎯 ${_('verdictByParty')}</div><div class="chart-wrapper"><canvas id="chart-party-verdicts"></canvas></div></div>
@@ -837,7 +1141,7 @@ function renderPartyCard(partyId, ps) {
       <style>.party-profile-card[style*="${party.color}"]::before { background: ${party.gradient}; }</style>
       <div class="party-card-header">
         <div class="party-card-name" style="color: ${party.color}">${party.abbr}</div>
-        <div class="party-card-coalition">${coalition?.name || party.coalition}</div>
+        <div class="party-card-coalition">${getCoalitionNameLabel(party.coalition, coalition?.name || party.coalition)}</div>
       </div>
       <div class="party-card-score">
         <div class="score-value" style="color: ${scoreColor}">${ps.credibilityScore}%</div>
@@ -888,19 +1192,19 @@ function renderCharts(stats) {
 
   const ctx3 = document.getElementById('chart-verdict-donut');
   if (ctx3) {
-    state.charts.vd = new Chart(ctx3, { type: 'doughnut', data: { labels: Object.values(VERDICTS).map(v => v.label), datasets: [{ data: Object.keys(VERDICTS).map(k => stats.verdictCounts[k] || 0), backgroundColor: ['rgba(34,197,94,0.8)','rgba(239,68,68,0.8)','rgba(245,158,11,0.8)','rgba(107,114,128,0.8)','rgba(234,179,8,0.8)'], borderWidth: 0, hoverOffset: 8 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '65%', plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } } });
+    state.charts.vd = new Chart(ctx3, { type: 'doughnut', data: { labels: Object.keys(VERDICTS).map(getVerdictLabel), datasets: [{ data: Object.keys(VERDICTS).map(k => stats.verdictCounts[k] || 0), backgroundColor: ['rgba(34,197,94,0.8)','rgba(239,68,68,0.8)','rgba(245,158,11,0.8)','rgba(107,114,128,0.8)','rgba(234,179,8,0.8)'], borderWidth: 0, hoverOffset: 8 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '65%', plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, pointStyle: 'circle' } } } } });
   }
 
   const ctx4 = document.getElementById('chart-category');
   if (ctx4) {
     const catLabels = Object.keys(stats.categoryCounts);
-    state.charts.cat = new Chart(ctx4, { type: 'polarArea', data: { labels: catLabels, datasets: [{ data: Object.values(stats.categoryCounts), backgroundColor: catLabels.map((_, i) => `hsla(${(i * 40 + 200) % 360}, 60%, 55%, 0.6)`), borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } } }, scales: { r: { ticks: { display: false }, grid: { color: 'rgba(255,255,255,0.05)' } } } } });
+    state.charts.cat = new Chart(ctx4, { type: 'polarArea', data: { labels: catLabels.map(getCategoryLabel), datasets: [{ data: Object.values(stats.categoryCounts), backgroundColor: catLabels.map((_, i) => `hsla(${(i * 40 + 200) % 360}, 60%, 55%, 0.6)`), borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 12, usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } } }, scales: { r: { ticks: { display: false }, grid: { color: 'rgba(255,255,255,0.05)' } } } } });
   }
 
   const ctx5 = document.getElementById('chart-trend');
   if (ctx5) {
     const months = Object.keys(stats.monthlyTrend).sort();
-    state.charts.trend = new Chart(ctx5, { type: 'line', data: { labels: months.map(m => { const [y, mo] = m.split('-'); return new Date(y, mo - 1).toLocaleDateString('en-MY', { month: 'short', year: '2-digit' }); }), datasets: [
+    state.charts.trend = new Chart(ctx5, { type: 'line', data: { labels: months.map(m => { const [y, mo] = m.split('-'); return new Date(y, mo - 1).toLocaleDateString(getUiLocale(), { month: 'short', year: '2-digit' }); }), datasets: [
       { label: _('totalTopics'), data: months.map(m => stats.monthlyTrend[m].total), borderColor: 'rgba(124,58,237,0.8)', backgroundColor: 'rgba(124,58,237,0.1)', fill: true, tension: 0.4, pointRadius: 4, pointHoverRadius: 6 },
       { label: _('hoax'), data: months.map(m => stats.monthlyTrend[m].hoax), borderColor: 'rgba(239,68,68,0.8)', backgroundColor: 'rgba(239,68,68,0.05)', fill: true, tension: 0.4, pointRadius: 3 },
       { label: _('true'), data: months.map(m => stats.monthlyTrend[m].true), borderColor: 'rgba(34,197,94,0.8)', backgroundColor: 'rgba(34,197,94,0.05)', fill: true, tension: 0.4, pointRadius: 3 },
@@ -931,7 +1235,7 @@ async function renderAgent() {
         <button class="agent-btn start" id="agent-start" ${as.status === 'running' ? 'disabled style="opacity:0.5"' : ''}>▶ ${_('start')}</button>
         <button class="agent-btn pause" id="agent-pause" ${as.status !== 'running' ? 'disabled style="opacity:0.5"' : ''}>⏸ ${_('pause')}</button>
         <button class="agent-btn stop" id="agent-stop" ${as.status === 'idle' ? 'disabled style="opacity:0.5"' : ''}>⏹ ${_('stop')}</button>
-        <button class="agent-btn ingest" id="agent-ingest" ${as.bulkIngesting ? 'disabled style="opacity:0.5"' : ''}>📥 Collect 1000 Real</button>
+        <button class="agent-btn ingest" id="agent-ingest" ${as.bulkIngesting ? 'disabled style="opacity:0.5"' : ''}>📥 ${_('collectRealButton')}</button>
       </div>
     </div>
 
@@ -943,27 +1247,28 @@ async function renderAgent() {
     <!-- API Provider Status -->
     <div class="provider-status-row">
       ${renderProviderBadge('Groq', providers.groq, '🤖')}
+      ${renderProviderBadge('Ollama', providers.ollama, '🦙')}
       ${renderProviderBadge('HuggingFace', providers.huggingface, '🧩')}
     </div>
 
     <div class="agent-panel" style="margin-bottom: var(--space-md);">
-      <div class="panel-header"><div class="panel-title">📦 Real Ingestion Report</div></div>
+      <div class="panel-header"><div class="panel-title">📦 ${_('realIngestionReport')}</div></div>
       ${ingestReport ? `
         <div class="quality-grid">
-          <div class="quality-item"><div class="quality-value">${ingestReport.targetCount}</div><div class="quality-label">Target</div></div>
-          <div class="quality-item"><div class="quality-value">${ingestReport.collectedCount}</div><div class="quality-label">Collected</div></div>
-          <div class="quality-item"><div class="quality-value">${ingestReport.dedupedCount}</div><div class="quality-label">Deduped</div></div>
-          <div class="quality-item"><div class="quality-value">${ingestReport.verifiedAccepted}</div><div class="quality-label">Verified Accepted</div></div>
-          <div class="quality-item"><div class="quality-value">${ingestReport.verifiedRejected}</div><div class="quality-label">Rejected</div></div>
-          <div class="quality-item"><div class="quality-value">${ingestReport.stored}</div><div class="quality-label">Stored</div></div>
+          <div class="quality-item"><div class="quality-value">${ingestReport.targetCount}</div><div class="quality-label">${_('target')}</div></div>
+          <div class="quality-item"><div class="quality-value">${ingestReport.collectedCount}</div><div class="quality-label">${_('collected')}</div></div>
+          <div class="quality-item"><div class="quality-value">${ingestReport.dedupedCount}</div><div class="quality-label">${_('deduped')}</div></div>
+          <div class="quality-item"><div class="quality-value">${ingestReport.verifiedAccepted}</div><div class="quality-label">${_('verifiedAccepted')}</div></div>
+          <div class="quality-item"><div class="quality-value">${ingestReport.verifiedRejected}</div><div class="quality-label">${_('verifiedRejected')}</div></div>
+          <div class="quality-item"><div class="quality-value">${ingestReport.stored}</div><div class="quality-label">${_('stored')}</div></div>
         </div>
         <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: var(--space-sm);">
-          Acceptance Rate: ${ingestReport.acceptanceRate}% · Duplicates skipped: ${ingestReport.duplicatesSkipped} · Finished: ${new Date(ingestReport.finishedAt).toLocaleString('en-MY')}
+          ${_('ingestionSummary', { acceptance: ingestReport.acceptanceRate, duplicates: ingestReport.duplicatesSkipped, finished: new Date(ingestReport.finishedAt).toLocaleString(getUiLocale()) })}
         </div>
         ${Array.isArray(ingestReport.sourceErrors) && ingestReport.sourceErrors.length > 0
-          ? `<div style="font-size: 0.78rem; color: var(--color-misleading); margin-top: var(--space-sm);">Source warnings: ${ingestReport.sourceErrors.length}. Open server logs for details.</div>`
+          ? `<div style="font-size: 0.78rem; color: var(--color-misleading); margin-top: var(--space-sm);">${_('sourceWarnings', { n: ingestReport.sourceErrors.length })}</div>`
           : ''}
-      ` : `<div style="font-size: 0.85rem; color: var(--text-secondary);">No ingestion run yet. Click "Collect 1000 Real" to start.</div>`}
+      ` : `<div style="font-size: 0.85rem; color: var(--text-secondary);">${_('noIngestionYet')}</div>`}
     </div>
 
     <div class="agent-grid">
@@ -1001,19 +1306,19 @@ async function renderAgent() {
           <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: var(--radius-md);">
             <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: var(--space-sm);">📡 ${_('dataSources')}</div>
             <div style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6;">
-              • RSS + Google News feeds (real news)<br>• Sebenarnya.my fact-check DB<br>• JomCheck archives<br>• MyCheck.my verifications<br>• Social media monitoring
+              ${_('agentDataSourcesList')}
             </div>
           </div>
           <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: var(--radius-md);">
             <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: var(--space-sm);">🧠 ${_('analysisPipeline')}</div>
             <div style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6;">
-              • Groq (Llama 3.3 70B) → primary<br>• HuggingFace → fallback<br>• Multi-language translation<br>• Party attribution<br>• Connection mapping
+              ${_('agentAnalysisPipelineList')}
             </div>
           </div>
           <div style="padding: var(--space-md); background: rgba(255,255,255,0.02); border-radius: var(--radius-md);">
             <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: var(--space-sm);">⏱️ ${_('timing')}</div>
             <div style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6;">
-              • News search: every 30 min<br>• Topic analysis: every 1 min<br>• Translation: per topic<br>• Data persistence: real-time<br>• SSE updates: instant
+              ${_('agentTimingList')}
             </div>
           </div>
         </div>
@@ -1038,11 +1343,11 @@ async function renderAgent() {
     renderAgent();
   });
   document.getElementById('agent-ingest')?.addEventListener('click', async () => {
-    const targetRaw = prompt('How many real records to collect?', '1000');
+    const targetRaw = prompt(_('collectPrompt'), '1000');
     if (!targetRaw) return;
     const targetCount = Math.max(50, Math.min(parseInt(targetRaw, 10) || 1000, 5000));
 
-    showToast(`📥 Starting real ingestion (${targetCount})...`, 'info');
+    showToast(`📥 ${_('ingestionStarting', { n: targetCount })}`, 'info');
     const result = await apiPost('/api/ingest/run', {
       targetCount,
       includeInternet: true,
@@ -1050,9 +1355,9 @@ async function renderAgent() {
     });
 
     if (result?.success) {
-      showToast(`✅ Stored ${result.report?.stored || 0} verified real records`, 'success');
+      showToast(`✅ ${_('storedVerifiedRecords', { n: result.report?.stored || 0 })}`, 'success');
     } else {
-      showToast(`❌ Ingestion failed: ${result?.error || 'Unknown error'}`, 'warning');
+      showToast(`❌ ${_('ingestionFailed', { err: result?.error || _('unknownError') })}`, 'warning');
     }
 
     renderAgent();
@@ -1084,7 +1389,7 @@ function renderProviderBadge(name, usage, icon) {
   else if (usage.callsThisHour !== undefined) usageText = `${usage.callsThisHour}/${usage.maxPerHour} ${_('callsPerHour')}`;
 
   const cooldownText = blockedForSec > 0
-    ? `<div class="provider-usage">retry in ${blockedForSec}s</div>`
+    ? `<div class="provider-usage">${_('retryIn', { n: blockedForSec })}</div>`
     : '';
 
   return `
@@ -1121,7 +1426,7 @@ function updateActionBanner(data) {
 function appendLogEntry(data) {
   const log = document.getElementById('activity-log');
   if (!log) return;
-  const time = new Date(data.timestamp).toLocaleTimeString('en-MY', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const time = new Date(data.timestamp).toLocaleTimeString(getUiLocale(), { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   const icons = { system: '⚡', action: '🔄', discovery: '🆕' };
   const entry = document.createElement('div');
   entry.className = `log-entry ${data.type}`;
@@ -1137,7 +1442,7 @@ function appendLogEntry(data) {
 }
 
 function renderLogEntry(entry) {
-  const time = new Date(entry.timestamp).toLocaleTimeString('en-MY', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const time = new Date(entry.timestamp).toLocaleTimeString(getUiLocale(), { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   const icons = { system: '⚡', action: '🔄', discovery: '🆕' };
   return `<div class="log-entry ${entry.type}"><span class="log-time">${time}</span><span class="log-icon">${icons[entry.type] || '•'}</span><span class="log-message">${entry.message}</span></div>`;
 }
@@ -1167,7 +1472,7 @@ function buildVerificationPanel(topic) {
     <div class="verification-panel">
       <div class="vp-header">
         <div class="vp-title">🔬 ${_('howWeVerified')}</div>
-        <div class="vp-method">Method: ${vMethod}</div>
+        <div class="vp-method">${_('methodLabel')}: ${vMethod}</div>
       </div>
 
       <div class="vp-score-row">
@@ -1180,7 +1485,7 @@ function buildVerificationPanel(topic) {
       <div class="vp-grid">
         <div class="vp-item">
           <div class="vp-item-label">${_('sourceStatus')}</div>
-          <div class="vp-item-value" style="color: ${sColor}">${vStatus.replace('_', ' ')}</div>
+          <div class="vp-item-value" style="color: ${sColor}">${getVerificationStatusLabel(vStatus)}</div>
         </div>
         <div class="vp-item">
           <div class="vp-item-label">${_('aiConfidence')}</div>
@@ -1188,19 +1493,19 @@ function buildVerificationPanel(topic) {
         </div>
         <div class="vp-item">
           <div class="vp-item-label">${_('analyzedByLabel')}</div>
-          <div class="vp-item-value">${provider === 'Groq' ? '🤖 Groq Llama 3.3 70B' : provider === 'HuggingFace' ? '🧩 HuggingFace' : provider === 'SourceVerifier' ? '🛡️ Source Verifier' : provider === 'Heuristic' ? '⚡ Heuristic (basic)' : '❓ ' + provider}</div>
+          <div class="vp-item-value">${getProviderDisplay(provider)}</div>
         </div>
         <div class="vp-item">
           <div class="vp-item-label">${_('sourceTrusted')}</div>
-          <div class="vp-item-value">${vChecks.sourceTrusted ? '✅ Yes — trusted domain' : '⚠️ Not in allowlist'}</div>
+          <div class="vp-item-value">${vChecks.sourceTrusted ? `✅ ${_('sourceTrustedYes')}` : `⚠️ ${_('sourceTrustedNo')}`}</div>
         </div>
         <div class="vp-item">
           <div class="vp-item-label">${_('multiSource')}</div>
-          <div class="vp-item-value">${vChecks.multiSourceSupport ? `✅ Yes (${vChecks.uniqueDomainsInCluster || '2+'} domains)` : '❌ Single source only'}</div>
+          <div class="vp-item-value">${vChecks.multiSourceSupport ? `✅ ${_('multiSourceYes', { n: vChecks.uniqueDomainsInCluster || '2+' })}` : `❌ ${_('multiSourceNo')}`}</div>
         </div>
         <div class="vp-item">
           <div class="vp-item-label">${_('contentChecks')}</div>
-          <div class="vp-item-value">${[vChecks.hasTitle ? '✅ Title' : '❌ Title', vChecks.hasSummary ? '✅ Summary' : '❌ Summary', vChecks.hasUrl ? '✅ URL' : '❌ URL', vChecks.hasPublishedAt ? '✅ Date' : '❌ Date'].join(' · ')}</div>
+          <div class="vp-item-value">${[vChecks.hasTitle ? `✅ ${_('contentTitle')}` : `❌ ${_('contentTitle')}`, vChecks.hasSummary ? `✅ ${_('contentSummary')}` : `❌ ${_('contentSummary')}`, vChecks.hasUrl ? `✅ ${_('contentUrl')}` : `❌ ${_('contentUrl')}`, vChecks.hasPublishedAt ? `✅ ${_('contentDate')}` : `❌ ${_('contentDate')}`].join(' · ')}</div>
         </div>
       </div>
 
@@ -1225,6 +1530,7 @@ async function openTopicModal(topicId) {
   const verdictClass = topic.verdict.toLowerCase().replace('_', '-');
   const coalition = party ? COALITIONS[party.coalition] : null;
   const conf = getConfidenceInfo(topic.confidence || 'low');
+  const verdictLabel = getVerdictLabel(topic.verdict);
 
   const title = topic.translations?.[state.lang]?.title || topic.title;
   const summary = topic.translations?.[state.lang]?.summary || topic.summary;
@@ -1246,7 +1552,7 @@ async function openTopicModal(topicId) {
     <div class="modal-verdict-hero ${verdictClass}">
       <div class="mvh-icon">${verdict?.icon || '❓'}</div>
       <div class="mvh-info">
-        <div class="mvh-label">${verdict?.label || topic.verdict}</div>
+        <div class="mvh-label">${verdictLabel}</div>
         <div class="mvh-explain">${verdictExplanations[topic.verdict] || ''}</div>
       </div>
       <div class="mvh-confidence">
@@ -1257,10 +1563,10 @@ async function openTopicModal(topicId) {
 
     <h2 class="modal-title">${title}</h2>
     <div class="modal-meta">
-      <span class="party-tag" style="background: ${party?.colorLight}; color: ${party?.color}; font-size: 0.8rem; padding: 4px 12px;">${topic.party} ${coalition ? '(' + coalition.name + ')' : ''}</span>
-      <span class="category-tag" style="font-size: 0.8rem; padding: 4px 12px;">📁 ${topic.category}</span>
+      <span class="party-tag" style="background: ${party?.colorLight}; color: ${party?.color}; font-size: 0.8rem; padding: 4px 12px;">${topic.party} ${coalition ? '(' + getCoalitionNameLabel(party?.coalition, coalition.name) + ')' : ''}</span>
+      <span class="category-tag" style="font-size: 0.8rem; padding: 4px 12px;">📁 ${getCategoryLabel(topic.category)}</span>
       <span class="category-tag" style="font-size: 0.8rem; padding: 4px 12px;">📅 ${formatDate(topic.date)}</span>
-      <span class="category-tag" style="font-size: 0.8rem; padding: 4px 12px;">📍 ${topic.region || 'National'}</span>
+      <span class="category-tag" style="font-size: 0.8rem; padding: 4px 12px;">📍 ${getRegionLabel(topic.region)}</span>
     </div>
 
     <div class="modal-section"><div class="modal-section-title">📝 ${_('summary')}</div><div class="modal-section-content">${summary}</div></div>
@@ -1279,9 +1585,9 @@ async function openTopicModal(topicId) {
       <div class="modal-section-title">🏛️ ${_('partyContext')}</div>
       <div class="modal-section-content">
         <strong style="color: ${party?.color || '#888'}">${party?.name || topic.party}</strong>
-        ${coalition ? ` — ${coalition.name} (${coalition.status})` : ''}<br><br>
+        ${coalition ? ` — ${getCoalitionNameLabel(party?.coalition, coalition.name)} (${getCoalitionStatusLabel(coalition.status)})` : ''}<br><br>
         ${party?.description || ''}<br><br>
-        <span style="color: var(--text-muted); font-size: 0.85rem;">${_('leader')}: ${party?.leader || 'N/A'} · ${_('founded')}: ${party?.founded || 'N/A'} · ${_('ideology')}: ${party?.ideology || 'N/A'}</span>
+        <span style="color: var(--text-muted); font-size: 0.85rem;">${_('leader')}: ${party?.leader || _('notAvailable')} · ${_('founded')}: ${party?.founded || _('notAvailable')} · ${_('ideology')}: ${party?.ideology || _('notAvailable')}</span>
       </div>
     </div>
   `;

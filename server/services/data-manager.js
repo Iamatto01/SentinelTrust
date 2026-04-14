@@ -1,110 +1,77 @@
-// Data Manager — JSON file storage for topics
+// Data Manager — JSON file storage with debounced writes, cached stats, and URL index
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join, dirname } from 'path';
+import { join, dirname, isAbsolute, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import {
+  MALAYSIA_SIGNAL_TERMS,
+  POLITICAL_SIGNAL_TERMS,
+  MALAYSIAN_NEWS_DOMAINS,
+  includesAnySignal,
+  isMalaysianDomain,
+} from './shared-constants.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'data');
-const TOPICS_FILE = join(DATA_DIR, 'topics.json');
-const LOG_FILE = join(DATA_DIR, 'agent-log.json');
+
+function resolveDataFile(customPath, fallbackPath) {
+  const value = String(customPath || '').trim();
+  if (!value) return fallbackPath;
+  return isAbsolute(value) ? value : resolve(process.cwd(), value);
+}
+
+const TOPICS_FILE = resolveDataFile(process.env.TOPICS_FILE_PATH, join(DATA_DIR, 'topics.json'));
+const LOG_FILE = resolveDataFile(process.env.AGENT_LOG_FILE_PATH, join(DATA_DIR, 'agent-log.json'));
 
 // Seed data import
 import { SEED_TOPICS } from '../../src/data/seed-data.js';
 import { PARTIES, VERDICTS } from '../../src/data/parties.js';
-
-const MALAYSIA_SIGNAL_TERMS = [
-  'malaysia',
-  'malaysian',
-  'pkr',
-  'umno',
-  'pas',
-  'bersatu',
-  'amanah',
-  'gps',
-  'muda',
-  'anwar ibrahim',
-  'zahid',
-  'muhyiddin',
-  'hadi awang',
-  'rafizi',
-  'putrajaya',
-  'dewan rakyat',
-  'dewan negara',
-  'parlimen',
-  'parliament malaysia',
-  'kerajaan',
-  'pakatan harapan',
-  'perikatan nasional',
-  'barisan nasional',
-  'sprm',
-  'macc',
-  'pilihan raya',
-  'suruhanjaya pilihan raya',
-  'klang valley',
-  'sabah',
-  'sarawak',
-];
-
-const POLITICAL_SIGNAL_TERMS = [
-  'politic',
-  'political',
-  'election',
-  'policy',
-  'parliament',
-  'cabinet',
-  'minister',
-  'coalition',
-  'opposition',
-  'government',
-  'governance',
-  'corruption',
-  'campaign',
-  'bill',
-  'legislation',
-  'manifesto',
-  'undi',
-  'politik',
-  'dasar',
-  'budget',
-  'macc',
-  'sprm',
-  'umno',
-  'pas',
-  'pkr',
-  'bersatu',
-  'amanah',
-  'gps',
-  'muda',
-];
-
-const MALAYSIAN_NEWS_DOMAINS = [
-  'freemalaysiatoday.com',
-  'malaymail.com',
-  'bernama.com',
-  'thestar.com.my',
-  'bharian.com.my',
-  'astroawani.com',
-  'malaysiakini.com',
-  'thesun.my',
-  'sinardaily.my',
-  'utusan.com.my',
-  'nst.com.my',
-  'facebook.com',
-];
 
 class DataManager {
   constructor() {
     this.strictRealMode = process.env.STRICT_REAL_MODE !== 'false';
     this.malaysiaPoliticsOnly = process.env.MALAYSIA_POLITICS_ONLY !== 'false';
     this.minimumVerificationScore = parseInt(process.env.VERIFICATION_MIN_SCORE || '65', 10);
+    this.seedOnEmpty = process.env.SEED_ON_EMPTY === 'true';
     this._ensureDir();
-    this._topics = this._load(TOPICS_FILE, SEED_TOPICS);
+    this._topics = this._load(TOPICS_FILE, this.seedOnEmpty ? SEED_TOPICS : []);
     this._log = this._load(LOG_FILE, []);
+
+    // ── Performance: URL index for O(1) duplicate lookups ──
+    this._urlIndex = new Set();
+    this._rebuildUrlIndex();
+
+    // ── Performance: Debounced disk writes ──
+    this._saveTimer = null;
+    this._saveLogTimer = null;
+    this._SAVE_DEBOUNCE_MS = 2000;
+
+    // ── Performance: Cached stats ──
+    this._statsCache = null;
+    this._statsCacheTs = 0;
+    this._qualityCache = null;
+    this._qualityCacheTs = 0;
+    this._STATS_CACHE_TTL = 10000; // 10 seconds
+  }
+
+  _rebuildUrlIndex() {
+    this._urlIndex.clear();
+    for (const topic of this._topics) {
+      const url = this._getPrimarySourceUrl(topic).toLowerCase();
+      if (url) this._urlIndex.add(url);
+    }
+  }
+
+  _invalidateStatsCache() {
+    this._statsCache = null;
+    this._qualityCache = null;
   }
 
   _ensureDir() {
-    if (!existsSync(DATA_DIR)) {
-      mkdirSync(DATA_DIR, { recursive: true });
+    const dirs = new Set([DATA_DIR, dirname(TOPICS_FILE), dirname(LOG_FILE)]);
+    for (const dirPath of dirs) {
+      if (dirPath && !existsSync(dirPath)) {
+        mkdirSync(dirPath, { recursive: true });
+      }
     }
   }
 
@@ -118,14 +85,14 @@ class DataManager {
         return loaded;
       }
     } catch { /* ignore */ }
-    this._write(file, fallback);
+    this._writeSync(file, fallback);
     if (file === TOPICS_FILE && Array.isArray(fallback)) {
       return fallback.map(topic => this._normalizeTopic(topic));
     }
     return Array.isArray(fallback) ? [...fallback] : fallback;
   }
 
-  _write(file, data) {
+  _writeSync(file, data) {
     try {
       writeFileSync(file, JSON.stringify(data, null, 2), 'utf-8');
     } catch (e) {
@@ -133,13 +100,36 @@ class DataManager {
     }
   }
 
+  /**
+   * Debounced save — coalesces rapid writes into a single disk I/O.
+   * Critical for bulk operations (1000 topics → 1 write instead of 1000).
+   */
   _save() {
-    this._write(TOPICS_FILE, this._topics);
+    this._invalidateStatsCache();
+    if (this._saveTimer) return; // Already scheduled
+    this._saveTimer = setTimeout(() => {
+      this._saveTimer = null;
+      this._writeSync(TOPICS_FILE, this._topics);
+    }, this._SAVE_DEBOUNCE_MS);
+  }
+
+  /** Force immediate save (e.g., on shutdown or after bulk ops). */
+  _saveNow() {
+    if (this._saveTimer) {
+      clearTimeout(this._saveTimer);
+      this._saveTimer = null;
+    }
+    this._invalidateStatsCache();
+    this._writeSync(TOPICS_FILE, this._topics);
   }
 
   _saveLog() {
     if (this._log.length > 200) this._log = this._log.slice(-200);
-    this._write(LOG_FILE, this._log);
+    if (this._saveLogTimer) return;
+    this._saveLogTimer = setTimeout(() => {
+      this._saveLogTimer = null;
+      this._writeSync(LOG_FILE, this._log);
+    }, this._SAVE_DEBOUNCE_MS);
   }
 
   _normalizeTopic(topic) {
@@ -173,20 +163,6 @@ class DataManager {
     return Array.isArray(topic.sources) && topic.sources.some(src => typeof src?.url === 'string' && /^https?:\/\//i.test(src.url));
   }
 
-  _includesAnySignal(text, terms) {
-    return terms.some((term) => {
-      const normalized = String(term || '').toLowerCase();
-      if (!normalized) return false;
-
-      if (/^[a-z0-9]+$/.test(normalized) && normalized.length <= 4) {
-        const escaped = normalized.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        return new RegExp(`\\b${escaped}\\b`, 'i').test(text);
-      }
-
-      return text.includes(normalized);
-    });
-  }
-
   _extractSourceHost(topic) {
     if (!Array.isArray(topic?.sources)) return '';
     const sourceUrl = topic.sources.find(src => typeof src?.url === 'string' && /^https?:\/\//i.test(src.url))?.url || '';
@@ -197,20 +173,11 @@ class DataManager {
     }
   }
 
-  _isMalaysianDomain(domain = '') {
-    const normalized = String(domain || '').toLowerCase();
-    if (!normalized) return false;
-    if (normalized.endsWith('.my')) return true;
-    return MALAYSIAN_NEWS_DOMAINS.some(known => normalized === known || normalized.endsWith(`.${known}`));
-  }
-
   _isMalaysiaPoliticalTopic(topic) {
     if (!topic) return false;
-
     const titleText = `${topic.title || ''}`.toLowerCase();
-    const hasMalaysiaSignal = this._includesAnySignal(titleText, MALAYSIA_SIGNAL_TERMS);
-    const hasPoliticalSignal = this._includesAnySignal(titleText, POLITICAL_SIGNAL_TERMS);
-
+    const hasMalaysiaSignal = includesAnySignal(titleText, MALAYSIA_SIGNAL_TERMS);
+    const hasPoliticalSignal = includesAnySignal(titleText, POLITICAL_SIGNAL_TERMS);
     return hasMalaysiaSignal && hasPoliticalSignal;
   }
 
@@ -244,7 +211,7 @@ class DataManager {
   }
 
   _applyVisibilityFilter(topics) {
-    let filtered = [...topics];
+    let filtered = topics; // No spread — just filter in place
 
     if (this.strictRealMode) {
       filtered = filtered.filter(topic => !this._isSyntheticTopic(topic) && this._topicHasSourceUrl(topic));
@@ -257,17 +224,28 @@ class DataManager {
     return filtered;
   }
 
+  /**
+   * Duplicate check — O(1) URL lookup + expensive similarity only when needed.
+   */
   _isDuplicateTopic(topic) {
     const incomingUrl = this._getPrimarySourceUrl(topic).toLowerCase();
+
+    // Fast path: URL index lookup O(1)
+    if (incomingUrl && this._urlIndex.has(incomingUrl)) return true;
+
+    // Slow path: title similarity (only run if URL didn't match)
     const incomingTitle = (topic.title || '').toLowerCase();
+    if (!incomingTitle) return false;
 
-    return this._topics.some(existing => {
-      const existingUrl = this._getPrimarySourceUrl(existing).toLowerCase();
-      if (incomingUrl && existingUrl && incomingUrl === existingUrl) return true;
-
+    // Only check the last 500 topics for title similarity (recent window)
+    const checkWindow = Math.min(this._topics.length, 500);
+    for (let i = 0; i < checkWindow; i++) {
+      const existing = this._topics[i];
       const sim = this._similarity((existing.title || '').toLowerCase(), incomingTitle);
-      return sim > 0.8;
-    });
+      if (sim > 0.8) return true;
+    }
+
+    return false;
   }
 
   // --- Topics CRUD ---
@@ -288,22 +266,64 @@ class DataManager {
     const normalized = this._normalizeTopic(topic);
     if (this._isDuplicateTopic(normalized)) return null;
 
+    // Update URL index
+    const url = this._getPrimarySourceUrl(normalized).toLowerCase();
+    if (url) this._urlIndex.add(url);
+
     this._topics.unshift(normalized);
-    this._save();
+    this._save(); // Debounced
     return normalized;
   }
 
+  /**
+   * Bulk add — single debounced save at the end instead of per-topic.
+   */
   addTopicsBulk(topics = []) {
     let added = 0;
     let duplicates = 0;
 
     for (const topic of topics) {
-      const inserted = this.addTopic(topic);
-      if (inserted) added++;
-      else duplicates++;
+      const normalized = this._normalizeTopic(topic);
+      if (this._isDuplicateTopic(normalized)) {
+        duplicates++;
+        continue;
+      }
+
+      const url = this._getPrimarySourceUrl(normalized).toLowerCase();
+      if (url) this._urlIndex.add(url);
+
+      this._topics.unshift(normalized);
+      added++;
     }
 
+    // Single save at the end
+    if (added > 0) this._saveNow();
+
     return { added, duplicates, attempted: topics.length };
+  }
+
+  updateTopicTranslations(topicId, translations = {}) {
+    const index = this._topics.findIndex((topic) => topic.id === topicId);
+    if (index === -1) return null;
+
+    const existing = this._topics[index];
+    const mergedTranslations = { ...(existing.translations || {}) };
+
+    for (const [lang, payload] of Object.entries(translations || {})) {
+      if (!payload || typeof payload !== 'object') continue;
+      mergedTranslations[lang] = {
+        ...(existing.translations?.[lang] || {}),
+        ...payload,
+      };
+    }
+
+    this._topics[index] = this._normalizeTopic({
+      ...existing,
+      translations: mergedTranslations,
+    });
+
+    this._save(); // Debounced
+    return this._topics[index];
   }
 
   filterTopics({ party, verdict, category, search, limit = 100 } = {}) {
@@ -322,9 +342,14 @@ class DataManager {
     return results.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, limit);
   }
 
-  // --- Statistics ---
+  // --- Statistics (cached) ---
 
   getStats() {
+    // Return cached stats if fresh
+    if (this._statsCache && (Date.now() - this._statsCacheTs) < this._STATS_CACHE_TTL) {
+      return this._statsCache;
+    }
+
     const visibleTopics = this._applyVisibilityFilter(this._topics);
     const topics = this.strictRealMode
       ? visibleTopics.filter(topic => this._isEligibleForStats(topic))
@@ -362,15 +387,23 @@ class DataManager {
       if (t.verdict === 'MISLEADING') monthlyTrend[month].misleading++;
     });
 
-    return {
+    this._statsCache = {
       total, verdictCounts, partyStats, categoryCounts, monthlyTrend,
       hoaxRate: total > 0 ? Math.round((verdictCounts.HOAX / total) * 100) : 0,
       truthRate: total > 0 ? Math.round((verdictCounts.TRUE / total) * 100) : 0,
       dataQuality: this.getDataQualityStats(),
     };
+    this._statsCacheTs = Date.now();
+
+    return this._statsCache;
   }
 
   getDataQualityStats() {
+    // Return cached quality stats if fresh
+    if (this._qualityCache && (Date.now() - this._qualityCacheTs) < this._STATS_CACHE_TTL) {
+      return this._qualityCache;
+    }
+
     const stored = this._topics;
     const visible = this._applyVisibilityFilter(stored);
     const counted = this.strictRealMode
@@ -391,7 +424,7 @@ class DataManager {
     const withSourceUrl = visible.filter(topic => this._topicHasSourceUrl(topic)).length;
     const syntheticExcluded = stored.filter(topic => this._isSyntheticTopic(topic)).length;
 
-    return {
+    this._qualityCache = {
       strictRealMode: this.strictRealMode,
       malaysiaPoliticsOnly: this.malaysiaPoliticsOnly,
       minimumVerificationScore: this.minimumVerificationScore,
@@ -405,13 +438,16 @@ class DataManager {
       verificationBuckets,
       acceptanceRate: visible.length > 0 ? Math.round((counted.length / visible.length) * 100) : 0,
     };
+    this._qualityCacheTs = Date.now();
+
+    return this._qualityCache;
   }
 
   // --- Agent Log ---
 
   addLog(entry) {
     this._log.push({ ...entry, timestamp: new Date().toISOString() });
-    this._saveLog();
+    this._saveLog(); // Debounced
   }
 
   getLog(limit = 50) {
@@ -426,19 +462,22 @@ class DataManager {
   // --- Reset ---
 
   reset() {
-    this._topics = SEED_TOPICS.map(topic => this._normalizeTopic({
-      ...topic,
-      recordType: 'seed',
-      sourceType: 'seed',
-      synthetic: true,
-      verification: {
-        status: 'UNKNOWN',
-        score: 0,
-        method: 'seed_data',
-        verifiedAt: null,
-      },
-    }));
-    this._save();
+    this._topics = this.seedOnEmpty
+      ? SEED_TOPICS.map(topic => this._normalizeTopic({
+          ...topic,
+          recordType: 'seed',
+          sourceType: 'seed',
+          synthetic: true,
+          verification: {
+            status: 'UNKNOWN',
+            score: 0,
+            method: 'seed_data',
+            verifiedAt: null,
+          },
+        }))
+      : [];
+    this._rebuildUrlIndex();
+    this._saveNow();
     this._log = [];
     this._saveLog();
   }

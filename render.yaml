@@ -15,11 +15,21 @@ services:
         sync: false  # Set manually in Render dashboard
       - key: HF_API_TOKEN
         sync: false
+      - key: OLLAMA_ENABLED
+        value: "false"
+      - key: OLLAMA_BASE_URL
+        sync: false
+      - key: OLLAMA_MODEL
+        value: "llama3.1:8b"
       - key: AGENT_AUTO_START
-        value: "true"
+        value: "false"
       - key: SEARCH_INTERVAL_MS
         value: "1800000"
       - key: ANALYZE_INTERVAL_MS
         value: "60000"
+      - key: SEED_ON_EMPTY
+        value: "false"
+      - key: ENABLE_AGENT_RESET
+        value: "false"
     healthCheckPath: /health
     autoDeploy: true

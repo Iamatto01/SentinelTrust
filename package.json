@@ -9,9 +9,12 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "node server/index.js",
-    "ingest:real": "node server/scripts/ingest-real.js 1000"
+    "ingest:real": "node server/scripts/ingest-real.js 1000",
+    "db:turso:setup": "node server/scripts/setup-turso.js",
+    "db:turso:schema": "node server/scripts/setup-turso.js --schema-only"
   },
   "dependencies": {
+    "@libsql/client": "^0.17.2",
     "chart.js": "^4.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.0",

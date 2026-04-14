@@ -1,12 +1,19 @@
 // Groq Analyzer — Uses Llama 3.3 70B for fact-checking and translation
 // Free tier: ~1000 req/day, no credit card
+// Optimized: response caching, reduced token limits
+
+import { LRUCache, simpleHash } from './shared-constants.js';
 
 const GROQ_API_BASE = 'https://api.groq.com/openai/v1';
+
+// ── Response caches ──
+const analysisCache = new LRUCache(200, 30 * 60 * 1000); // 30min TTL
+const translationCache = new LRUCache(200, 60 * 60 * 1000); // 1hr TTL
 
 class GroqAnalyzer {
   constructor() {
     this.apiKey = process.env.GROQ_API_KEY || '';
-    this.model = 'llama-3.3-70b-versatile';
+    this.model = 'llama-3.3-70b-versatile'; // Best free-tier model for structured JSON + multilingual
     this.callCount = 0;
     this.lastReset = Date.now();
     this.cooldownUntil = 0;
@@ -50,7 +57,7 @@ class GroqAnalyzer {
     return 30000;
   }
 
-  async _call(messages, maxTokens = 2048) {
+  async _call(messages, maxTokens = 800) {
     if (!this.isAvailable()) throw new Error('No Groq API key');
 
     const cooldownRemainingMs = this.cooldownUntil - Date.now();
@@ -70,7 +77,7 @@ class GroqAnalyzer {
       body: JSON.stringify({
         model: this.model,
         messages,
-        temperature: 0.3,
+        temperature: 0.2,
         max_tokens: maxTokens,
         response_format: { type: 'json_object' }
       })
@@ -96,6 +103,14 @@ class GroqAnalyzer {
 
   async analyzeTopic(topic) {
     const { title, snippet, party, category, sources } = topic;
+
+    // ── Cache check ──
+    const cacheKey = `groq:analyze:${simpleHash((title || '').toLowerCase())}`;
+    const cached = analysisCache.get(cacheKey);
+    if (cached) {
+      console.log(`[Groq] Cache hit for: "${title}"`);
+      return cached;
+    }
 
     const systemPrompt = `You are SentinelTruth, a Malaysian political fact-checking AI. You analyze political claims with strict neutrality and evidence-based reasoning. You are familiar with all Malaysian political parties: PKR, DAP, AMANAH (Pakatan Harapan/PH), UMNO (Barisan Nasional/BN), PAS, BERSATU (Perikatan Nasional/PN), GPS, and MUDA.
 
@@ -133,11 +148,15 @@ Return a JSON object with EXACTLY these fields:
       const result = await this._call([
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt }
-      ]);
+      ], 800);
 
       const parsed = JSON.parse(result);
       console.log(`[Groq] Analyzed: "${title}" → ${parsed.verdict}`);
-      return { success: true, ...parsed };
+      const output = { success: true, ...parsed };
+
+      // ── Cache the result ──
+      analysisCache.set(cacheKey, output);
+      return output;
     } catch (err) {
       console.error('[Groq] Analysis error:', err.message);
       return { success: false, error: err.message };
@@ -146,6 +165,14 @@ Return a JSON object with EXACTLY these fields:
 
   async translateTopic(topic) {
     const { title, summary, analysis } = topic;
+
+    // ── Cache check ──
+    const cacheKey = `groq:trans:${simpleHash((title || '').toLowerCase())}`;
+    const cached = translationCache.get(cacheKey);
+    if (cached) {
+      console.log(`[Groq] Translation cache hit for: "${title}"`);
+      return cached;
+    }
 
     const prompt = `Translate the following Malaysian political fact-check content into 3 languages. Keep political party names (PKR, DAP, UMNO, PAS, etc.) untranslated.
 
@@ -167,11 +194,15 @@ Return ONLY the JSON object.`;
       const result = await this._call([
         { role: 'system', content: 'You are a professional multilingual translator specializing in Malaysian political content. Translate accurately while preserving meaning and political context.' },
         { role: 'user', content: prompt }
-      ], 3000);
+      ], 1500);
 
       const parsed = JSON.parse(result);
       console.log(`[Groq] Translated: "${title}"`);
-      return { success: true, translations: parsed };
+      const output = { success: true, translations: parsed };
+
+      // ── Cache the result ──
+      translationCache.set(cacheKey, output);
+      return output;
     } catch (err) {
       console.error('[Groq] Translation error:', err.message);
       return { success: false, error: err.message };
@@ -189,6 +220,7 @@ Return ONLY the JSON object.`;
       model: this.model,
       cooldownRemainingSec,
       lastError: this.lastError,
+      cacheSize: analysisCache.size + translationCache.size,
     };
   }
 }

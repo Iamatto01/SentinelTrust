@@ -1,97 +1,30 @@
 // AI Agent — Server-side continuous analysis pipeline
-// Searches → Analyzes → Translates → Stores → Broadcasts
+// Searches → Analyzes → Translates (deferred) → Stores → Broadcasts
+// Optimized: deferred translation cycle, parallel batch translation, shared constants
 
 import { groqAnalyzer } from './groq-analyzer.js';
+import { ollamaAnalyzer } from './ollama-analyzer.js';
 import { huggingFaceFallback } from './huggingface-fallback.js';
 import { dataManager } from './data-manager.js';
 import { sourceCollector } from './source-collector.js';
 import { sourceVerifier } from './source-verifier.js';
-
-const PARTY_KEYWORDS = {
-  PKR: ['pkr', 'anwar ibrahim', 'rafizi', 'nurul izzah'],
-  DAP: ['democratic action party', 'anthony loke', 'lim guan eng'],
-  AMANAH: ['amanah', 'mohamad sabu', 'mat sabu'],
-  UMNO: ['umno', 'zahid', 'ahmad zahid', 'tok mat', 'ismail sabri'],
-  PAS: ['pas', 'hadi awang', 'abdul hadi', 'sanusi'],
-  BERSATU: ['bersatu', 'muhyiddin', 'hamzah zainudin', 'pn'],
-  GPS: ['gps', 'abang johari', 'sarawak coalition'],
-  MUDA: ['muda', 'syed saddiq'],
-};
-
-const CATEGORY_KEYWORDS = {
-  Corruption: ['corruption', 'bribe', 'macc', 'graft', 'money laundering'],
-  Elections: ['election', 'poll', 'spr', 'undi18', 'by-election', 'campaign'],
-  Economy: ['economy', 'budget', 'ringgit', 'inflation', 'subsidy', 'fiscal'],
-  Policy: ['policy', 'proposal', 'cabinet', 'ministry', 'initiative'],
-  Governance: ['governance', 'administration', 'parliament', 'dewan rakyat'],
-  Legal: ['court', 'judge', 'trial', 'legal', 'prosecution'],
-  Education: ['education', 'school', 'university', 'moe'],
-  'Racial Politics': ['racial', 'ethnic', 'religion', 'bumiputera', 'unity'],
-  'Social Issues': ['welfare', 'poverty', 'housing', 'healthcare'],
-  'Digital Security': ['cyber', 'data breach', 'security', 'hack'],
-};
-
-const MALAYSIA_TOPIC_SIGNALS = [
-  'malaysia',
-  'malaysian',
-  'putrajaya',
-  'dewan rakyat',
-  'dewan negara',
-  'parlimen',
-  'parliament malaysia',
-  'kerajaan',
-  'pakatan harapan',
-  'perikatan nasional',
-  'barisan nasional',
-  'sprm',
-  'macc',
-  'pilihan raya',
-  'suruhanjaya pilihan raya',
-];
-
-const POLITICAL_TOPIC_SIGNALS = [
-  'politic',
-  'political',
-  'election',
-  'policy',
-  'parliament',
-  'cabinet',
-  'minister',
-  'coalition',
-  'opposition',
-  'government',
-  'governance',
-  'corruption',
-  'campaign',
-  'bill',
-  'legislation',
-  'manifesto',
-  'undi',
-  'politik',
-  'dasar',
-];
-
-function includesAnySignal(text = '', terms = []) {
-  return terms.some((term) => {
-    const normalized = String(term || '').toLowerCase();
-    if (!normalized) return false;
-
-    if (/^[a-z0-9]+$/.test(normalized) && normalized.length <= 4) {
-      const escaped = normalized.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      return new RegExp(`\\b${escaped}\\b`, 'i').test(text);
-    }
-
-    return text.includes(normalized);
-  });
-}
+import {
+  PARTY_KEYWORDS,
+  CATEGORY_KEYWORDS,
+  isMalaysiaPoliticalContent,
+  guessParty,
+  guessCategory,
+} from './shared-constants.js';
 
 class AIAgent {
   constructor() {
     this.status = 'idle'; // idle, running, paused
     this._searchInterval = null;
     this._analyzeInterval = null;
+    this._translateInterval = null; // NEW: separate translation cycle
     this._analyzeKickTimer = null;
     this._analyzeInFlight = false;
+    this._translateInFlight = false;
     this._queue = [];
     this._topicsAnalyzed = 0;
     this._currentAction = 'Agent idle';
@@ -103,6 +36,8 @@ class AIAgent {
     // Intervals from env or defaults
     this.searchIntervalMs = parseInt(process.env.SEARCH_INTERVAL_MS || '1800000'); // 30 min
     this.analyzeIntervalMs = parseInt(process.env.ANALYZE_INTERVAL_MS || '30000'); // 30 sec
+    this.translateIntervalMs = 60000; // Translation cycle: every 60s
+    this.translateBatchSize = 3; // Parallel translations per cycle
     this.analyzeBatchSize = Math.max(1, parseInt(process.env.ANALYZE_BATCH_SIZE || '1', 10));
   }
 
@@ -145,7 +80,7 @@ class AIAgent {
     if (this.status === 'running') return;
     this.status = 'running';
     this._updateAction('🚀 AI Agent started — beginning continuous analysis', 'system');
-    this._updateAction(`⚡ Parallel pipeline active: feed discovery + Groq analysis (batch ${this.analyzeBatchSize})`, 'system');
+    this._updateAction(`⚡ Parallel pipeline active: feed discovery + AI analysis (Groq/Ollama/HF, batch ${this.analyzeBatchSize}) + deferred translation`, 'system');
     this._broadcast('status', this.getStatus());
 
     // Start search cycle
@@ -154,6 +89,9 @@ class AIAgent {
 
     // Start analyze cycle
     this._analyzeInterval = setInterval(() => this._doAnalyze(), this.analyzeIntervalMs);
+
+    // Start deferred translation cycle (NEW)
+    this._translateInterval = setInterval(() => this._doTranslate(), this.translateIntervalMs);
 
     // Run first analyze quickly
     this._scheduleAnalyzeSoon(5000);
@@ -164,10 +102,12 @@ class AIAgent {
     this.status = 'paused';
     clearInterval(this._searchInterval);
     clearInterval(this._analyzeInterval);
+    clearInterval(this._translateInterval);
     clearTimeout(this._analyzeKickTimer);
     this._analyzeKickTimer = null;
     this._searchInterval = null;
     this._analyzeInterval = null;
+    this._translateInterval = null;
     this._updateAction('⏸️ AI Agent paused', 'system');
     this._broadcast('status', this.getStatus());
   }
@@ -176,10 +116,12 @@ class AIAgent {
     this.status = 'idle';
     clearInterval(this._searchInterval);
     clearInterval(this._analyzeInterval);
+    clearInterval(this._translateInterval);
     clearTimeout(this._analyzeKickTimer);
     this._analyzeKickTimer = null;
     this._searchInterval = null;
     this._analyzeInterval = null;
+    this._translateInterval = null;
     this._updateAction('⏹️ AI Agent stopped', 'system');
     this._broadcast('status', this.getStatus());
   }
@@ -194,6 +136,7 @@ class AIAgent {
       lastIngestionReport: this._lastIngestionReport,
       providers: {
         groq: groqAnalyzer.getUsage(),
+        ollama: ollamaAnalyzer.getUsage(),
         huggingface: huggingFaceFallback.getUsage(),
       }
     };
@@ -234,8 +177,8 @@ class AIAgent {
     return {
       title: record.title,
       snippet: record.summary || record.title,
-      party: this._guessParty(combined),
-      category: this._guessCategory(combined),
+      party: guessParty(combined),
+      category: guessCategory(combined),
       sourceUrl: record.url,
       sourceName: record.sourceName || 'Source',
       sourceType: record.sourceType || 'internet',
@@ -250,20 +193,7 @@ class AIAgent {
   }
 
   _isMalaysiaPoliticalTopic(topic = {}) {
-    const combinedText = `${topic.title || ''} ${topic.snippet || ''} ${topic.summary || ''}`.toLowerCase();
-    const hasPartySignal = Object.values(PARTY_KEYWORDS)
-      .flat()
-      .some((keyword) => combinedText.includes(keyword.toLowerCase()));
-
-    const hasMalaysiaSignal =
-      hasPartySignal ||
-      includesAnySignal(combinedText, MALAYSIA_TOPIC_SIGNALS);
-
-    const hasPoliticalSignal =
-      hasPartySignal ||
-      includesAnySignal(combinedText, POLITICAL_TOPIC_SIGNALS);
-
-    return hasMalaysiaSignal && hasPoliticalSignal;
+    return isMalaysiaPoliticalContent(topic.title, topic.snippet || topic.summary);
   }
 
   async _fallbackSearchFromFeeds(reason = 'Feed discovery') {
@@ -317,7 +247,7 @@ class AIAgent {
     this._scheduleAnalyzeSoon(800);
   }
 
-  // --- Analyze Phase ---
+  // --- Analyze Phase (no longer translates inline) ---
 
   async _doAnalyze() {
     if (this.status !== 'running' || this._queue.length === 0 || this._analyzeInFlight) return;
@@ -341,7 +271,7 @@ class AIAgent {
     this._updateAction(`🧠 Analyzing: "${topic.title}"`, 'action');
     this._broadcast('status', this.getStatus());
 
-    // Try Groq first, fall back to HuggingFace
+    // Try Groq first, fall back to Ollama, then HuggingFace
     let analysisResult;
     let providerUsed = 'Heuristic';
     const groqUsage = groqAnalyzer.getUsage();
@@ -353,6 +283,12 @@ class AIAgent {
       if (analysisResult?.success) providerUsed = 'Groq';
     } else if (groqAnalyzer.isAvailable() && groqCoolingDown) {
       this._updateAction(`⏳ Groq cooldown active (${groqUsage.cooldownRemainingSec}s) — using fallback analyzer`, 'action');
+    }
+
+    if (!analysisResult?.success && ollamaAnalyzer.isAvailable()) {
+      this._updateAction(`🦙 Groq unavailable, trying Ollama...`, 'action');
+      analysisResult = await ollamaAnalyzer.analyzeTopic(topic);
+      if (analysisResult?.success) providerUsed = 'Ollama';
     }
 
     if (!analysisResult?.success && huggingFaceFallback.isAvailable()) {
@@ -372,7 +308,7 @@ class AIAgent {
       ? topic.sources
       : (topic.sourceUrl ? [{ name: topic.sourceName || 'Source', url: topic.sourceUrl }] : []);
 
-    // Build the full topic object
+    // Build the full topic object (NO translation here — deferred to translation cycle)
     const newTopic = {
       id: `st-ai-${Date.now()}`,
       title: topic.title,
@@ -388,7 +324,7 @@ class AIAgent {
       region: analysisResult.region || 'National',
       factCheckRef: analysisResult.factCheckRef || 'AI Analysis',
       confidence: analysisResult.confidence || 'medium',
-      translations: {},
+      translations: {}, // Will be filled by deferred translation cycle
       aiProvider: providerUsed,
       sourceType: topic.sourceType || 'internet',
       recordType: topic.recordType || 'ai',
@@ -400,16 +336,7 @@ class AIAgent {
       },
     };
 
-    // Try to translate
-    if (providerUsed === 'Groq') {
-      this._updateAction(`🌐 Translating to BM, Hindi, Chinese...`, 'action');
-      const transResult = await groqAnalyzer.translateTopic(newTopic);
-      if (transResult.success) {
-        newTopic.translations = transResult.translations;
-      }
-    }
-
-    // Store
+    // Store the topic immediately (translation happens later)
     const stored = dataManager.addTopic(newTopic);
     if (stored) {
       this._topicsAnalyzed++;
@@ -448,13 +375,145 @@ class AIAgent {
       success: true,
       verdict,
       summary: topic.snippet || topic.title,
-      analysis: 'This topic was analyzed using basic heuristics as no AI API keys are configured. For accurate fact-checking, please configure Groq and/or HuggingFace API keys.',
+      analysis: 'This topic was analyzed using basic heuristics because no AI provider was reachable. For accurate fact-checking, configure Groq, Ollama, and/or HuggingFace.',
       party: topic.party || 'PKR',
       category: topic.category || 'General',
       impact: 'medium',
       region: 'National',
       confidence,
       factCheckRef: 'Pending AI verification'
+    };
+  }
+
+  // --- Deferred Translation Cycle (NEW) ---
+
+  _hasCompleteTranslations(topic) {
+    const t = topic?.translations || {};
+    const requiredLangs = ['ms', 'hi', 'zh'];
+    return requiredLangs.every((lang) => {
+      const payload = t[lang];
+      return payload && payload.title && payload.summary && payload.analysis;
+    });
+  }
+
+  /**
+   * Background translation cycle — runs every 60s, processes a batch of
+   * untranslated topics in parallel (3 at a time).
+   */
+  async _doTranslate() {
+    if (this.status !== 'running' || this._translateInFlight) return;
+
+    // Skip if no translation provider is available
+    if (!groqAnalyzer.isAvailable() && !ollamaAnalyzer.isAvailable()) return;
+
+    // Skip if Groq is cooling down and Ollama isn't available
+    const groqUsage = groqAnalyzer.getUsage();
+    const groqCoolingDown = (groqUsage.cooldownRemainingSec || 0) > 0;
+    if (groqCoolingDown && !ollamaAnalyzer.isAvailable()) return;
+
+    const candidates = dataManager
+      .getAllTopics()
+      .filter((topic) => !this._hasCompleteTranslations(topic))
+      .slice(0, this.translateBatchSize);
+
+    if (candidates.length === 0) return;
+
+    this._translateInFlight = true;
+    try {
+      this._updateAction(`🌐 Translating ${candidates.length} topics (BM, Hindi, Chinese)...`, 'action');
+
+      // Parallel batch translation
+      const results = await Promise.allSettled(
+        candidates.map(async (topic) => {
+          const transResult = await this._translateTopicWithProviders(topic, { emitLog: false });
+          if (transResult?.success) {
+            dataManager.updateTopicTranslations(topic.id, transResult.translations);
+            return true;
+          }
+          return false;
+        })
+      );
+
+      const updated = results.filter(r => r.status === 'fulfilled' && r.value === true).length;
+      if (updated > 0) {
+        this._updateAction(`✅ Translated ${updated} topics`, 'action');
+      }
+    } finally {
+      this._translateInFlight = false;
+    }
+  }
+
+  async _translateTopicWithProviders(topic, { emitLog = true } = {}) {
+    if (emitLog) {
+      this._updateAction('🌐 Translating to BM, Hindi, Chinese...', 'action');
+    }
+
+    if (groqAnalyzer.isAvailable()) {
+      const viaGroq = await groqAnalyzer.translateTopic(topic);
+      if (viaGroq?.success) return viaGroq;
+    }
+
+    if (ollamaAnalyzer.isAvailable()) {
+      const viaOllama = await ollamaAnalyzer.translateTopic(topic);
+      if (viaOllama?.success) return viaOllama;
+    }
+
+    return { success: false, error: 'No translation provider available' };
+  }
+
+  async backfillTranslations({ limit = 60 } = {}) {
+    const maxItems = Math.max(1, Math.min(parseInt(limit, 10) || 60, 300));
+
+    if (!groqAnalyzer.isAvailable() && !ollamaAnalyzer.isAvailable()) {
+      return {
+        success: false,
+        error: 'No translation provider available. Configure Groq or Ollama.',
+        scanned: 0,
+        updated: 0,
+        remaining: 0,
+      };
+    }
+
+    const candidates = dataManager
+      .getAllTopics()
+      .filter((topic) => !this._hasCompleteTranslations(topic))
+      .slice(0, maxItems);
+
+    let updated = 0;
+
+    if (candidates.length > 0) {
+      this._updateAction(`🌐 Backfilling translations for ${candidates.length} topics...`, 'action');
+    }
+
+    // Process in parallel batches of 3 for speed
+    for (let i = 0; i < candidates.length; i += 3) {
+      const batch = candidates.slice(i, i + 3);
+      const results = await Promise.allSettled(
+        batch.map(async (topic) => {
+          const translationResult = await this._translateTopicWithProviders(topic, { emitLog: false });
+          if (!translationResult?.success) return false;
+          const saved = dataManager.updateTopicTranslations(topic.id, translationResult.translations);
+          return !!saved;
+        })
+      );
+      updated += results.filter(r => r.status === 'fulfilled' && r.value === true).length;
+    }
+
+    const remaining = dataManager
+      .getAllTopics()
+      .filter((topic) => !this._hasCompleteTranslations(topic)).length;
+
+    if (updated > 0) {
+      this._updateAction(`✅ Translation backfill updated ${updated} topics`, 'system');
+    } else if (candidates.length > 0) {
+      this._updateAction('ℹ️ Translation backfill finished with 0 updates', 'system');
+    }
+
+    return {
+      success: true,
+      scanned: candidates.length,
+      updated,
+      remaining,
     };
   }
 
@@ -470,22 +529,6 @@ class AIAgent {
     });
   }
 
-  _guessParty(text) {
-    const lower = text.toLowerCase();
-    for (const [party, keywords] of Object.entries(PARTY_KEYWORDS)) {
-      if (keywords.some(keyword => lower.includes(keyword))) return party;
-    }
-    return 'PKR';
-  }
-
-  _guessCategory(text) {
-    const lower = text.toLowerCase();
-    for (const [category, keywords] of Object.entries(CATEGORY_KEYWORDS)) {
-      if (keywords.some(keyword => lower.includes(keyword))) return category;
-    }
-    return 'Governance';
-  }
-
   _scoreToConfidence(score) {
     if (score >= 80) return 'high';
     if (score >= 65) return 'medium';
@@ -494,8 +537,8 @@ class AIAgent {
 
   _toTopicFromVerifiedRecord(record, index) {
     const combinedText = `${record.title || ''} ${record.summary || ''}`;
-    const party = this._guessParty(combinedText);
-    const category = this._guessCategory(combinedText);
+    const party = guessParty(combinedText);
+    const category = guessCategory(combinedText);
     const score = Number(record?.verification?.score || 0);
     const verificationStatus = record?.verification?.status || 'UNKNOWN';
     const sourceName = record?.sourceName || 'Source';

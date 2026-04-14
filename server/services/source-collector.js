@@ -1,4 +1,10 @@
 import { XMLParser } from 'fast-xml-parser';
+import {
+  includesAnySignal,
+  MALAYSIA_SIGNAL_TERMS,
+  POLITICAL_SIGNAL_TERMS,
+  PARTY_KEYWORDS,
+} from './shared-constants.js';
 
 const DEFAULT_REQUEST_TIMEOUT_MS = parseInt(process.env.COLLECTOR_TIMEOUT_MS || '15000', 10);
 const DEFAULT_TARGET_COUNT = parseInt(process.env.COLLECTOR_DEFAULT_TARGET || '1000', 10);
@@ -46,76 +52,16 @@ const GOOGLE_NEWS_QUERIES = [
 
 const PARTY_TERMS = ['PKR', 'AMANAH', 'UMNO', 'PAS', 'BERSATU', 'GPS', 'MUDA', 'Anwar Ibrahim', 'Democratic Action Party'];
 const TOPIC_TERMS = [
-  'election',
-  'policy',
-  'budget',
-  'parliament',
-  'minister',
-  'coalition',
-  'corruption',
-  'economy',
-  'subsidy',
-  'court case',
-  'education',
-  'digital security',
-  'flood response',
-  'federalism',
-  'racial issue',
-];
-
-const MALAYSIA_SIGNAL_TERMS = [
-  'malaysia',
-  'malaysian',
-  'putrajaya',
-  'dewan rakyat',
-  'dewan negara',
-  'parlimen',
-  'parliament malaysia',
-  'kerajaan',
-  'kerajaan perpaduan',
-  'pakatan harapan',
-  'perikatan nasional',
-  'barisan nasional',
-  'sprm',
-  'macc',
-  'pilihan raya',
-  'suruhanjaya pilihan raya',
-];
-
-const POLITICAL_SIGNAL_TERMS = [
-  'politic',
-  'political',
-  'election',
-  'policy',
-  'parliament',
-  'cabinet',
-  'minister',
-  'coalition',
-  'opposition',
-  'government',
-  'governance',
-  'corruption',
-  'campaign',
-  'bill',
-  'legislation',
-  'manifesto',
-  'undi',
-  'politik',
-  'dasar',
+  'election', 'policy', 'budget', 'parliament', 'minister',
+  'coalition', 'corruption', 'economy', 'subsidy', 'court case',
+  'education', 'digital security', 'flood response', 'federalism', 'racial issue',
 ];
 
 const MALAYSIAN_NEWS_DOMAINS = [
-  'freemalaysiatoday.com',
-  'malaymail.com',
-  'bernama.com',
-  'thestar.com.my',
-  'bharian.com.my',
-  'astroawani.com',
-  'malaysiakini.com',
-  'thesun.my',
-  'sinardaily.my',
-  'utusan.com.my',
-  'nst.com.my',
+  'freemalaysiatoday.com', 'malaymail.com', 'bernama.com',
+  'thestar.com.my', 'bharian.com.my', 'astroawani.com',
+  'malaysiakini.com', 'thesun.my', 'sinardaily.my',
+  'utusan.com.my', 'nst.com.my',
 ];
 
 const parser = new XMLParser({
@@ -125,6 +71,29 @@ const parser = new XMLParser({
   textNodeName: '#text',
   processEntities: false,
 });
+
+// ── Pre-built Google News feed URLs (cached at module load) ──────
+let _cachedFeedUrls = null;
+
+function buildGoogleNewsFeedUrls() {
+  if (_cachedFeedUrls) return _cachedFeedUrls;
+
+  const comboQueries = [];
+  for (const party of PARTY_TERMS) {
+    for (const topic of TOPIC_TERMS) {
+      comboQueries.push(`${party} ${topic} Malaysia`);
+    }
+  }
+
+  const allQueries = [...new Set([...GOOGLE_NEWS_QUERIES, ...comboQueries])];
+
+  _cachedFeedUrls = allQueries.map((query) => {
+    const encodedQuery = encodeURIComponent(`${query} when:365d`);
+    return `https://news.google.com/rss/search?q=${encodedQuery}&hl=en-MY&gl=MY&ceid=MY:en`;
+  });
+
+  return _cachedFeedUrls;
+}
 
 function toArray(value) {
   if (!value) return [];
@@ -154,16 +123,8 @@ function normalizeUrl(rawUrl = '') {
   try {
     const url = new URL(rawUrl);
     const paramsToDrop = [
-      'utm_source',
-      'utm_medium',
-      'utm_campaign',
-      'utm_term',
-      'utm_content',
-      'fbclid',
-      'gclid',
-      'ocid',
-      'ref',
-      'ref_src',
+      'utm_source', 'utm_medium', 'utm_campaign', 'utm_term',
+      'utm_content', 'fbclid', 'gclid', 'ocid', 'ref', 'ref_src',
     ];
     paramsToDrop.forEach((param) => url.searchParams.delete(param));
     url.hash = '';
@@ -206,49 +167,12 @@ function textFromNode(node) {
   return '';
 }
 
-function buildGoogleNewsFeedUrls() {
-  const comboQueries = [];
-  for (const party of PARTY_TERMS) {
-    for (const topic of TOPIC_TERMS) {
-      comboQueries.push(`${party} ${topic} Malaysia`);
-    }
-  }
-
-  const allQueries = [...new Set([...GOOGLE_NEWS_QUERIES, ...comboQueries])];
-
-  return allQueries.map((query) => {
-    const encodedQuery = encodeURIComponent(`${query} when:365d`);
-    return `https://news.google.com/rss/search?q=${encodedQuery}&hl=en-MY&gl=MY&ceid=MY:en`;
-  });
-}
-
 function normalizeTitle(title = '') {
   return title
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
-}
-
-function includesAnySignal(text = '', terms = []) {
-  return terms.some((term) => {
-    const normalized = String(term || '').toLowerCase();
-    if (!normalized) return false;
-
-    if (/^[a-z0-9]+$/.test(normalized) && normalized.length <= 4) {
-      const escaped = normalized.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      return new RegExp(`\\b${escaped}\\b`, 'i').test(text);
-    }
-
-    return text.includes(normalized);
-  });
-}
-
-function isMalaysianDomain(domain = '') {
-  const normalized = String(domain || '').toLowerCase();
-  if (!normalized) return false;
-  if (normalized.endsWith('.my')) return true;
-  return MALAYSIAN_NEWS_DOMAINS.some((known) => normalized === known || normalized.endsWith(`.${known}`));
 }
 
 function isMalaysiaPoliticalRecord(record = {}) {

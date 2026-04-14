@@ -1,11 +1,66 @@
 // Utility helpers
 
-export function formatDate(dateStr) {
-  const d = new Date(dateStr);
-  return d.toLocaleDateString('en-MY', { year: 'numeric', month: 'short', day: 'numeric' });
+const LOCALE_BY_LANG = {
+  en: 'en-MY',
+  ms: 'ms-MY',
+  hi: 'hi-IN',
+  zh: 'zh-CN',
+};
+
+const AGO_LABELS = {
+  en: {
+    months: (n) => `${n}mo ago`,
+    days: (n) => `${n}d ago`,
+    hours: (n) => `${n}h ago`,
+    minutes: (n) => `${n}m ago`,
+    now: 'just now',
+  },
+  ms: {
+    months: (n) => `${n} bln lalu`,
+    days: (n) => `${n} hari lalu`,
+    hours: (n) => `${n} jam lalu`,
+    minutes: (n) => `${n} min lalu`,
+    now: 'baru sahaja',
+  },
+  hi: {
+    months: (n) => `${n} माह पहले`,
+    days: (n) => `${n} दिन पहले`,
+    hours: (n) => `${n} घंटे पहले`,
+    minutes: (n) => `${n} मिनट पहले`,
+    now: 'अभी',
+  },
+  zh: {
+    months: (n) => `${n}个月前`,
+    days: (n) => `${n}天前`,
+    hours: (n) => `${n}小时前`,
+    minutes: (n) => `${n}分钟前`,
+    now: '刚刚',
+  },
+};
+
+function getActiveLang(lang = '') {
+  const requested = String(lang || '').trim();
+  if (requested && AGO_LABELS[requested]) return requested;
+
+  if (typeof document !== 'undefined') {
+    const docLang = String(document.documentElement?.lang || '').trim();
+    if (docLang && AGO_LABELS[docLang]) return docLang;
+  }
+
+  return 'en';
 }
 
-export function timeAgo(dateStr) {
+export function formatDate(dateStr, lang = '') {
+  const d = new Date(dateStr);
+  const activeLang = getActiveLang(lang);
+  return d.toLocaleDateString(LOCALE_BY_LANG[activeLang] || LOCALE_BY_LANG.en, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+
+export function timeAgo(dateStr, lang = '') {
   const now = new Date();
   const d = new Date(dateStr);
   const diff = now - d;
@@ -15,11 +70,14 @@ export function timeAgo(dateStr) {
   const days = Math.floor(hours / 24);
   const months = Math.floor(days / 30);
 
-  if (months > 0) return `${months}mo ago`;
-  if (days > 0) return `${days}d ago`;
-  if (hours > 0) return `${hours}h ago`;
-  if (minutes > 0) return `${minutes}m ago`;
-  return 'just now';
+  const activeLang = getActiveLang(lang);
+  const labels = AGO_LABELS[activeLang] || AGO_LABELS.en;
+
+  if (months > 0) return labels.months(months);
+  if (days > 0) return labels.days(days);
+  if (hours > 0) return labels.hours(hours);
+  if (minutes > 0) return labels.minutes(minutes);
+  return labels.now;
 }
 
 export function debounce(fn, ms = 300) {

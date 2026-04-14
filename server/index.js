@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import { dataManager } from './services/data-manager.js';
 import { aiAgent } from './services/ai-agent.js';
 import { groqAnalyzer } from './services/groq-analyzer.js';
+import { ollamaAnalyzer } from './services/ollama-analyzer.js';
 import { huggingFaceFallback } from './services/huggingface-fallback.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -90,6 +91,17 @@ app.get('/api/topics/:id', (req, res) => {
   res.json(topic);
 });
 
+app.post('/api/topics/backfill-translations', async (req, res) => {
+  const limit = parseInt(req.body?.limit, 10) || 60;
+  const result = await aiAgent.backfillTranslations({ limit });
+
+  if (!result.success) {
+    return res.status(400).json(result);
+  }
+
+  return res.json(result);
+});
+
 // ============================================================
 // Statistics API
 // ============================================================
@@ -154,6 +166,9 @@ app.post('/api/agent/log/clear', (req, res) => {
 });
 
 app.post('/api/agent/reset', (req, res) => {
+  if (process.env.ENABLE_AGENT_RESET !== 'true') {
+    return res.status(403).json({ success: false, error: 'Reset endpoint disabled' });
+  }
   aiAgent.stop();
   dataManager.reset();
   res.json({ success: true });
@@ -165,6 +180,7 @@ app.post('/api/agent/reset', (req, res) => {
 app.get('/api/providers', (req, res) => {
   res.json({
     groq: groqAnalyzer.getUsage(),
+    ollama: ollamaAnalyzer.getUsage(),
     huggingface: huggingFaceFallback.getUsage(),
   });
 });
@@ -194,6 +210,7 @@ function printStartupBanner(activePort) {
   console.log(`║  ❤️  Health: http://localhost:${activePort}/health      ║`);
   console.log('╠══════════════════════════════════════════╣');
   console.log(`║  🤖 Groq:     ${groqAnalyzer.isAvailable() ? '✅ Connected' : '❌ No API key'}          ║`);
+  console.log(`║  🦙 Ollama:   ${ollamaAnalyzer.isAvailable() ? '✅ Enabled' : '⚪ Disabled'}          ║`);
   console.log(`║  🧩 HF:       ${huggingFaceFallback.isAvailable() ? '✅ Connected' : '❌ No API key'}          ║`);
   console.log('╚══════════════════════════════════════════╝');
   console.log('');
