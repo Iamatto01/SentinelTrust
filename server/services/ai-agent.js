@@ -377,6 +377,7 @@ class AIAgent {
 
     this._broadcast('status', this.getStatus());
     this._broadcast('newTopic', stored || {});
+    return stored || null;
   }
 
   _heuristicAnalysis(topic) {
@@ -602,6 +603,109 @@ class AIAgent {
     } finally {
       this._reverifyInFlight = false;
     }
+  }
+
+  async ingestRealArticles({ targetCount = 1000, includeInternet = true, includeFacebook = true } = {}) {
+    const safeTarget = Math.max(1, Math.min(parseInt(targetCount, 10) || 1000, 5000));
+
+    this._updateAction(`📦 Bulk ingestion started (target ${safeTarget})`, 'system');
+
+    const collected = await sourceCollector.collect({
+      targetCount: safeTarget,
+      includeInternet: includeInternet !== false,
+      includeFacebook: includeFacebook !== false,
+    });
+
+    if (!collected?.success) {
+      const error = collected?.error || 'Source collection failed';
+      this._updateAction(`❌ Bulk ingestion failed: ${error}`, 'system');
+      return { success: false, error };
+    }
+
+    const candidates = [];
+    const seenBatch = new Set();
+
+    for (const record of collected.records || []) {
+      const topic = this._mapCollectedRecordToQueuedTopic(record);
+      if (!this._isMalaysiaNationalIssueTopic(topic)) continue;
+
+      const urlKey = String(topic.sourceUrl || topic.url || topic.sources?.[0]?.url || '').toLowerCase().trim();
+      const titleKey = String(topic.title || '').toLowerCase().trim();
+      const batchKey = urlKey || `title:${titleKey}`;
+
+      if (batchKey && seenBatch.has(batchKey)) continue;
+      seenBatch.add(batchKey);
+
+      if (dataManager.isDuplicateTopic(topic)) continue;
+
+      candidates.push(topic);
+      if (candidates.length >= safeTarget) break;
+    }
+
+    if (candidates.length === 0) {
+      this._updateAction('ℹ️ Bulk ingestion found no new unique topics to analyze', 'system');
+      return {
+        success: true,
+        report: {
+          targetCount: safeTarget,
+          collectedCount: collected.collectedCount || 0,
+          dedupedCount: collected.dedupedCount || 0,
+          candidates: 0,
+          analyzed: 0,
+          added: 0,
+          skipped: 0,
+          failed: 0,
+          providers: { Groq: 0, Heuristic: 0 },
+          errors: collected.errors || [],
+        },
+      };
+    }
+
+    let analyzed = 0;
+    let added = 0;
+    let skipped = 0;
+    let failed = 0;
+    const providers = { Groq: 0, Heuristic: 0 };
+
+    for (const topic of candidates) {
+      try {
+        const stored = await this._analyzeTopic(topic);
+        analyzed++;
+
+        if (stored) {
+          added++;
+          if (stored.aiProvider === 'Groq') {
+            providers.Groq++;
+          } else {
+            providers.Heuristic++;
+          }
+        } else {
+          skipped++;
+        }
+      } catch (error) {
+        failed++;
+        this._updateAction(`⚠️ Bulk ingestion topic failed: ${error.message}`, 'system');
+      }
+    }
+
+    this._updateAction(`✅ Bulk ingestion completed: added ${added}/${analyzed} topics`, 'system');
+
+    return {
+      success: true,
+      report: {
+        targetCount: safeTarget,
+        collectedCount: collected.collectedCount || 0,
+        malaysiaNationalIssueCount: collected.malaysiaNationalIssueCount || 0,
+        dedupedCount: collected.dedupedCount || 0,
+        candidates: candidates.length,
+        analyzed,
+        added,
+        skipped,
+        failed,
+        providers,
+        errors: collected.errors || [],
+      },
+    };
   }
 
   _isTopicAlreadyQueued(topic) {

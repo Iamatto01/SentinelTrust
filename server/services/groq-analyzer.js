@@ -27,7 +27,7 @@ function buildGroqKeyStates() {
     apiKey,
     callCount: 0,
     lastReset: Date.now(),
-    cooldownUntil: 0,
+    cooldownByModel: {},
     lastError: null,
     disabled: false,
   }));
@@ -40,9 +40,14 @@ const translationCache = new LRUCache(200, 60 * 60 * 1000); // 1hr TTL
 class GroqAnalyzer {
   constructor() {
     this.keyStates = buildGroqKeyStates();
-    this.model = 'llama-3.3-70b-versatile'; // Best free-tier model for structured JSON + multilingual
+    this.primaryModel = String(process.env.GROQ_PRIMARY_MODEL || process.env.GROQ_MODEL || 'llama-3.3-70b-versatile').trim();
+    this.fallbackModel = String(process.env.GROQ_FALLBACK_MODEL || 'llama-3.1-8b-instant').trim();
+    this.model = this.primaryModel;
+    this.analysisMaxTokens = Math.max(200, parseInt(process.env.GROQ_ANALYZE_MAX_TOKENS || '450', 10));
+    this.translationMaxTokens = Math.max(300, parseInt(process.env.GROQ_TRANSLATE_MAX_TOKENS || '900', 10));
     this.maxPerMinutePerKey = Math.max(1, parseInt(process.env.GROQ_MAX_PER_MINUTE || '25', 10));
     this.lastUsedSlot = null;
+    this.lastUsedModel = null;
     this.lastError = null;
   }
 
@@ -56,6 +61,36 @@ class GroqAnalyzer {
       keyState.lastReset = Date.now();
     }
     return keyState.callCount < this.maxPerMinutePerKey;
+  }
+
+  _buildModelSequence(preferredModel = this.primaryModel) {
+    const models = [];
+    const primary = String(preferredModel || this.primaryModel || '').trim();
+    const fallback = String(this.fallbackModel || '').trim();
+
+    if (primary) models.push(primary);
+    if (fallback && fallback !== primary) models.push(fallback);
+
+    return models;
+  }
+
+  _getModelCooldownRemainingMs(keyState, model) {
+    const until = Number(keyState?.cooldownByModel?.[model] || 0);
+    return until - Date.now();
+  }
+
+  _setModelCooldown(keyState, model, retryAfterMs) {
+    if (!keyState.cooldownByModel || typeof keyState.cooldownByModel !== 'object') {
+      keyState.cooldownByModel = {};
+    }
+    keyState.cooldownByModel[model] = Date.now() + retryAfterMs;
+  }
+
+  _clearModelCooldown(keyState, model) {
+    if (!keyState.cooldownByModel || typeof keyState.cooldownByModel !== 'object') {
+      keyState.cooldownByModel = {};
+    }
+    keyState.cooldownByModel[model] = 0;
   }
 
   _extractRetryAfterMs(errorText = '') {
@@ -83,78 +118,95 @@ class GroqAnalyzer {
     return 30000;
   }
 
-  async _call(messages, maxTokens = 800) {
+  async _call(messages, maxTokens = this.analysisMaxTokens, preferredModel = this.primaryModel) {
     if (!this.isAvailable()) throw new Error('No Groq API key');
 
-    const attemptErrors = [];
+    const modelSequence = this._buildModelSequence(preferredModel);
+    const modelAttemptErrors = [];
 
-    for (const keyState of this.keyStates) {
-      if (!keyState.apiKey || keyState.disabled) continue;
+    for (const modelToTry of modelSequence) {
+      const attemptErrors = [];
+      let hasActiveKey = false;
+      let allBlockedByModelCooldown = true;
 
-      const cooldownRemainingMs = keyState.cooldownUntil - Date.now();
-      if (cooldownRemainingMs > 0) {
-        attemptErrors.push(`key${keyState.slot}: cooldown ${Math.ceil(cooldownRemainingMs / 1000)}s`);
-        continue;
-      }
+      for (const keyState of this.keyStates) {
+        if (!keyState.apiKey || keyState.disabled) continue;
+        hasActiveKey = true;
 
-      if (!this._checkRateLimit(keyState)) {
-        attemptErrors.push(`key${keyState.slot}: local throttle`);
-        continue;
-      }
+        const cooldownRemainingMs = this._getModelCooldownRemainingMs(keyState, modelToTry);
+        if (cooldownRemainingMs > 0) {
+          attemptErrors.push(`key${keyState.slot}: ${modelToTry} cooldown ${Math.ceil(cooldownRemainingMs / 1000)}s`);
+          continue;
+        }
+        allBlockedByModelCooldown = false;
 
-      try {
-        keyState.callCount += 1;
-
-        const response = await fetch(`${GROQ_API_BASE}/chat/completions`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${keyState.apiKey}`
-          },
-          body: JSON.stringify({
-            model: this.model,
-            messages,
-            temperature: 0.2,
-            max_tokens: maxTokens,
-            response_format: { type: 'json_object' }
-          })
-        });
-
-        if (!response.ok) {
-          const err = await response.text();
-          keyState.lastError = `Groq API ${response.status}`;
-
-          if (response.status === 429) {
-            const retryAfterMs = this._extractRetryAfterMs(err);
-            keyState.cooldownUntil = Date.now() + retryAfterMs;
-            attemptErrors.push(`key${keyState.slot}: 429 (${Math.ceil(retryAfterMs / 1000)}s)`);
-            continue;
-          }
-
-          if (response.status === 401 || response.status === 403) {
-            keyState.disabled = true;
-            attemptErrors.push(`key${keyState.slot}: ${response.status} auth`);
-            continue;
-          }
-
-          attemptErrors.push(`key${keyState.slot}: ${response.status}`);
+        if (!this._checkRateLimit(keyState)) {
+          attemptErrors.push(`key${keyState.slot}: local throttle`);
           continue;
         }
 
-        const data = await response.json();
-        keyState.lastError = null;
-        keyState.cooldownUntil = 0;
-        this.lastUsedSlot = keyState.slot;
-        this.lastError = null;
-        return data.choices?.[0]?.message?.content || '';
-      } catch (error) {
-        keyState.lastError = error.message;
-        attemptErrors.push(`key${keyState.slot}: ${error.message}`);
+        try {
+          keyState.callCount += 1;
+
+          const response = await fetch(`${GROQ_API_BASE}/chat/completions`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${keyState.apiKey}`
+            },
+            body: JSON.stringify({
+              model: modelToTry,
+              messages,
+              temperature: 0.2,
+              max_tokens: maxTokens,
+              response_format: { type: 'json_object' }
+            })
+          });
+
+          if (!response.ok) {
+            const err = await response.text();
+            keyState.lastError = `${modelToTry}: Groq API ${response.status}`;
+
+            if (response.status === 429) {
+              const retryAfterMs = this._extractRetryAfterMs(err);
+              this._setModelCooldown(keyState, modelToTry, retryAfterMs);
+              attemptErrors.push(`key${keyState.slot}: ${modelToTry} 429 (${Math.ceil(retryAfterMs / 1000)}s)`);
+              continue;
+            }
+
+            if (response.status === 401 || response.status === 403) {
+              keyState.disabled = true;
+              attemptErrors.push(`key${keyState.slot}: ${response.status} auth`);
+              continue;
+            }
+
+            attemptErrors.push(`key${keyState.slot}: ${modelToTry} ${response.status}`);
+            continue;
+          }
+
+          const data = await response.json();
+          keyState.lastError = null;
+          this._clearModelCooldown(keyState, modelToTry);
+          this.lastUsedSlot = keyState.slot;
+          this.lastUsedModel = modelToTry;
+          this.lastError = null;
+          return data.choices?.[0]?.message?.content || '';
+        } catch (error) {
+          keyState.lastError = `${modelToTry}: ${error.message}`;
+          attemptErrors.push(`key${keyState.slot}: ${modelToTry} ${error.message}`);
+        }
       }
+
+      if (hasActiveKey && allBlockedByModelCooldown && modelToTry === this.primaryModel && modelSequence.length > 1) {
+        console.warn(`[Groq] Primary model ${this.primaryModel} cooling down on all keys. Falling back to ${modelSequence[1]}.`);
+      }
+
+      const reason = attemptErrors.length > 0 ? attemptErrors.join('; ') : 'no active keys';
+      modelAttemptErrors.push(`${modelToTry}: ${reason}`);
     }
 
-    this.lastError = attemptErrors.length > 0
-      ? `All Groq keys failed (${attemptErrors.join('; ')})`
+    this.lastError = modelAttemptErrors.length > 0
+      ? `All Groq attempts failed (${modelAttemptErrors.join(' | ')})`
       : 'No Groq API key';
     throw new Error(this.lastError);
   }
@@ -206,7 +258,7 @@ Return a JSON object with EXACTLY these fields:
       const result = await this._call([
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt }
-      ], 800);
+      ], this.analysisMaxTokens);
 
       const parsed = JSON.parse(result);
       console.log(`[Groq] Analyzed: "${title}" → ${parsed.verdict}`);
@@ -252,7 +304,7 @@ Return ONLY the JSON object.`;
       const result = await this._call([
         { role: 'system', content: 'You are a professional multilingual translator specializing in Malaysian political content. Translate accurately while preserving meaning and political context.' },
         { role: 'user', content: prompt }
-      ], 1500);
+      ], this.translationMaxTokens);
 
       const parsed = JSON.parse(result);
       console.log(`[Groq] Translated: "${title}"`);
@@ -270,19 +322,20 @@ Return ONLY the JSON object.`;
   getUsage() {
     const activeKeys = this.keyStates.filter((state) => state.apiKey && !state.disabled);
     const totalCalls = activeKeys.reduce((sum, state) => sum + state.callCount, 0);
-    const allCoolingDown = activeKeys.length > 0
-      && activeKeys.every((state) => (state.cooldownUntil - Date.now()) > 0);
-    const cooldownRemainingSec = allCoolingDown
+    const allPrimaryCoolingDown = activeKeys.length > 0
+      && activeKeys.every((state) => this._getModelCooldownRemainingMs(state, this.primaryModel) > 0);
+    const cooldownRemainingSec = allPrimaryCoolingDown
       ? Math.max(
           0,
-          Math.min(...activeKeys.map((state) => Math.ceil((state.cooldownUntil - Date.now()) / 1000)))
+          Math.min(...activeKeys.map((state) => Math.ceil(this._getModelCooldownRemainingMs(state, this.primaryModel) / 1000)))
         )
       : 0;
     const keyPool = this.keyStates.map((state) => ({
       slot: state.slot,
       enabled: !state.disabled,
       callsThisMinute: state.callCount,
-      cooldownRemainingSec: Math.max(0, Math.ceil((state.cooldownUntil - Date.now()) / 1000)),
+      primaryCooldownRemainingSec: Math.max(0, Math.ceil(this._getModelCooldownRemainingMs(state, this.primaryModel) / 1000)),
+      fallbackCooldownRemainingSec: Math.max(0, Math.ceil(this._getModelCooldownRemainingMs(state, this.fallbackModel) / 1000)),
       lastError: state.lastError,
     }));
 
@@ -291,7 +344,12 @@ Return ONLY the JSON object.`;
       callsThisMinute: totalCalls,
       maxPerMinute: this.maxPerMinutePerKey * Math.max(1, activeKeys.length),
       available: this.isAvailable(),
-      model: this.model,
+      model: this.primaryModel,
+      primaryModel: this.primaryModel,
+      fallbackModel: this.fallbackModel,
+      lastUsedModel: this.lastUsedModel,
+      analysisMaxTokens: this.analysisMaxTokens,
+      translationMaxTokens: this.translationMaxTokens,
       keysConfigured: this.keyStates.length,
       keysActive: activeKeys.length,
       lastUsedSlot: this.lastUsedSlot,
