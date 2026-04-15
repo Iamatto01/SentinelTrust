@@ -1,1002 +1,1002 @@
 [
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:16:35.202Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:36:29.068Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:17:35.217Z"
+    "message": "🧠 Analyzing: \"Malaysia to cut subsidized fuel quota to 200 liters per month amid surging oil prices - VnExpress International\"",
+    "timestamp": "2026-04-14T23:36:29.869Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:18:35.229Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:36:29.869Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia to cut subsidized fuel quota to 200 liters per month amid surging oil prices - VnExpress International\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:36:30.813Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:19:35.233Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:20:35.236Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:21:35.242Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:22:35.236Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:23:35.250Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:24:35.258Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:25:35.261Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:26:35.269Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:27:35.273Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:28:35.286Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:29:35.296Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:30:35.297Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian political topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-14T13:31:34.618Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:37:26.003Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-14T13:31:34.619Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:31:35.303Z"
+    "timestamp": "2026-04-14T23:37:26.003Z"
   },
   {
     "type": "discovery",
-    "message": "📥 Feed search queued 15 topics",
-    "timestamp": "2026-04-14T13:31:35.508Z"
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:37:26.909Z"
   },
   {
     "type": "action",
-    "message": "📋 Queue updated: 15 topics pending analysis",
-    "timestamp": "2026-04-14T13:31:35.508Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:37:26.909Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Malaysia’s own combat drone in works, says defence minister\"",
-    "timestamp": "2026-04-14T13:31:36.313Z"
+    "message": "🧠 Analyzing: \"Youth unemployment rate in Malaysia from 1991 to 2025 - Statista\"",
+    "timestamp": "2026-04-14T23:37:27.714Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:31:36.314Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:37:27.715Z"
   },
   {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:31:36.316Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Malaysia’s own combat drone in works, says defence minister\"",
-    "timestamp": "2026-04-14T13:31:36.316Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"MACC recovers Picasso, Miró artworks worth over RM780,000 in 1MDB probe\"",
-    "timestamp": "2026-04-14T13:31:36.671Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:31:36.671Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:31:36.676Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"MACC recovers Picasso, Miró artworks worth over RM780,000 in 1MDB probe\"",
-    "timestamp": "2026-04-14T13:31:36.676Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Malaysia urges US to reconsider move to block Strait of Hormuz\"",
-    "timestamp": "2026-04-14T13:31:56.678Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:31:56.678Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:31:56.680Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Malaysia urges US to reconsider move to block Strait of Hormuz\"",
-    "timestamp": "2026-04-14T13:31:56.681Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Putrajaya steps in with festive rebates for travellers, financial relief for airlines amid strain from Middle East conflict\"",
-    "timestamp": "2026-04-14T13:32:16.690Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:32:16.691Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:32:16.694Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Putrajaya steps in with festive rebates for travellers, financial relief for airlines amid strain from Middle East conflict\"",
-    "timestamp": "2026-04-14T13:32:16.695Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:32:35.316Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T13:32:36.695Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:32:36.695Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:32:36.697Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T13:32:36.697Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Heightened security at event attended by MACC chief\"",
-    "timestamp": "2026-04-14T13:32:56.706Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:32:56.707Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:32:56.712Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Heightened security at event attended by MACC chief\"",
-    "timestamp": "2026-04-14T13:32:56.712Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T13:33:16.712Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:33:16.713Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:33:16.715Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T13:33:16.715Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:33:35.324Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T13:33:36.728Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:33:36.728Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:33:36.731Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T13:33:36.731Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
-    "timestamp": "2026-04-14T13:33:56.741Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:33:56.742Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:33:56.745Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
-    "timestamp": "2026-04-14T13:33:56.746Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Sabah govt wants to emulate GPS&#8217;s approach to generating revenue\"",
-    "timestamp": "2026-04-14T13:34:16.744Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:34:16.745Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:34:16.750Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Sabah govt wants to emulate GPS&#8217;s approach to generating revenue\"",
-    "timestamp": "2026-04-14T13:34:16.751Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:34:35.338Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Call to delay state polls my personal view, says Ahmad Maslan\"",
-    "timestamp": "2026-04-14T13:34:36.753Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:34:36.754Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:34:36.758Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Call to delay state polls my personal view, says Ahmad Maslan\"",
-    "timestamp": "2026-04-14T13:34:36.758Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Passenger who shot viral video of lap-sitting on moving bus says he acted to prevent danger\"",
-    "timestamp": "2026-04-14T13:34:56.760Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:34:56.760Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:34:56.763Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Passenger who shot viral video of lap-sitting on moving bus says he acted to prevent danger\"",
-    "timestamp": "2026-04-14T13:34:56.763Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Nothing &#8216;new&#8217; about Hamzah&#8217;s movement, says analyst\"",
-    "timestamp": "2026-04-14T13:35:16.760Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:35:16.761Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:35:16.766Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Nothing &#8216;new&#8217; about Hamzah&#8217;s movement, says analyst\"",
-    "timestamp": "2026-04-14T13:35:16.766Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:35:35.356Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"MACC nabs federal agency CEO over RM1m bribe linked to squash court project\"",
-    "timestamp": "2026-04-14T13:35:36.762Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:35:36.763Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:35:36.766Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"MACC nabs federal agency CEO over RM1m bribe linked to squash court project\"",
-    "timestamp": "2026-04-14T13:35:36.767Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"As fuel costs rise, Malaysians urged to rethink spending, travel and daily habits\"",
-    "timestamp": "2026-04-14T13:35:56.766Z"
-  },
-  {
-    "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T13:35:56.767Z"
-  },
-  {
-    "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T13:35:56.772Z"
-  },
-  {
-    "type": "action",
-    "message": "⏭️ Skipped duplicate: \"As fuel costs rise, Malaysians urged to rethink spending, travel and daily habits\"",
-    "timestamp": "2026-04-14T13:35:56.773Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:36:35.356Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:37:35.366Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:38:35.368Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:39:35.384Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:40:35.390Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:41:35.387Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:42:35.409Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:43:35.411Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:44:35.414Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:45:35.416Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:46:35.422Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:47:35.441Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:48:35.447Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:49:35.455Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:50:35.460Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:51:35.477Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:52:35.492Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:53:35.502Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:54:35.509Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:55:35.519Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:56:35.532Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:57:35.538Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:58:35.543Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T13:59:35.545Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:00:35.546Z"
+    "type": "discovery",
+    "message": "✅ Completed: \"Youth unemployment rate in Malaysia from 1991 to 2025 - Statista\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-14T23:37:28.870Z"
   },
   {
     "type": "action",
-    "message": "🔍 Searching for new Malaysian political topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-14T14:01:34.629Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:38:26.017Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-14T14:01:34.629Z"
-  },
-  {
-    "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:01:35.553Z"
+    "timestamp": "2026-04-14T23:38:26.017Z"
   },
   {
     "type": "discovery",
-    "message": "📥 Feed search queued 15 topics",
-    "timestamp": "2026-04-14T14:01:35.844Z"
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:38:26.449Z"
   },
   {
     "type": "action",
-    "message": "📋 Queue updated: 15 topics pending analysis",
-    "timestamp": "2026-04-14T14:01:35.844Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:38:26.449Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Malaysia’s own combat drone in works, says defence minister\"",
-    "timestamp": "2026-04-14T14:01:36.656Z"
+    "message": "🧠 Analyzing: \"LGBTQ Issues in Malaysia and the Politics of Conservative Modernity - fulcrum.sg\"",
+    "timestamp": "2026-04-14T23:38:27.253Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:01:36.656Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:38:27.253Z"
   },
   {
+    "type": "discovery",
+    "message": "✅ Completed: \"LGBTQ Issues in Malaysia and the Politics of Conservative Modernity - fulcrum.sg\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-14T23:38:28.300Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:39:26.031Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:39:26.031Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:39:26.614Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:39:26.614Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"No subsidy cuts for now, government still able to handle the pressure - Minister | Malaysia - The Vibes\"",
+    "timestamp": "2026-04-14T23:39:27.418Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:39:27.419Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"No subsidy cuts for now, government still able to handle the pressure - Minister | Malaysia - The Vibes\" → TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:39:28.386Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:40:26.039Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:40:26.040Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:40:26.917Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:40:26.917Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Oil spike pushes Malaysia fuel subsidies to RM3.2 billion a month - The Business Times\"",
+    "timestamp": "2026-04-14T23:40:27.725Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:40:27.725Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Oil spike pushes Malaysia fuel subsidies to RM3.2 billion a month - The Business Times\" → TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:40:28.762Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:41:26.050Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:41:26.050Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:41:26.646Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:41:26.646Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Keeping Malaysia’s economy stable and cost of living in check is govt’s focus, says minister - Malay Mail\"",
+    "timestamp": "2026-04-14T23:41:27.449Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:41:27.449Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Keeping Malaysia’s economy stable and cost of living in check is govt’s focus, says minister - Malay Mail\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:41:28.340Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:42:26.054Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:42:26.054Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:42:27.043Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:42:27.043Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"‘Seriously unaffordable’: Malaysia’s housing crunch hits young buyers - Muslim Network TV\"",
+    "timestamp": "2026-04-14T23:42:27.846Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:42:27.846Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"‘Seriously unaffordable’: Malaysia’s housing crunch hits young buyers - Muslim Network TV\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:42:28.949Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:43:26.057Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:43:26.057Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:43:26.697Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:43:26.697Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Malaysia labour market stays resilient with 2.9% unemployment rate in January 2026 - Human Resources Online\"",
+    "timestamp": "2026-04-14T23:43:27.505Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:43:27.505Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia labour market stays resilient with 2.9% unemployment rate in January 2026 - Human Resources Online\" → TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:43:29.416Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:44:26.067Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:44:26.067Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:44:26.762Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:44:26.762Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Malaysia at a crossroads: Unity, rights and the politics of division - Aliran\"",
+    "timestamp": "2026-04-14T23:44:27.570Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:44:27.570Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia at a crossroads: Unity, rights and the politics of division - Aliran\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-14T23:44:28.690Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:45:26.069Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:45:26.069Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:45:26.913Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:45:26.914Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Smarter healthcare in Malaysia: Let’s start normalising fewer hospital visits - Focus Malaysia\"",
+    "timestamp": "2026-04-14T23:45:27.723Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:45:27.723Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Smarter healthcare in Malaysia: Let’s start normalising fewer hospital visits - Focus Malaysia\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-14T23:45:28.779Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:46:26.082Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:46:26.082Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:46:29.179Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:46:29.179Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"From cost pressure to value: Taming Malaysia’s medical inflation - PwC\"",
+    "timestamp": "2026-04-14T23:46:29.981Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:46:29.981Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"From cost pressure to value: Taming Malaysia’s medical inflation - PwC\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-14T23:46:31.166Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:47:26.095Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:47:26.095Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:47:27.335Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:47:27.335Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Malaysia Inflation Rate Steady at 1.6% - TradingView — Track All Markets\"",
+    "timestamp": "2026-04-14T23:47:28.148Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:47:28.148Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia Inflation Rate Steady at 1.6% - TradingView — Track All Markets\" → TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:47:29.037Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:48:26.104Z"
+  },
+  {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:01:36.659Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:48:26.104Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:48:27.240Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Malaysia’s own combat drone in works, says defence minister\"",
-    "timestamp": "2026-04-14T14:01:36.660Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:48:27.240Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"MACC recovers Picasso, Miró artworks worth over RM780,000 in 1MDB probe\"",
-    "timestamp": "2026-04-14T14:01:37.431Z"
+    "message": "🧠 Analyzing: \"Malaysia’s unemployment rate hits record low as female participation soars - The Sun Malaysia\"",
+    "timestamp": "2026-04-14T23:48:28.039Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:01:37.431Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:48:28.040Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia’s unemployment rate hits record low as female participation soars - The Sun Malaysia\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:48:28.956Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:01:37.433Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:49:26.104Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"MACC recovers Picasso, Miró artworks worth over RM780,000 in 1MDB probe\"",
-    "timestamp": "2026-04-14T14:01:37.433Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:49:26.104Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:49:26.659Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Malaysia urges US to reconsider move to block Strait of Hormuz\"",
-    "timestamp": "2026-04-14T14:01:57.445Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:49:26.660Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:01:57.445Z"
+    "message": "🧠 Analyzing: \"Malaysia On The Right Track, With Strong Economic Growth, Low Inflation - Portal Rasmi Kementerian Kewangan\"",
+    "timestamp": "2026-04-14T23:49:27.466Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:01:57.450Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:49:27.466Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia On The Right Track, With Strong Economic Growth, Low Inflation - Portal Rasmi Kementerian Kewangan\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:49:28.457Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Malaysia urges US to reconsider move to block Strait of Hormuz\"",
-    "timestamp": "2026-04-14T14:01:57.451Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:50:26.112Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Putrajaya steps in with festive rebates for travellers, financial relief for airlines amid strain from Middle East conflict\"",
-    "timestamp": "2026-04-14T14:02:17.450Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:50:26.112Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:50:26.885Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:02:17.451Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:50:26.885Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:02:17.453Z"
+    "message": "🧠 Analyzing: \"Malaysia’s fiscal reset collides with global trade politics - East Asia Forum\"",
+    "timestamp": "2026-04-14T23:50:27.698Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Putrajaya steps in with festive rebates for travellers, financial relief for airlines amid strain from Middle East conflict\"",
-    "timestamp": "2026-04-14T14:02:17.453Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:50:27.698Z"
   },
   {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia’s fiscal reset collides with global trade politics - East Asia Forum\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-14T23:50:28.806Z"
+  },
+  {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:02:35.559Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:51:26.114Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T14:02:37.458Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:51:26.114Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:51:26.964Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:02:37.459Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:51:26.964Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:02:37.460Z"
+    "message": "🧠 Analyzing: \"Malaysia Islamist Party Ascends in Opposition Coalition Shake-Up - Bloomberg.com\"",
+    "timestamp": "2026-04-14T23:51:27.767Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Student safety top priority: Anwar orders swift action after fire destroys three school blocks in Kelantan\"",
-    "timestamp": "2026-04-14T14:02:37.461Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:51:27.767Z"
   },
   {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia Islamist Party Ascends in Opposition Coalition Shake-Up - Bloomberg.com\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:51:28.849Z"
+  },
+  {
     "type": "action",
-    "message": "🧠 Analyzing: \"Heightened security at event attended by MACC chief\"",
-    "timestamp": "2026-04-14T14:02:57.462Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:52:26.129Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:02:57.462Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:52:26.129Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:52:26.662Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:02:57.464Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:52:26.662Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Heightened security at event attended by MACC chief\"",
-    "timestamp": "2026-04-14T14:02:57.465Z"
+    "message": "🧠 Analyzing: \"Young Malaysians trapped in parents’ debt burden | Sinar Daily - Sinar Daily\"",
+    "timestamp": "2026-04-14T23:52:27.468Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T14:03:17.476Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:52:27.468Z"
   },
   {
+    "type": "discovery",
+    "message": "✅ Completed: \"Young Malaysians trapped in parents’ debt burden | Sinar Daily - Sinar Daily\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-14T23:52:28.498Z"
+  },
+  {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:03:17.477Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:53:26.141Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:03:17.482Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:53:26.142Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:53:27.115Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"My50 stays: Govt keeps subsidised transport passes for Klang Valley commuters\"",
-    "timestamp": "2026-04-14T14:03:17.482Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:53:27.115Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:03:35.563Z"
+    "message": "🧠 Analyzing: \"2026 Cost of Living in Malaysia (Full Breakdown) - Travel Safe - Abroad\"",
+    "timestamp": "2026-04-14T23:53:27.926Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T14:03:37.476Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:53:27.926Z"
   },
   {
+    "type": "discovery",
+    "message": "✅ Completed: \"2026 Cost of Living in Malaysia (Full Breakdown) - Travel Safe - Abroad\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-14T23:53:28.865Z"
+  },
+  {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:03:37.477Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:54:26.155Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:03:37.481Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:54:26.155Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:54:26.969Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Putrajaya pushes rail relief plan with discounted KTMB fares and monthly passes\"",
-    "timestamp": "2026-04-14T14:03:37.481Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:54:26.969Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
-    "timestamp": "2026-04-14T14:03:57.485Z"
+    "message": "🧠 Analyzing: \"Malaysia’s fiscal deficit slashed to 3.8% by 2025, Budget 2026 projects further improvement - The Malaysian Reserve\"",
+    "timestamp": "2026-04-14T23:54:27.776Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:03:57.485Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:54:27.776Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia’s fiscal deficit slashed to 3.8% by 2025, Budget 2026 projects further improvement - The Malaysian Reserve\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:54:28.819Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:03:57.491Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:55:26.164Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"PKR bureau backs Pope Leo’s anti-war stance, denounces Trump’s ‘insolent’ retort\"",
-    "timestamp": "2026-04-14T14:03:57.491Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:55:26.164Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:55:27.177Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Sabah govt wants to emulate GPS&#8217;s approach to generating revenue\"",
-    "timestamp": "2026-04-14T14:04:17.498Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:55:27.177Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:04:17.499Z"
+    "message": "🧠 Analyzing: \"Our cost of living was unsustainable… so we moved to Malaysia - The Times\"",
+    "timestamp": "2026-04-14T23:55:27.990Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:04:17.503Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:55:27.991Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Our cost of living was unsustainable… so we moved to Malaysia - The Times\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-14T23:55:28.879Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Sabah govt wants to emulate GPS&#8217;s approach to generating revenue\"",
-    "timestamp": "2026-04-14T14:04:17.504Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:56:26.165Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:04:35.569Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:56:26.165Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:56:27.081Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Call to delay state polls my personal view, says Ahmad Maslan\"",
-    "timestamp": "2026-04-14T14:04:37.512Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:56:27.082Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:04:37.513Z"
+    "message": "🧠 Analyzing: \"PKR governs, Umno negotiates, PAS waits: What kind of politics does 2026 bring? - MySinchew\"",
+    "timestamp": "2026-04-14T23:56:27.894Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:04:37.516Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:56:27.894Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"PKR governs, Umno negotiates, PAS waits: What kind of politics does 2026 bring? - MySinchew\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-14T23:56:29.251Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Call to delay state polls my personal view, says Ahmad Maslan\"",
-    "timestamp": "2026-04-14T14:04:37.517Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:57:26.171Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Passenger who shot viral video of lap-sitting on moving bus says he acted to prevent danger\"",
-    "timestamp": "2026-04-14T14:04:57.526Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:57:26.171Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:57:31.042Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:04:57.527Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:57:31.042Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:04:57.529Z"
+    "message": "🧠 Analyzing: \"Malaysia to Introduce Work From Home For Government Workers From April 15 - The Diplomat – Asia-Pacific\"",
+    "timestamp": "2026-04-14T23:57:31.855Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Passenger who shot viral video of lap-sitting on moving bus says he acted to prevent danger\"",
-    "timestamp": "2026-04-14T14:04:57.530Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:57:31.855Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia to Introduce Work From Home For Government Workers From April 15 - The Diplomat – Asia-Pacific\" → TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:57:32.721Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Nothing &#8216;new&#8217; about Hamzah&#8217;s movement, says analyst\"",
-    "timestamp": "2026-04-14T14:05:17.528Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:58:26.179Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:05:17.528Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:58:26.179Z"
   },
   {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:58:26.844Z"
+  },
+  {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:05:17.533Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:58:26.844Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"Nothing &#8216;new&#8217; about Hamzah&#8217;s movement, says analyst\"",
-    "timestamp": "2026-04-14T14:05:17.534Z"
+    "message": "🧠 Analyzing: \"Malaysia's unity government under strain as Najib verdict jolts UMNO - Nikkei Asia\"",
+    "timestamp": "2026-04-14T23:58:27.655Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:05:35.583Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:58:27.655Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia's unity government under strain as Najib verdict jolts UMNO - Nikkei Asia\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:58:28.700Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"MACC nabs federal agency CEO over RM1m bribe linked to squash court project\"",
-    "timestamp": "2026-04-14T14:05:37.534Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:59:26.185Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:05:37.534Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-14T23:59:26.185Z"
   },
   {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-14T23:59:27.477Z"
+  },
+  {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:05:37.538Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-14T23:59:27.477Z"
   },
   {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"MACC nabs federal agency CEO over RM1m bribe linked to squash court project\"",
-    "timestamp": "2026-04-14T14:05:37.539Z"
+    "message": "🧠 Analyzing: \"Malaysia’s Private Health Care Spending To Surpass Public ‘Soonest’: Dzulkefly - CodeBlue\"",
+    "timestamp": "2026-04-14T23:59:28.288Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"As fuel costs rise, Malaysians urged to rethink spending, travel and daily habits\"",
-    "timestamp": "2026-04-14T14:05:57.540Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-14T23:59:28.289Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia’s Private Health Care Spending To Surpass Public ‘Soonest’: Dzulkefly - CodeBlue\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-14T23:59:29.360Z"
   },
   {
     "type": "action",
-    "message": "🦙 Groq unavailable, trying Ollama...",
-    "timestamp": "2026-04-14T14:05:57.541Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-15T00:00:26.198Z"
   },
   {
     "type": "action",
-    "message": "⚡ Using heuristic analysis due provider limits/unavailability",
-    "timestamp": "2026-04-14T14:05:57.543Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-15T00:00:26.198Z"
   },
   {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-15T00:00:26.877Z"
+  },
+  {
     "type": "action",
-    "message": "⏭️ Skipped duplicate: \"As fuel costs rise, Malaysians urged to rethink spending, travel and daily habits\"",
-    "timestamp": "2026-04-14T14:05:57.544Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-15T00:00:26.877Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:06:35.584Z"
+    "message": "🧠 Analyzing: \"Malaysia’s unemployment rate to hold at 3% through 2026 - ET HRSEA\"",
+    "timestamp": "2026-04-15T00:00:27.682Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:07:35.587Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-15T00:00:27.682Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia’s unemployment rate to hold at 3% through 2026 - ET HRSEA\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-15T00:00:28.763Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:08:35.597Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-15T00:01:26.202Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:09:35.617Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-15T00:01:26.202Z"
   },
   {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-15T00:01:31.065Z"
+  },
+  {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:10:35.622Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-15T00:01:31.065Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:11:35.634Z"
+    "message": "🧠 Analyzing: \"Malaysia government's anti-corruption maze amid 1MDB scandal - DW.com\"",
+    "timestamp": "2026-04-15T00:01:31.881Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:12:35.646Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-15T00:01:31.881Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia government's anti-corruption maze amid 1MDB scandal - DW.com\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-15T00:01:32.913Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:13:35.659Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-15T00:02:26.207Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:14:35.655Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-15T00:02:26.207Z"
   },
   {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-15T00:02:26.807Z"
+  },
+  {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:15:35.665Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-15T00:02:26.807Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:16:35.672Z"
+    "message": "🧠 Analyzing: \"IDEAS Knowledge Series: What Budget 2026 Reveals About Malaysia’s Public Finances - The Institute for Democracy and Economic Affairs - IDEAS\"",
+    "timestamp": "2026-04-15T00:02:27.613Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:17:35.679Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-15T00:02:27.613Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"IDEAS Knowledge Series: What Budget 2026 Reveals About Malaysia’s Public Finances - The Institute for Democracy and Economic Affairs - IDEAS\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-15T00:02:28.586Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:18:35.680Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-15T00:03:26.211Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:19:35.688Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-15T00:03:26.211Z"
   },
   {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-15T00:03:27.169Z"
+  },
+  {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:20:35.700Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-15T00:03:27.170Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:21:35.709Z"
+    "message": "🧠 Analyzing: \"Reflections Beyond the Insights from the Malaysia Economic Forum 2026 on Education, Talent, and AI - UTM NewsHub\"",
+    "timestamp": "2026-04-15T00:03:27.971Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:22:35.702Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-15T00:03:27.971Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Reflections Beyond the Insights from the Malaysia Economic Forum 2026 on Education, Talent, and AI - UTM NewsHub\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-15T00:03:28.939Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:23:35.721Z"
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-15T00:04:26.225Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:24:35.719Z"
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-15T00:04:26.225Z"
   },
   {
+    "type": "discovery",
+    "message": "📥 Feed search queued 1 topics",
+    "timestamp": "2026-04-15T00:04:26.889Z"
+  },
+  {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:25:35.716Z"
+    "message": "📋 Queue updated: 1 topics pending analysis",
+    "timestamp": "2026-04-15T00:04:26.889Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:26:35.718Z"
+    "message": "🧠 Analyzing: \"Malaysia’s Unemployment Rate to Remain at 3% in 2025, 2026 - SME & Entrepreneurship Magazine\"",
+    "timestamp": "2026-04-15T00:04:27.691Z"
   },
   {
     "type": "action",
-    "message": "🌐 Translating 3 topics (BM, Hindi, Chinese)...",
-    "timestamp": "2026-04-14T14:27:35.722Z"
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-15T00:04:27.691Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia’s Unemployment Rate to Remain at 3% in 2025, 2026 - SME & Entrepreneurship Magazine\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-15T00:04:28.617Z"
   }
 ]

@@ -4,6 +4,7 @@ import { join, dirname, isAbsolute, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import {
   MALAYSIA_SIGNAL_TERMS,
+  NATIONAL_ISSUE_SIGNAL_TERMS,
   POLITICAL_SIGNAL_TERMS,
   MALAYSIAN_NEWS_DOMAINS,
   includesAnySignal,
@@ -175,10 +176,12 @@ class DataManager {
 
   _isMalaysiaPoliticalTopic(topic) {
     if (!topic) return false;
-    const titleText = `${topic.title || ''}`.toLowerCase();
-    const hasMalaysiaSignal = includesAnySignal(titleText, MALAYSIA_SIGNAL_TERMS);
-    const hasPoliticalSignal = includesAnySignal(titleText, POLITICAL_SIGNAL_TERMS);
-    return hasMalaysiaSignal && hasPoliticalSignal;
+    const combinedText = `${topic.title || ''} ${topic.summary || ''}`.toLowerCase();
+    const hasMalaysiaSignal = includesAnySignal(combinedText, MALAYSIA_SIGNAL_TERMS);
+    const hasIssueSignal =
+      includesAnySignal(combinedText, POLITICAL_SIGNAL_TERMS) ||
+      includesAnySignal(combinedText, NATIONAL_ISSUE_SIGNAL_TERMS);
+    return hasMalaysiaSignal && hasIssueSignal;
   }
 
   _getPrimarySourceUrl(topic) {
@@ -249,6 +252,10 @@ class DataManager {
   }
 
   // --- Topics CRUD ---
+
+  isDuplicateTopic(topic) {
+    return this._isDuplicateTopic(topic);
+  }
 
   getAllTopics() {
     return this._applyVisibilityFilter(this._topics);
@@ -324,6 +331,25 @@ class DataManager {
 
     this._save(); // Debounced
     return this._topics[index];
+  }
+
+  updateTopic(topicId, updates = {}) {
+    const index = this._topics.findIndex((topic) => topic.id === topicId);
+    if (index === -1) return null;
+
+    const existing = this._topics[index];
+    const next = this._normalizeTopic({
+      ...existing,
+      ...updates,
+    });
+
+    this._topics[index] = next;
+
+    const url = this._getPrimarySourceUrl(next).toLowerCase();
+    if (url) this._urlIndex.add(url);
+
+    this._save(); // Debounced
+    return next;
   }
 
   filterTopics({ party, verdict, category, search, limit = 100 } = {}) {

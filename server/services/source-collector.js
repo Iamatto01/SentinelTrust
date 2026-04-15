@@ -2,13 +2,15 @@ import { XMLParser } from 'fast-xml-parser';
 import {
   includesAnySignal,
   MALAYSIA_SIGNAL_TERMS,
+  NATIONAL_ISSUE_SIGNAL_TERMS,
   POLITICAL_SIGNAL_TERMS,
-  PARTY_KEYWORDS,
 } from './shared-constants.js';
 
 const DEFAULT_REQUEST_TIMEOUT_MS = parseInt(process.env.COLLECTOR_TIMEOUT_MS || '15000', 10);
 const DEFAULT_TARGET_COUNT = parseInt(process.env.COLLECTOR_DEFAULT_TARGET || '1000', 10);
 const FACEBOOK_GRAPH_VERSION = process.env.FACEBOOK_GRAPH_VERSION || 'v22.0';
+const SEARCH_START_DATE = process.env.SEARCH_START_DATE || '2019-01-01';
+const SEARCH_END_DATE = process.env.SEARCH_END_DATE || '';
 
 const RSS_FEEDS = [
   // Keep base RSS sources focused on Malaysian outlets.
@@ -19,42 +21,77 @@ const RSS_FEEDS = [
 
 const GOOGLE_NEWS_QUERIES = [
   'Malaysia politics',
-  'Anwar Ibrahim policy',
-  'Dewan Rakyat debate',
-  'UMNO statement',
-  'PAS statement',
-  'BERSATU statement',
-  'DAP statement',
-  'PKR statement',
-  'AMANAH statement',
-  'GPS Sarawak politics',
-  'MUDA Malaysia politics',
-  'Malaysia election commission',
+  'Malaysia cost of living',
+  'Malaysia inflation',
+  'Malaysia subsidy policy',
+  'Malaysia subsidy cut impact',
+  'Malaysia fuel subsidy rationalisation',
+  'Malaysia diesel subsidy reform',
+  'Malaysia unemployment',
+  'Malaysia wages',
+  'Malaysia debt burden issue',
+  'Malaysia fiscal deficit issue',
+  'Malaysia tax policy controversy',
+  'Malaysia housing affordability',
+  'Malaysia public healthcare',
+  'Malaysia hospital issue',
+  'Malaysia school education issue',
+  'Malaysia public transport issue',
+  'Malaysia road safety',
+  'Malaysia major accident',
+  'Malaysia fatal road crash',
+  'Malaysia bus crash',
+  'Malaysia train collision',
+  'Malaysia fire incident',
+  'Malaysia industrial accident',
+  'Malaysia crime rate',
+  'Malaysia scam cases',
+  'Malaysia political crime case',
+  'Malaysia minister charged in court',
+  'Malaysia MP corruption case',
+  'Malaysia abuse of power case',
+  'Malaysia money laundering politician',
+  'Malaysia flood response',
+  'Malaysia landslide',
+  'Malaysia water disruption',
+  'Malaysia electricity outage',
+  'Malaysia climate and haze',
+  'Malaysia poverty and welfare',
+  'Malaysia strategic asset sale',
+  'Malaysia national asset sold foreign',
+  'Malaysia foreign ownership strategic company',
+  'Malaysia privatisation controversy',
+  'Malaysia GLC sale foreign investor',
+  'Malaysia sovereignty asset issue',
+  'Malaysia governance issue',
+  'Malaysia parliament debate',
   'Malaysia corruption case',
-  'Malaysia parliament bill',
-  'Malaysia budget policy',
-  'Malaysia subsidy reform',
-  'Malaysia federal state issue',
-  'Malaysia political fact check',
-  'Malaysia coalition government',
-  'Malaysia opposition criticism',
-  'Malaysia law minister',
   'Malaysia anti corruption',
-  'Malaysia flood policy politics',
-  'Malaysia race relations politics',
-  'Malaysia economic policy politics',
-  'Malaysia election campaign',
-  'Malaysia PM statement',
-  'Malaysia cabinet reshuffle',
-  'Malaysia social media claim politics',
-  'Malaysia judiciary politics',
+  'Dewan Rakyat debate',
+  'Anwar Ibrahim policy',
+  'Malaysia budget policy',
+  'Malaysia federal state issue',
+  'Malaysia social media claim fact check',
+  'Malaysia judiciary issue',
 ];
 
-const PARTY_TERMS = ['PKR', 'AMANAH', 'UMNO', 'PAS', 'BERSATU', 'GPS', 'MUDA', 'Anwar Ibrahim', 'Democratic Action Party'];
+const PARTY_TERMS = [
+  'PKR', 'AMANAH', 'UMNO', 'PAS', 'BERSATU', 'GPS', 'MUDA',
+  'Anwar Ibrahim', 'Democratic Action Party', 'Prime Minister',
+  'Finance Minister', 'Cabinet Minister', 'Member of Parliament',
+  'Menteri', 'Ahli Parlimen',
+];
 const TOPIC_TERMS = [
-  'election', 'policy', 'budget', 'parliament', 'minister',
-  'coalition', 'corruption', 'economy', 'subsidy', 'court case',
-  'education', 'digital security', 'flood response', 'federalism', 'racial issue',
+  'cost of living', 'inflation', 'housing affordability', 'wages', 'unemployment',
+  'healthcare', 'hospital', 'education', 'school', 'crime',
+  'accident', 'fatal crash', 'bus crash', 'train collision', 'fire incident',
+  'industrial accident',
+  'political crime', 'abuse of power', 'money laundering', 'asset seizure',
+  'scam', 'flood', 'landslide', 'water disruption', 'electricity outage',
+  'public transport', 'road safety', 'pollution', 'haze', 'poverty',
+  'subsidy cut', 'fuel subsidy', 'diesel subsidy', 'fiscal deficit', 'debt burden', 'tax',
+  'asset sale', 'national asset', 'strategic asset', 'foreign ownership', 'privatisation', 'sovereignty',
+  'social welfare', 'policy', 'governance', 'corruption',
 ];
 
 const MALAYSIAN_NEWS_DOMAINS = [
@@ -75,6 +112,27 @@ const parser = new XMLParser({
 // ── Pre-built Google News feed URLs (cached at module load) ──────
 let _cachedFeedUrls = null;
 
+function toYmd(input, fallback) {
+  const raw = String(input || '').trim();
+  if (!raw) return fallback;
+
+  const date = new Date(raw);
+  if (Number.isNaN(date.getTime())) return fallback;
+  return date.toISOString().slice(0, 10);
+}
+
+function buildGoogleNewsDateFilter() {
+  const today = new Date().toISOString().slice(0, 10);
+  const start = toYmd(SEARCH_START_DATE, '2019-01-01');
+  let end = SEARCH_END_DATE ? toYmd(SEARCH_END_DATE, today) : today;
+
+  if (end < start) {
+    end = today;
+  }
+
+  return `after:${start} before:${end}`;
+}
+
 function buildGoogleNewsFeedUrls() {
   if (_cachedFeedUrls) return _cachedFeedUrls;
 
@@ -86,9 +144,10 @@ function buildGoogleNewsFeedUrls() {
   }
 
   const allQueries = [...new Set([...GOOGLE_NEWS_QUERIES, ...comboQueries])];
+  const dateFilter = buildGoogleNewsDateFilter();
 
   _cachedFeedUrls = allQueries.map((query) => {
-    const encodedQuery = encodeURIComponent(`${query} when:365d`);
+    const encodedQuery = encodeURIComponent(`${query} ${dateFilter}`);
     return `https://news.google.com/rss/search?q=${encodedQuery}&hl=en-MY&gl=MY&ceid=MY:en`;
   });
 
@@ -175,7 +234,7 @@ function normalizeTitle(title = '') {
     .trim();
 }
 
-function isMalaysiaPoliticalRecord(record = {}) {
+function isMalaysiaNationalIssueRecord(record = {}) {
   const combinedText = `${record.title || ''} ${record.summary || ''}`.toLowerCase();
   const hasPartySignal = PARTY_TERMS.some((term) => combinedText.includes(term.toLowerCase()));
 
@@ -183,11 +242,12 @@ function isMalaysiaPoliticalRecord(record = {}) {
     hasPartySignal ||
     includesAnySignal(combinedText, MALAYSIA_SIGNAL_TERMS);
 
-  const hasPoliticalSignal =
+  const hasNationalIssueSignal =
     hasPartySignal ||
-    includesAnySignal(combinedText, POLITICAL_SIGNAL_TERMS);
+    includesAnySignal(combinedText, POLITICAL_SIGNAL_TERMS) ||
+    includesAnySignal(combinedText, NATIONAL_ISSUE_SIGNAL_TERMS);
 
-  return hasMalaysiaSignal && hasPoliticalSignal;
+  return hasMalaysiaSignal && hasNationalIssueSignal;
 }
 
 function dedupeRecords(records) {
@@ -436,14 +496,15 @@ class SourceCollector {
       }
     }
 
-    const malaysiaPoliticalRecords = records.filter((record) => isMalaysiaPoliticalRecord(record));
-    const deduped = dedupeRecords(malaysiaPoliticalRecords).slice(0, cappedTarget);
+    const malaysiaNationalIssueRecords = records.filter((record) => isMalaysiaNationalIssueRecord(record));
+    const deduped = dedupeRecords(malaysiaNationalIssueRecords).slice(0, cappedTarget);
 
     return {
       success: true,
       targetCount: cappedTarget,
       collectedCount: records.length,
-      malaysiaPoliticalCount: malaysiaPoliticalRecords.length,
+      malaysiaNationalIssueCount: malaysiaNationalIssueRecords.length,
+      malaysiaPoliticalCount: malaysiaNationalIssueRecords.length,
       dedupedCount: deduped.length,
       records: deduped,
       errors: feedErrors,

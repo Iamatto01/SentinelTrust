@@ -1,7 +1,7 @@
 // SentinelTruth v2 — Main Application with API, SSE, i18n
 import { Chart, registerables } from 'chart.js';
 import { PARTIES, VERDICTS, COALITIONS, getAllPartyIds } from './data/parties.js';
-import { T, LANGUAGES, t, getCurrentLang, setLang } from './i18n/translations.js';
+import { t, setLang } from './i18n/translations.js';
 import { formatDate, timeAgo, debounce, animateCounter, truncate } from './utils/helpers.js';
 
 Chart.register(...registerables);
@@ -11,7 +11,7 @@ Chart.register(...registerables);
 // ============================================================
 const state = {
   currentSection: 'dashboard',
-  lang: getCurrentLang(),
+  lang: 'ms',
   filters: { party: 'ALL', verdict: 'ALL', category: 'ALL', search: '', page: 1 },
   charts: {},
   sse: null,
@@ -66,8 +66,10 @@ const COALITION_STATUS_KEY_MAP = {
   Opposition: 'coalitionStatusOpposition',
 };
 
+const FIXED_LANG = 'ms';
+
 function getUiLocale() {
-  return LOCALE_BY_LANG[state.lang] || LOCALE_BY_LANG.en;
+  return LOCALE_BY_LANG[state.lang] || LOCALE_BY_LANG.ms;
 }
 
 function getCategoryLabel(category) {
@@ -283,16 +285,12 @@ function init() {
   connectSSE();
   updateNavLabels();
 
-  // Restore saved language flag + highlight on load
-  const savedLang = LANGUAGES[state.lang] ? state.lang : 'en';
-  state.lang = savedLang;
-  setLang(savedLang);
-  document.documentElement.lang = savedLang;
-  const flagEl = document.getElementById('current-lang-flag');
-  if (flagEl) flagEl.textContent = LANGUAGES[savedLang]?.flag || '🌐';
-  document.querySelectorAll('.lang-option').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === savedLang);
-  });
+  // Force Malay-only UI and remove language switcher controls.
+  state.lang = FIXED_LANG;
+  setLang(FIXED_LANG);
+  document.documentElement.lang = FIXED_LANG;
+  const langSwitcher = document.getElementById('lang-switcher');
+  if (langSwitcher) langSwitcher.remove();
 
   const hash = window.location.hash.slice(1) || 'dashboard';
   navigate(hash);
@@ -352,42 +350,13 @@ function updateNavLabels() {
 // ============================================================
 // Language Switcher
 // ============================================================
-window.switchLanguage = function(lang) {
-  if (!LANGUAGES[lang]) return;
-  state.lang = lang;
-  setLang(lang);
-  document.documentElement.lang = lang;
-  // Update the flag icon in the toggle button
-  const flagEl = document.getElementById('current-lang-flag');
-  if (flagEl) flagEl.textContent = LANGUAGES[lang]?.flag || '🌐';
-  // Update active state of lang options
-  document.querySelectorAll('.lang-option').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-  });
-  // Re-render current section
+window.switchLanguage = function() {
+  state.lang = FIXED_LANG;
+  setLang(FIXED_LANG);
+  document.documentElement.lang = FIXED_LANG;
   updateNavLabels();
   updateAgentBadge();
   navigate(state.currentSection);
-
-  // Backfill missing topic translations for existing records when switching from English.
-  if (lang !== 'en') {
-    apiPost('/api/topics/backfill-translations', { limit: 20 })
-      .then((result) => {
-        if (!result?.success || !result.updated) return;
-
-        if (state.currentSection === 'dashboard') renderDashboard();
-        if (state.currentSection === 'topics') renderTopics();
-        if (state.currentSection === 'parties') renderParties();
-        if (state.currentSection === 'statistics') renderStatistics();
-        if (state.currentSection === 'agent') renderAgent();
-      })
-      .catch(() => {
-        // Intentionally silent: UI already switched language for static labels.
-      });
-  }
-
-  // Close dropdown
-  document.getElementById('lang-dropdown')?.classList.remove('active');
 };
 
 // ============================================================
@@ -1226,7 +1195,6 @@ async function renderAgent() {
   state.agentStatus = agentStatus;
   const as = agentStatus;
   const providers = as.providers || {};
-  const ingestReport = as.lastIngestionReport;
 
   container.innerHTML = `
     <div class="agent-header">
@@ -1235,7 +1203,6 @@ async function renderAgent() {
         <button class="agent-btn start" id="agent-start" ${as.status === 'running' ? 'disabled style="opacity:0.5"' : ''}>▶ ${_('start')}</button>
         <button class="agent-btn pause" id="agent-pause" ${as.status !== 'running' ? 'disabled style="opacity:0.5"' : ''}>⏸ ${_('pause')}</button>
         <button class="agent-btn stop" id="agent-stop" ${as.status === 'idle' ? 'disabled style="opacity:0.5"' : ''}>⏹ ${_('stop')}</button>
-        <button class="agent-btn ingest" id="agent-ingest" ${as.bulkIngesting ? 'disabled style="opacity:0.5"' : ''}>📥 ${_('collectRealButton')}</button>
       </div>
     </div>
 
@@ -1247,28 +1214,6 @@ async function renderAgent() {
     <!-- API Provider Status -->
     <div class="provider-status-row">
       ${renderProviderBadge('Groq', providers.groq, '🤖')}
-      ${renderProviderBadge('Ollama', providers.ollama, '🦙')}
-      ${renderProviderBadge('HuggingFace', providers.huggingface, '🧩')}
-    </div>
-
-    <div class="agent-panel" style="margin-bottom: var(--space-md);">
-      <div class="panel-header"><div class="panel-title">📦 ${_('realIngestionReport')}</div></div>
-      ${ingestReport ? `
-        <div class="quality-grid">
-          <div class="quality-item"><div class="quality-value">${ingestReport.targetCount}</div><div class="quality-label">${_('target')}</div></div>
-          <div class="quality-item"><div class="quality-value">${ingestReport.collectedCount}</div><div class="quality-label">${_('collected')}</div></div>
-          <div class="quality-item"><div class="quality-value">${ingestReport.dedupedCount}</div><div class="quality-label">${_('deduped')}</div></div>
-          <div class="quality-item"><div class="quality-value">${ingestReport.verifiedAccepted}</div><div class="quality-label">${_('verifiedAccepted')}</div></div>
-          <div class="quality-item"><div class="quality-value">${ingestReport.verifiedRejected}</div><div class="quality-label">${_('verifiedRejected')}</div></div>
-          <div class="quality-item"><div class="quality-value">${ingestReport.stored}</div><div class="quality-label">${_('stored')}</div></div>
-        </div>
-        <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: var(--space-sm);">
-          ${_('ingestionSummary', { acceptance: ingestReport.acceptanceRate, duplicates: ingestReport.duplicatesSkipped, finished: new Date(ingestReport.finishedAt).toLocaleString(getUiLocale()) })}
-        </div>
-        ${Array.isArray(ingestReport.sourceErrors) && ingestReport.sourceErrors.length > 0
-          ? `<div style="font-size: 0.78rem; color: var(--color-misleading); margin-top: var(--space-sm);">${_('sourceWarnings', { n: ingestReport.sourceErrors.length })}</div>`
-          : ''}
-      ` : `<div style="font-size: 0.85rem; color: var(--text-secondary);">${_('noIngestionYet')}</div>`}
     </div>
 
     <div class="agent-grid">
@@ -1340,26 +1285,6 @@ async function renderAgent() {
   document.getElementById('agent-stop')?.addEventListener('click', async () => {
     await apiPost('/api/agent/stop');
     showToast(`🔴 ${_('agentIdle')}`, 'info');
-    renderAgent();
-  });
-  document.getElementById('agent-ingest')?.addEventListener('click', async () => {
-    const targetRaw = prompt(_('collectPrompt'), '1000');
-    if (!targetRaw) return;
-    const targetCount = Math.max(50, Math.min(parseInt(targetRaw, 10) || 1000, 5000));
-
-    showToast(`📥 ${_('ingestionStarting', { n: targetCount })}`, 'info');
-    const result = await apiPost('/api/ingest/run', {
-      targetCount,
-      includeInternet: true,
-      includeFacebook: true,
-    });
-
-    if (result?.success) {
-      showToast(`✅ ${_('storedVerifiedRecords', { n: result.report?.stored || 0 })}`, 'success');
-    } else {
-      showToast(`❌ ${_('ingestionFailed', { err: result?.error || _('unknownError') })}`, 'warning');
-    }
-
     renderAgent();
   });
   document.getElementById('clear-log-btn')?.addEventListener('click', async () => {

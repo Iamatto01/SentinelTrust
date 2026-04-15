@@ -8,8 +8,6 @@ import { fileURLToPath } from 'url';
 import { dataManager } from './services/data-manager.js';
 import { aiAgent } from './services/ai-agent.js';
 import { groqAnalyzer } from './services/groq-analyzer.js';
-import { ollamaAnalyzer } from './services/ollama-analyzer.js';
-import { huggingFaceFallback } from './services/huggingface-fallback.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3000;
@@ -120,26 +118,6 @@ app.get('/api/agent/status', (req, res) => {
   res.json(aiAgent.getStatus());
 });
 
-app.post('/api/ingest/run', async (req, res) => {
-  const {
-    targetCount = 1000,
-    includeInternet = true,
-    includeFacebook = true,
-  } = req.body || {};
-
-  const result = await aiAgent.ingestRealArticles({
-    targetCount,
-    includeInternet,
-    includeFacebook,
-  });
-
-  if (!result.success) {
-    return res.status(400).json(result);
-  }
-
-  return res.json(result);
-});
-
 app.post('/api/agent/start', (req, res) => {
   aiAgent.start();
   res.json({ success: true, status: aiAgent.getStatus() });
@@ -180,8 +158,6 @@ app.post('/api/agent/reset', (req, res) => {
 app.get('/api/providers', (req, res) => {
   res.json({
     groq: groqAnalyzer.getUsage(),
-    ollama: ollamaAnalyzer.getUsage(),
-    huggingface: huggingFaceFallback.getUsage(),
   });
 });
 
@@ -210,8 +186,7 @@ function printStartupBanner(activePort) {
   console.log(`║  ❤️  Health: http://localhost:${activePort}/health      ║`);
   console.log('╠══════════════════════════════════════════╣');
   console.log(`║  🤖 Groq:     ${groqAnalyzer.isAvailable() ? '✅ Connected' : '❌ No API key'}          ║`);
-  console.log(`║  🦙 Ollama:   ${ollamaAnalyzer.isAvailable() ? '✅ Enabled' : '⚪ Disabled'}          ║`);
-  console.log(`║  🧩 HF:       ${huggingFaceFallback.isAvailable() ? '✅ Connected' : '❌ No API key'}          ║`);
+  console.log('║  🧠 Mode:     Groq key-pool pipeline                  ║');
   console.log('╚══════════════════════════════════════════╝');
   console.log('');
 }

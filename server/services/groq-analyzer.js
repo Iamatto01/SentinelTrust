@@ -5,6 +5,33 @@
 import { LRUCache, simpleHash } from './shared-constants.js';
 
 const GROQ_API_BASE = 'https://api.groq.com/openai/v1';
+const GROQ_KEY_ENV_ORDER = ['GROQ_API_KEY', 'GROQ_API_KEY_2', 'GROQ_API_KEY_3', 'GROQ_API_KEY_4', 'GROQ_API_KEY_5'];
+
+function parseKeyList(raw = '') {
+  return String(raw || '')
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
+
+function buildGroqKeyStates() {
+  const orderedFromEnv = GROQ_KEY_ENV_ORDER
+    .map((envName) => String(process.env[envName] || '').trim())
+    .filter(Boolean);
+
+  const appendedKeys = parseKeyList(process.env.GROQ_API_KEYS || '');
+  const uniqueKeys = [...new Set([...orderedFromEnv, ...appendedKeys])];
+
+  return uniqueKeys.map((apiKey, index) => ({
+    slot: index + 1,
+    apiKey,
+    callCount: 0,
+    lastReset: Date.now(),
+    cooldownUntil: 0,
+    lastError: null,
+    disabled: false,
+  }));
+}
 
 // ── Response caches ──
 const analysisCache = new LRUCache(200, 30 * 60 * 1000); // 30min TTL
@@ -12,24 +39,23 @@ const translationCache = new LRUCache(200, 60 * 60 * 1000); // 1hr TTL
 
 class GroqAnalyzer {
   constructor() {
-    this.apiKey = process.env.GROQ_API_KEY || '';
+    this.keyStates = buildGroqKeyStates();
     this.model = 'llama-3.3-70b-versatile'; // Best free-tier model for structured JSON + multilingual
-    this.callCount = 0;
-    this.lastReset = Date.now();
-    this.cooldownUntil = 0;
+    this.maxPerMinutePerKey = Math.max(1, parseInt(process.env.GROQ_MAX_PER_MINUTE || '25', 10));
+    this.lastUsedSlot = null;
     this.lastError = null;
   }
 
   isAvailable() {
-    return !!this.apiKey;
+    return this.keyStates.some((state) => state.apiKey && !state.disabled);
   }
 
-  _checkRateLimit() {
-    if (Date.now() - this.lastReset > 60000) {
-      this.callCount = 0;
-      this.lastReset = Date.now();
+  _checkRateLimit(keyState) {
+    if (Date.now() - keyState.lastReset > 60000) {
+      keyState.callCount = 0;
+      keyState.lastReset = Date.now();
     }
-    return this.callCount < 25; // 25 RPM safe limit
+    return keyState.callCount < this.maxPerMinutePerKey;
   }
 
   _extractRetryAfterMs(errorText = '') {
@@ -60,45 +86,77 @@ class GroqAnalyzer {
   async _call(messages, maxTokens = 800) {
     if (!this.isAvailable()) throw new Error('No Groq API key');
 
-    const cooldownRemainingMs = this.cooldownUntil - Date.now();
-    if (cooldownRemainingMs > 0) {
-      throw new Error(`Groq cooldown (${Math.ceil(cooldownRemainingMs / 1000)}s remaining)`);
-    }
+    const attemptErrors = [];
 
-    if (!this._checkRateLimit()) throw new Error('Rate limited (local throttle)');
+    for (const keyState of this.keyStates) {
+      if (!keyState.apiKey || keyState.disabled) continue;
 
-    this.callCount++;
-    const response = await fetch(`${GROQ_API_BASE}/chat/completions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.apiKey}`
-      },
-      body: JSON.stringify({
-        model: this.model,
-        messages,
-        temperature: 0.2,
-        max_tokens: maxTokens,
-        response_format: { type: 'json_object' }
-      })
-    });
-
-    if (!response.ok) {
-      const err = await response.text();
-      this.lastError = `Groq API ${response.status}`;
-
-      if (response.status === 429) {
-        const retryAfterMs = this._extractRetryAfterMs(err);
-        this.cooldownUntil = Date.now() + retryAfterMs;
-        throw new Error(`Groq API 429: rate limited (retry in ${Math.ceil(retryAfterMs / 1000)}s)`);
+      const cooldownRemainingMs = keyState.cooldownUntil - Date.now();
+      if (cooldownRemainingMs > 0) {
+        attemptErrors.push(`key${keyState.slot}: cooldown ${Math.ceil(cooldownRemainingMs / 1000)}s`);
+        continue;
       }
 
-      throw new Error(`Groq API ${response.status}: ${err}`);
+      if (!this._checkRateLimit(keyState)) {
+        attemptErrors.push(`key${keyState.slot}: local throttle`);
+        continue;
+      }
+
+      try {
+        keyState.callCount += 1;
+
+        const response = await fetch(`${GROQ_API_BASE}/chat/completions`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${keyState.apiKey}`
+          },
+          body: JSON.stringify({
+            model: this.model,
+            messages,
+            temperature: 0.2,
+            max_tokens: maxTokens,
+            response_format: { type: 'json_object' }
+          })
+        });
+
+        if (!response.ok) {
+          const err = await response.text();
+          keyState.lastError = `Groq API ${response.status}`;
+
+          if (response.status === 429) {
+            const retryAfterMs = this._extractRetryAfterMs(err);
+            keyState.cooldownUntil = Date.now() + retryAfterMs;
+            attemptErrors.push(`key${keyState.slot}: 429 (${Math.ceil(retryAfterMs / 1000)}s)`);
+            continue;
+          }
+
+          if (response.status === 401 || response.status === 403) {
+            keyState.disabled = true;
+            attemptErrors.push(`key${keyState.slot}: ${response.status} auth`);
+            continue;
+          }
+
+          attemptErrors.push(`key${keyState.slot}: ${response.status}`);
+          continue;
+        }
+
+        const data = await response.json();
+        keyState.lastError = null;
+        keyState.cooldownUntil = 0;
+        this.lastUsedSlot = keyState.slot;
+        this.lastError = null;
+        return data.choices?.[0]?.message?.content || '';
+      } catch (error) {
+        keyState.lastError = error.message;
+        attemptErrors.push(`key${keyState.slot}: ${error.message}`);
+      }
     }
 
-    const data = await response.json();
-    this.lastError = null;
-    return data.choices?.[0]?.message?.content || '';
+    this.lastError = attemptErrors.length > 0
+      ? `All Groq keys failed (${attemptErrors.join('; ')})`
+      : 'No Groq API key';
+    throw new Error(this.lastError);
   }
 
   async analyzeTopic(topic) {
@@ -210,14 +268,34 @@ Return ONLY the JSON object.`;
   }
 
   getUsage() {
-    const cooldownRemainingSec = Math.max(0, Math.ceil((this.cooldownUntil - Date.now()) / 1000));
+    const activeKeys = this.keyStates.filter((state) => state.apiKey && !state.disabled);
+    const totalCalls = activeKeys.reduce((sum, state) => sum + state.callCount, 0);
+    const allCoolingDown = activeKeys.length > 0
+      && activeKeys.every((state) => (state.cooldownUntil - Date.now()) > 0);
+    const cooldownRemainingSec = allCoolingDown
+      ? Math.max(
+          0,
+          Math.min(...activeKeys.map((state) => Math.ceil((state.cooldownUntil - Date.now()) / 1000)))
+        )
+      : 0;
+    const keyPool = this.keyStates.map((state) => ({
+      slot: state.slot,
+      enabled: !state.disabled,
+      callsThisMinute: state.callCount,
+      cooldownRemainingSec: Math.max(0, Math.ceil((state.cooldownUntil - Date.now()) / 1000)),
+      lastError: state.lastError,
+    }));
 
     return {
       provider: 'Groq',
-      callsThisMinute: this.callCount,
-      maxPerMinute: 25,
+      callsThisMinute: totalCalls,
+      maxPerMinute: this.maxPerMinutePerKey * Math.max(1, activeKeys.length),
       available: this.isAvailable(),
       model: this.model,
+      keysConfigured: this.keyStates.length,
+      keysActive: activeKeys.length,
+      lastUsedSlot: this.lastUsedSlot,
+      keyPool,
       cooldownRemainingSec,
       lastError: this.lastError,
       cacheSize: analysisCache.size + translationCache.size,

@@ -20,6 +20,8 @@ export const MALAYSIA_SIGNAL_TERMS = [
   'pakatan harapan', 'perikatan nasional', 'barisan nasional',
   'sprm', 'macc', 'pilihan raya', 'suruhanjaya pilihan raya',
   'klang valley', 'sabah', 'sarawak',
+  'petronas', 'khazanah', 'kwsp', 'epf', 'felda', 'tabung haji',
+  'bank negara', 'bnm', 'lhdn', 'tenaga nasional', 'prasarana',
 ];
 
 // ── Political signal terms ──────────────────────────────────────
@@ -31,14 +33,43 @@ export const POLITICAL_SIGNAL_TERMS = [
   'umno', 'pas', 'pkr', 'bersatu', 'amanah', 'gps', 'muda',
 ];
 
+// ── National issue signal terms (beyond politics) ─────────────
+export const NATIONAL_ISSUE_SIGNAL_TERMS = [
+  'cost of living', 'inflation', 'harga barang', 'subsidi',
+  'unemployment', 'job loss', 'wage', 'gaji',
+  'housing', 'rumah mampu milik', 'eviction',
+  'healthcare', 'hospital', 'clinic', 'medicine',
+  'education', 'school', 'student',
+  'crime', 'jenayah', 'scam', 'drug abuse',
+  'accident', 'kemalangan', 'fatal crash', 'bus crash', 'train collision',
+  'fire incident', 'industrial accident', 'explosion',
+  'flood', 'banjir', 'landslide', 'disaster response',
+  'water supply', 'water disruption', 'electricity', 'blackout',
+  'public transport', 'lrt', 'mrt', 'bus service', 'road safety',
+  'politician charged', 'minister charged', 'mp charged', 'abuse of power',
+  'salah guna kuasa', 'money laundering', 'asset seizure',
+  'subsidy cut', 'subsidy removal', 'fuel subsidy', 'diesel subsidy',
+  'fiscal deficit', 'debt burden', 'tax burden',
+  'asset sale', 'jualan aset', 'national asset', 'aset negara',
+  'state asset', 'strategic asset', 'foreign ownership', 'pemilikan asing',
+  'sold to foreign company', 'privatisation', 'sovereignty risk',
+  'pollution', 'haze', 'climate',
+  'poverty', 'social aid', 'welfare',
+  'public service', 'bureaucracy',
+];
+
 // ── Category keyword map ────────────────────────────────────────
 export const CATEGORY_KEYWORDS = {
   Corruption: ['corruption', 'bribe', 'macc', 'graft', 'money laundering'],
   Elections: ['election', 'poll', 'spr', 'undi18', 'by-election', 'campaign'],
   Economy: ['economy', 'budget', 'ringgit', 'inflation', 'subsidy', 'fiscal'],
+  'Finance & Subsidy': ['subsidy', 'fuel subsidy', 'diesel subsidy', 'fiscal deficit', 'debt burden', 'cost of living', 'tax'],
   Policy: ['policy', 'proposal', 'cabinet', 'ministry', 'initiative'],
   Governance: ['governance', 'administration', 'parliament', 'dewan rakyat'],
   Legal: ['court', 'judge', 'trial', 'legal', 'prosecution'],
+  Crime: ['crime', 'jenayah', 'murder', 'kidnap', 'drug', 'scam', 'extortion', 'abuse of power'],
+  'Public Safety': ['accident', 'kemalangan', 'fatal crash', 'bus crash', 'train collision', 'fire incident', 'explosion', 'road safety'],
+  'National Assets': ['asset sale', 'national asset', 'state asset', 'strategic asset', 'foreign ownership', 'privatisation', 'sovereignty'],
   Education: ['education', 'school', 'university', 'moe'],
   'Racial Politics': ['racial', 'ethnic', 'religion', 'bumiputera', 'unity'],
   'Social Issues': ['welfare', 'poverty', 'housing', 'healthcare'],
@@ -85,9 +116,9 @@ export function includesAnySignal(text = '', terms = []) {
 }
 
 /**
- * Check if a topic/record is Malaysian political content.
+ * Check if a topic/record is Malaysian national-issue content.
  */
-export function isMalaysiaPoliticalContent(title = '', summary = '') {
+export function isMalaysiaNationalIssueContent(title = '', summary = '') {
   const combinedText = `${title} ${summary}`.toLowerCase();
 
   const hasPartySignal = Object.values(PARTY_KEYWORDS)
@@ -97,10 +128,19 @@ export function isMalaysiaPoliticalContent(title = '', summary = '') {
   const hasMalaysiaSignal =
     hasPartySignal || includesAnySignal(combinedText, MALAYSIA_SIGNAL_TERMS);
 
-  const hasPoliticalSignal =
-    hasPartySignal || includesAnySignal(combinedText, POLITICAL_SIGNAL_TERMS);
+  const hasIssueSignal =
+    hasPartySignal ||
+    includesAnySignal(combinedText, POLITICAL_SIGNAL_TERMS) ||
+    includesAnySignal(combinedText, NATIONAL_ISSUE_SIGNAL_TERMS);
 
-  return hasMalaysiaSignal && hasPoliticalSignal;
+  return hasMalaysiaSignal && hasIssueSignal;
+}
+
+/**
+ * Backward-compatible wrapper kept for existing imports.
+ */
+export function isMalaysiaPoliticalContent(title = '', summary = '') {
+  return isMalaysiaNationalIssueContent(title, summary);
 }
 
 /**

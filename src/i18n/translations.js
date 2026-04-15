@@ -235,7 +235,7 @@ export const T = {
 
     // Agent config text
     agentDataSourcesList: '• RSS + Google News feeds (real news)<br>• Sebenarnya.my fact-check DB<br>• JomCheck archives<br>• MyCheck.my verifications<br>• Social media monitoring',
-    agentAnalysisPipelineList: '• Groq (Llama 3.3 70B) → primary<br>• Ollama → optional local/self-hosted fallback<br>• HuggingFace → cloud fallback<br>• Multi-language translation<br>• Party attribution',
+    agentAnalysisPipelineList: '• Groq key-pool (2 active + backup slots)<br>• Automatic failover across keys<br>• Multi-language translation<br>• Party attribution',
     agentTimingList: '• News search: every 30 min<br>• Topic analysis: every 1 min<br>• Translation: per topic<br>• Data persistence: real-time<br>• SSE updates: instant',
 
     // Provider labels
@@ -468,7 +468,7 @@ export const T = {
 
     // Agent config text
     agentDataSourcesList: '• Suapan RSS + Google News (berita sebenar)<br>• Pangkalan data semakan fakta Sebenarnya.my<br>• Arkib JomCheck<br>• Pengesahan MyCheck.my<br>• Pemantauan media sosial',
-    agentAnalysisPipelineList: '• Groq (Llama 3.3 70B) → utama<br>• Ollama → sandaran tempatan/self-hosted<br>• HuggingFace → sandaran cloud<br>• Terjemahan pelbagai bahasa<br>• Pengenalpastian parti',
+    agentAnalysisPipelineList: '• Kolam kunci Groq (2 aktif + slot sandaran)<br>• Failover automatik antara kunci<br>• Terjemahan pelbagai bahasa<br>• Pengenalpastian parti',
     agentTimingList: '• Carian berita: setiap 30 min<br>• Analisis topik: setiap 1 min<br>• Terjemahan: setiap topik<br>• Penyimpanan data: masa nyata<br>• Kemas kini SSE: segera',
 
     // Provider labels
@@ -748,8 +748,8 @@ export const T = {
 };
 
 // Helper to get translation with placeholder support
-export function t(key, lang = 'en', replacements = {}) {
-  let str = T[lang]?.[key] || T.en[key] || key;
+export function t(key, _lang = 'ms', replacements = {}) {
+  let str = T.ms[key] || T.en[key] || key;
   Object.entries(replacements).forEach(([k, v]) => {
     str = str.replace(`{${k}}`, v);
   });
@@ -757,9 +757,9 @@ export function t(key, lang = 'en', replacements = {}) {
 }
 
 export function getCurrentLang() {
-  return localStorage.getItem('sentineltruth_lang') || 'en';
+  return 'ms';
 }
 
-export function setLang(lang) {
-  localStorage.setItem('sentineltruth_lang', lang);
+export function setLang(_lang) {
+  localStorage.setItem('sentineltruth_lang', 'ms');
 }

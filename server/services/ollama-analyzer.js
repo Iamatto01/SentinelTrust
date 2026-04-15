@@ -4,6 +4,14 @@
 import { LRUCache, simpleHash, extractJsonObject } from './shared-constants.js';
 
 const DEFAULT_BASE_URL = 'http://127.0.0.1:11434';
+const DEFAULT_FALLBACK_MODELS = ['llama3.1:8b', 'qwen2.5:14b', 'mistral:7b'];
+
+function parseModelList(raw = '') {
+  return String(raw || '')
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
+}
 
 // ── Response cache: avoids re-analyzing identical/similar topics ──
 const analysisCache = new LRUCache(200, 30 * 60 * 1000); // 200 entries, 30min TTL
@@ -14,6 +22,9 @@ class OllamaAnalyzer {
     this.enabled = process.env.OLLAMA_ENABLED === 'true';
     this.baseUrl = (process.env.OLLAMA_BASE_URL || DEFAULT_BASE_URL).replace(/\/+$/, '');
     this.model = process.env.OLLAMA_MODEL || 'qwen2.5:14b';
+    this.fallbackModels = parseModelList(process.env.OLLAMA_FALLBACK_MODELS || DEFAULT_FALLBACK_MODELS.join(','));
+    this.activeModel = this.model;
+    this.availableModels = [];
     this.timeoutMs = Math.max(5000, parseInt(process.env.OLLAMA_TIMEOUT_MS || '30000', 10));
     this.translationTimeoutMs = Math.min(this.timeoutMs, 25000); // Shorter for translations
     this.callCount = 0;
@@ -39,24 +50,48 @@ class OllamaAnalyzer {
    * Quick health check — ping Ollama every 60s to avoid wasting time
    * on requests when the server is down.
    */
-  async _ensureHealthy() {
-    if (Date.now() - this._healthCheckAt < 60000 && this._healthy !== null) {
+  async _ensureHealthy(forceRefresh = false) {
+    if (!forceRefresh && Date.now() - this._healthCheckAt < 60000 && this._healthy !== null) {
       return this._healthy;
     }
+
     try {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 3000);
       const res = await fetch(`${this.baseUrl}/api/tags`, { signal: controller.signal });
       clearTimeout(timeout);
-      this._healthy = res.ok;
+
+      if (!res.ok) {
+        this._healthy = false;
+        return this._healthy;
+      }
+
+      const data = await res.json();
+      const modelNames = Array.isArray(data?.models)
+        ? data.models.map((model) => String(model?.name || '').trim()).filter(Boolean)
+        : [];
+
+      this.availableModels = modelNames;
+      if (modelNames.length === 0) {
+        this.lastError = 'Ollama reachable but no local models installed';
+        this._healthy = false;
+        return this._healthy;
+      }
+
+      const preferred = [this.model, ...this.fallbackModels];
+      const selected = preferred.find((name) => modelNames.includes(name)) || modelNames[0];
+      this.activeModel = selected;
+      this.lastError = null;
+      this._healthy = true;
     } catch {
       this._healthy = false;
     }
+
     this._healthCheckAt = Date.now();
     return this._healthy;
   }
 
-  async _call(messages, { timeoutMs = this.timeoutMs, numPredict = 800 } = {}) {
+  async _call(messages, { timeoutMs = this.timeoutMs, numPredict = 800, retried = false } = {}) {
     if (!this.isAvailable()) {
       throw new Error('Ollama is disabled');
     }
@@ -83,7 +118,7 @@ class OllamaAnalyzer {
           'Connection': 'keep-alive',
         },
         body: JSON.stringify({
-          model: this.model,
+          model: this.activeModel || this.model,
           messages,
           stream: false,
           format: 'json',
@@ -98,6 +133,15 @@ class OllamaAnalyzer {
 
       if (!response.ok) {
         const err = await response.text();
+
+        if (!retried && response.status === 404 && /model\s+["'][^"']+["']\s+not found/i.test(err)) {
+          // Refresh installed models and retry once with a valid local model.
+          const healthyAfterRefresh = await this._ensureHealthy(true);
+          if (healthyAfterRefresh) {
+            return this._call(messages, { timeoutMs, numPredict, retried: true });
+          }
+        }
+
         throw new Error(`Ollama API ${response.status}: ${err}`);
       }
 
@@ -237,7 +281,9 @@ Return EXACT JSON:
     return {
       provider: 'Ollama',
       available: this.isAvailable(),
-      model: this.model,
+      model: this.activeModel || this.model,
+      configuredModel: this.model,
+      availableModels: this.availableModels,
       baseUrl: this.baseUrl,
       callsThisMinute: this.callCount,
       maxPerMinute: 30,
