@@ -113,6 +113,10 @@ app.get('/api/data-quality', (req, res) => {
   res.json(dataManager.getDataQualityStats());
 });
 
+app.get('/api/fairness', (req, res) => {
+  res.json(dataManager.getFairnessMetrics());
+});
+
 // ============================================================
 // Agent API
 // ============================================================

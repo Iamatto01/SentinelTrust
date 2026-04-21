@@ -27,6 +27,21 @@ const LOG_FILE = resolveDataFile(process.env.AGENT_LOG_FILE_PATH, join(DATA_DIR,
 import { SEED_TOPICS } from '../../src/data/seed-data.js';
 import { PARTIES, VERDICTS } from '../../src/data/parties.js';
 
+const GOVERNMENT_COALITIONS = new Set(['PH', 'BN', 'GPS']);
+const OPPOSITION_COALITIONS = new Set(['PN']);
+
+function confidenceToScore(confidence = 'low') {
+  const value = String(confidence || '').toLowerCase();
+  if (value === 'high') return 1;
+  if (value === 'medium') return 0.5;
+  return 0;
+}
+
+function safePercent(part, total) {
+  if (!total) return 0;
+  return Math.round((part / total) * 1000) / 10;
+}
+
 class DataManager {
   constructor() {
     this.strictRealMode = process.env.STRICT_REAL_MODE !== 'false';
@@ -51,6 +66,8 @@ class DataManager {
     this._statsCacheTs = 0;
     this._qualityCache = null;
     this._qualityCacheTs = 0;
+    this._fairnessCache = null;
+    this._fairnessCacheTs = 0;
     this._STATS_CACHE_TTL = 10000; // 10 seconds
   }
 
@@ -65,6 +82,7 @@ class DataManager {
   _invalidateStatsCache() {
     this._statsCache = null;
     this._qualityCache = null;
+    this._fairnessCache = null;
   }
 
   _ensureDir() {
@@ -467,6 +485,135 @@ class DataManager {
     this._qualityCacheTs = Date.now();
 
     return this._qualityCache;
+  }
+
+  getFairnessMetrics() {
+    if (this._fairnessCache && (Date.now() - this._fairnessCacheTs) < this._STATS_CACHE_TTL) {
+      return this._fairnessCache;
+    }
+
+    const visibleTopics = this._applyVisibilityFilter(this._topics);
+    const topics = this.strictRealMode
+      ? visibleTopics.filter(topic => this._isEligibleForStats(topic))
+      : visibleTopics;
+
+    const groups = {
+      government: { total: 0, favorable: 0, unverified: 0, confidenceSum: 0, highConfidence: 0 },
+      opposition: { total: 0, favorable: 0, unverified: 0, confidenceSum: 0, highConfidence: 0 },
+      other: { total: 0, favorable: 0, unverified: 0, confidenceSum: 0, highConfidence: 0 },
+    };
+
+    const biasDistribution = {
+      neutral: 0,
+      pro_government: 0,
+      anti_government: 0,
+      mixed: 0,
+      unclear: 0,
+    };
+
+    const perParty = Object.keys(PARTIES).reduce((acc, partyId) => {
+      acc[partyId] = {
+        id: partyId,
+        coalition: PARTIES[partyId]?.coalition || 'UNKNOWN',
+        total: 0,
+        favorable: 0,
+        unverified: 0,
+        confidenceSum: 0,
+        highConfidence: 0,
+      };
+      return acc;
+    }, {});
+
+    for (const topic of topics) {
+      const partyMeta = PARTIES[topic.party] || null;
+      const coalition = partyMeta?.coalition || 'OTHER';
+      const bloc = GOVERNMENT_COALITIONS.has(coalition)
+        ? 'government'
+        : OPPOSITION_COALITIONS.has(coalition)
+          ? 'opposition'
+          : 'other';
+
+      const verdict = String(topic.verdict || 'UNVERIFIED').toUpperCase();
+      const favorable = verdict === 'TRUE' || verdict === 'PARTIALLY_TRUE';
+      const unverified = verdict === 'UNVERIFIED';
+      const confScore = confidenceToScore(topic.confidence);
+
+      groups[bloc].total += 1;
+      groups[bloc].confidenceSum += confScore;
+      if (favorable) groups[bloc].favorable += 1;
+      if (unverified) groups[bloc].unverified += 1;
+      if (String(topic.confidence || '').toLowerCase() === 'high') groups[bloc].highConfidence += 1;
+
+      if (perParty[topic.party]) {
+        perParty[topic.party].total += 1;
+        perParty[topic.party].confidenceSum += confScore;
+        if (favorable) perParty[topic.party].favorable += 1;
+        if (unverified) perParty[topic.party].unverified += 1;
+        if (String(topic.confidence || '').toLowerCase() === 'high') perParty[topic.party].highConfidence += 1;
+      }
+
+      const bias = String(topic?.biasAssessment?.overallBias || 'unclear').toLowerCase();
+      if (Object.prototype.hasOwnProperty.call(biasDistribution, bias)) {
+        biasDistribution[bias] += 1;
+      } else {
+        biasDistribution.unclear += 1;
+      }
+    }
+
+    const governmentFavRate = safePercent(groups.government.favorable, groups.government.total);
+    const oppositionFavRate = safePercent(groups.opposition.favorable, groups.opposition.total);
+    const governmentAvgConfidence = safePercent(groups.government.confidenceSum, groups.government.total);
+    const oppositionAvgConfidence = safePercent(groups.opposition.confidenceSum, groups.opposition.total);
+
+    const byParty = Object.values(perParty)
+      .filter((party) => party.total > 0)
+      .map((party) => ({
+        id: party.id,
+        coalition: party.coalition,
+        total: party.total,
+        favorableRate: safePercent(party.favorable, party.total),
+        unverifiedRate: safePercent(party.unverified, party.total),
+        highConfidenceRate: safePercent(party.highConfidence, party.total),
+        avgConfidence: safePercent(party.confidenceSum, party.total),
+      }))
+      .sort((a, b) => b.total - a.total || a.id.localeCompare(b.id));
+
+    this._fairnessCache = {
+      method: 'fairness_v1',
+      strictRealMode: this.strictRealMode,
+      minimumVerificationScore: this.minimumVerificationScore,
+      totalEvaluated: topics.length,
+      groups: {
+        government: {
+          total: groups.government.total,
+          favorableRate: governmentFavRate,
+          unverifiedRate: safePercent(groups.government.unverified, groups.government.total),
+          highConfidenceRate: safePercent(groups.government.highConfidence, groups.government.total),
+          avgConfidence: governmentAvgConfidence,
+        },
+        opposition: {
+          total: groups.opposition.total,
+          favorableRate: oppositionFavRate,
+          unverifiedRate: safePercent(groups.opposition.unverified, groups.opposition.total),
+          highConfidenceRate: safePercent(groups.opposition.highConfidence, groups.opposition.total),
+          avgConfidence: oppositionAvgConfidence,
+        },
+        other: {
+          total: groups.other.total,
+          favorableRate: safePercent(groups.other.favorable, groups.other.total),
+          unverifiedRate: safePercent(groups.other.unverified, groups.other.total),
+          highConfidenceRate: safePercent(groups.other.highConfidence, groups.other.total),
+          avgConfidence: safePercent(groups.other.confidenceSum, groups.other.total),
+        },
+      },
+      leanGapPct: Math.round((governmentFavRate - oppositionFavRate) * 10) / 10,
+      confidenceSkewPct: Math.round((governmentAvgConfidence - oppositionAvgConfidence) * 10) / 10,
+      biasDistribution,
+      byParty,
+    };
+    this._fairnessCacheTs = Date.now();
+
+    return this._fairnessCache;
   }
 
   // --- Agent Log ---

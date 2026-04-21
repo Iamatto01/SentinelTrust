@@ -364,6 +364,178 @@ function updateNavLabels() {
   });
 }
 
+const FAIRNESS_THRESHOLDS = {
+  leanGapWarn: 10,
+  leanGapHigh: 18,
+  confidenceSkewWarn: 8,
+  confidenceSkewHigh: 14,
+  lowSampleMinimum: 6,
+  unclearBiasWarnPct: 85,
+};
+
+function toSafeNumber(value, fallback = 0) {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+function formatPercent(value) {
+  const n = toSafeNumber(value, 0);
+  return `${Math.round(n * 10) / 10}%`;
+}
+
+function formatSignedPercent(value) {
+  const n = Math.round(toSafeNumber(value, 0) * 10) / 10;
+  if (n > 0) return `+${n}%`;
+  return `${n}%`;
+}
+
+function getFairnessSeverityLabel(severity) {
+  if (severity === 'high') return _('fairnessSeverityHigh');
+  if (severity === 'medium') return _('fairnessSeverityMedium');
+  return _('fairnessSeverityInfo');
+}
+
+function buildFairnessAlerts(fairness) {
+  if (!fairness || typeof fairness !== 'object') return [];
+
+  const government = fairness.groups?.government || {};
+  const opposition = fairness.groups?.opposition || {};
+  const totalEvaluated = toSafeNumber(fairness.totalEvaluated, 0);
+  const alerts = [];
+
+  const govTotal = toSafeNumber(government.total, 0);
+  const oppTotal = toSafeNumber(opposition.total, 0);
+  const minSample = Math.min(govTotal, oppTotal);
+
+  if (minSample < FAIRNESS_THRESHOLDS.lowSampleMinimum) {
+    alerts.push({
+      severity: 'info',
+      title: _('fairnessAlertLowSampleTitle'),
+      description: _('fairnessAlertLowSampleDesc', {
+        gov: govTotal,
+        opp: oppTotal,
+        min: FAIRNESS_THRESHOLDS.lowSampleMinimum,
+      }),
+    });
+    return alerts;
+  }
+
+  const leanGap = toSafeNumber(fairness.leanGapPct, 0);
+  const leanGapAbs = Math.abs(leanGap);
+  if (leanGapAbs >= FAIRNESS_THRESHOLDS.leanGapWarn) {
+    alerts.push({
+      severity: leanGapAbs >= FAIRNESS_THRESHOLDS.leanGapHigh ? 'high' : 'medium',
+      title: _('fairnessAlertLeanGapTitle'),
+      description: _('fairnessAlertLeanGapDesc', {
+        gap: formatSignedPercent(leanGap),
+        side: leanGap >= 0 ? _('fairnessSideGovernment') : _('fairnessSideOpposition'),
+      }),
+    });
+  }
+
+  const confidenceSkew = toSafeNumber(fairness.confidenceSkewPct, 0);
+  const confidenceSkewAbs = Math.abs(confidenceSkew);
+  if (confidenceSkewAbs >= FAIRNESS_THRESHOLDS.confidenceSkewWarn) {
+    alerts.push({
+      severity: confidenceSkewAbs >= FAIRNESS_THRESHOLDS.confidenceSkewHigh ? 'high' : 'medium',
+      title: _('fairnessAlertConfidenceSkewTitle'),
+      description: _('fairnessAlertConfidenceSkewDesc', {
+        gap: formatSignedPercent(confidenceSkew),
+        side: confidenceSkew >= 0 ? _('fairnessSideGovernment') : _('fairnessSideOpposition'),
+      }),
+    });
+  }
+
+  const unclearCount = toSafeNumber(fairness?.biasDistribution?.unclear, 0);
+  const unclearPct = totalEvaluated > 0 ? (unclearCount / totalEvaluated) * 100 : 0;
+  if (totalEvaluated >= 20 && unclearPct >= FAIRNESS_THRESHOLDS.unclearBiasWarnPct) {
+    alerts.push({
+      severity: 'medium',
+      title: _('fairnessAlertCoverageTitle'),
+      description: _('fairnessAlertCoverageDesc', {
+        pct: formatPercent(unclearPct),
+      }),
+    });
+  }
+
+  return alerts;
+}
+
+function renderFairnessBlocCard(label, groupData = {}) {
+  return `
+    <div class="fairness-bloc-card">
+      <div class="fairness-bloc-title">${label}</div>
+      <div class="fairness-bloc-row"><span>${_('fairnessFavorableRate')}</span><strong>${formatPercent(groupData.favorableRate)}</strong></div>
+      <div class="fairness-bloc-row"><span>${_('fairnessUnverifiedRate')}</span><strong>${formatPercent(groupData.unverifiedRate)}</strong></div>
+      <div class="fairness-bloc-row"><span>${_('fairnessHighConfidenceRate')}</span><strong>${formatPercent(groupData.highConfidenceRate)}</strong></div>
+      <div class="fairness-bloc-row"><span>${_('fairnessAverageConfidence')}</span><strong>${formatPercent(groupData.avgConfidence)}</strong></div>
+      <div class="fairness-bloc-row"><span>${_('totalTopics')}</span><strong>${toSafeNumber(groupData.total, 0)}</strong></div>
+    </div>
+  `;
+}
+
+function renderFairnessPanel(fairness) {
+  if (!fairness || typeof fairness !== 'object') return '';
+
+  const government = fairness.groups?.government || {};
+  const opposition = fairness.groups?.opposition || {};
+  const other = fairness.groups?.other || {};
+  const alerts = buildFairnessAlerts(fairness);
+
+  return `
+    <div class="fairness-panel">
+      <div class="fairness-header">
+        <div class="fairness-title">⚖️ ${_('fairnessMonitoringTitle')}</div>
+        <div class="fairness-subtitle">${_('fairnessMonitoringSub', { n: toSafeNumber(fairness.totalEvaluated, 0) })}</div>
+      </div>
+
+      <div class="fairness-kpi-grid">
+        <div class="fairness-kpi-card">
+          <div class="fairness-kpi-label">${_('fairnessLeanGap')}</div>
+          <div class="fairness-kpi-value">${formatSignedPercent(fairness.leanGapPct)}</div>
+        </div>
+        <div class="fairness-kpi-card">
+          <div class="fairness-kpi-label">${_('fairnessConfidenceSkew')}</div>
+          <div class="fairness-kpi-value">${formatSignedPercent(fairness.confidenceSkewPct)}</div>
+        </div>
+        <div class="fairness-kpi-card">
+          <div class="fairness-kpi-label">${_('fairnessGovernmentFavorable')}</div>
+          <div class="fairness-kpi-value">${formatPercent(government.favorableRate)}</div>
+        </div>
+        <div class="fairness-kpi-card">
+          <div class="fairness-kpi-label">${_('fairnessOppositionFavorable')}</div>
+          <div class="fairness-kpi-value">${formatPercent(opposition.favorableRate)}</div>
+        </div>
+      </div>
+
+      <div class="fairness-bloc-grid">
+        ${renderFairnessBlocCard(_('fairnessBlocGovernment'), government)}
+        ${renderFairnessBlocCard(_('fairnessBlocOpposition'), opposition)}
+        ${renderFairnessBlocCard(_('fairnessBlocOther'), other)}
+      </div>
+
+      <div class="fairness-alerts">
+        <div class="fairness-alerts-title">🚨 ${_('fairnessAlertsTitle')}</div>
+        ${alerts.length > 0 ? `
+          <div class="fairness-alert-list">
+            ${alerts.map((alert) => `
+              <div class="fairness-alert-card ${alert.severity}">
+                <div class="fairness-alert-top">
+                  <span class="fairness-alert-badge ${alert.severity}">${getFairnessSeverityLabel(alert.severity)}</span>
+                  <span class="fairness-alert-title">${alert.title}</span>
+                </div>
+                <div class="fairness-alert-desc">${alert.description}</div>
+              </div>
+            `).join('')}
+          </div>
+        ` : `
+          <div class="fairness-alert-empty">${_('fairnessNoAlerts')}</div>
+        `}
+      </div>
+    </div>
+  `;
+}
+
 // ============================================================
 // Language Switcher
 // ============================================================
@@ -383,12 +555,16 @@ async function renderDashboard() {
   const container = document.getElementById('dashboard-content');
   if (!container) return;
 
-  const stats = await api('/api/stats');
-  const topics = await api('/api/topics?limit=6');
+  const [stats, topics, fairness] = await Promise.all([
+    api('/api/stats'),
+    api('/api/topics?limit=6'),
+    api('/api/fairness'),
+  ]);
   if (!stats || !topics) return;
 
   state.cachedStats = stats;
   state.cachedTopics = topics;
+  state.cachedFairness = fairness || null;
 
   const partyLeaderboard = Object.values(stats.partyStats)
     .filter(p => p.total > 0)
@@ -445,6 +621,8 @@ async function renderDashboard() {
         </div>
       </div>
     ` : ''}
+
+    ${fairness ? renderFairnessPanel(fairness) : ''}
 
     <div class="dashboard-grid">
       <div class="dashboard-panel">
@@ -738,6 +916,170 @@ function getConfidenceInfo(conf) {
   return { color: 'var(--color-unverified)', label: '●○○', text: _('confidenceLow') };
 }
 
+function getLevelLabel(level) {
+  if (level === 'high') return _('confidenceHigh');
+  if (level === 'medium') return _('confidenceMedium');
+  return _('confidenceLow');
+}
+
+function getBiasOverallLabel(overallBias) {
+  if (overallBias === 'neutral') return _('biasNeutral');
+  if (overallBias === 'pro_kerajaan' || overallBias === 'pro_government') return _('biasProKerajaan');
+  if (overallBias === 'pro_pembangkang' || overallBias === 'anti_government') return _('biasProPembangkang');
+  if (overallBias === 'mixed') return _('biasMixed');
+  return _('biasUnclear');
+}
+
+function getLoadedLanguageLabel(loadedLanguage) {
+  if (loadedLanguage === 'strong') return _('loadedLanguageStrong');
+  if (loadedLanguage === 'mild') return _('loadedLanguageMild');
+  return _('loadedLanguageNone');
+}
+
+function getFallacyTypeLabel(type) {
+  if (type === 'ad_hominem') return _('fallacyAdHominem');
+  if (type === 'straw_man') return _('fallacyStrawMan');
+  if (type === 'false_dilemma') return _('fallacyFalseDilemma');
+  if (type === 'hasty_generalization') return _('fallacyHastyGeneralization');
+  if (type === 'slippery_slope') return _('fallacySlipperySlope');
+  if (type === 'false_cause') return _('fallacyFalseCause');
+  if (type === 'cherry_picking') return _('fallacyCherryPicking');
+  if (type === 'whataboutism') return _('fallacyWhataboutism');
+  if (type === 'appeal_to_authority') return _('fallacyAppealToAuthority');
+  if (type === 'appeal_to_fear') return _('fallacyAppealToFear');
+  return String(type || '').replace(/_/g, ' ');
+}
+
+function getBiasChipStyle(overallBias) {
+  if (overallBias === 'neutral') {
+    return 'background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.35); color: #22c55e;';
+  }
+  if (overallBias === 'pro_kerajaan' || overallBias === 'pro_government') {
+    return 'background: rgba(14,165,233,0.14); border-color: rgba(14,165,233,0.35); color: #0ea5e9;';
+  }
+  if (overallBias === 'pro_pembangkang' || overallBias === 'anti_government') {
+    return 'background: rgba(239,68,68,0.14); border-color: rgba(239,68,68,0.35); color: #ef4444;';
+  }
+  if (overallBias === 'mixed') {
+    return 'background: rgba(245,158,11,0.14); border-color: rgba(245,158,11,0.35); color: #f59e0b;';
+  }
+  return 'background: rgba(148,163,184,0.14); border-color: rgba(148,163,184,0.28); color: var(--text-muted);';
+}
+
+function getSourceLeaningLabel(leaning) {
+  if (leaning === 'pro_kerajaan') return _('sourceLeaningProKerajaan');
+  if (leaning === 'pro_pembangkang') return _('sourceLeaningProPembangkang');
+  if (leaning === 'neutral') return _('sourceLeaningNeutral');
+  return _('sourceLeaningUnclear');
+}
+
+function getSourceLeaningChipStyle(leaning) {
+  if (leaning === 'pro_kerajaan') {
+    return 'background: rgba(14,165,233,0.18); border-color: rgba(14,165,233,0.4); color: #0ea5e9;';
+  }
+  if (leaning === 'pro_pembangkang') {
+    return 'background: rgba(239,68,68,0.18); border-color: rgba(239,68,68,0.4); color: #ef4444;';
+  }
+  if (leaning === 'neutral') {
+    return 'background: rgba(34,197,94,0.14); border-color: rgba(34,197,94,0.35); color: #22c55e;';
+  }
+  return 'background: rgba(148,163,184,0.14); border-color: rgba(148,163,184,0.28); color: var(--text-muted);';
+}
+
+function buildFeedSignalChips(topic) {
+  const biasOverall = String(topic?.biasAssessment?.overallBias || 'unclear').toLowerCase();
+  const biasLabel = getBiasOverallLabel(biasOverall);
+  const loadedLanguage = String(topic?.biasAssessment?.loadedLanguage || 'none').toLowerCase();
+  const loadedLanguageLabel = getLoadedLanguageLabel(loadedLanguage);
+  const fallacyCount = Array.isArray(topic?.logicalFallacies) ? topic.logicalFallacies.length : 0;
+  const sourceLeaning = topic?.sourceLeaning?.leaning || 'unclear';
+  const sourceLeaningLabel = getSourceLeaningLabel(sourceLeaning);
+
+  const chips = [
+    `<span class="feed-signal-chip" style="${getBiasChipStyle(biasOverall)}" title="${_('biasAssessment')}">⚖️ ${biasLabel}</span>`,
+  ];
+
+  // Prominent source leaning chip
+  if (sourceLeaning !== 'unclear') {
+    chips.push(`<span class="feed-signal-chip" style="${getSourceLeaningChipStyle(sourceLeaning)}; font-weight: 600;" title="${_('sourceLeaningTitle')}: ${topic?.sourceLeaning?.owner || ''}">🏛️ ${sourceLeaningLabel}</span>`);
+  }
+
+  if (fallacyCount > 0) {
+    chips.push(`<span class="feed-signal-chip" style="background: rgba(168,85,247,0.14); border-color: rgba(168,85,247,0.35); color: #a855f7;" title="${_('logicalFallacies')}">🧩 ${fallacyCount}</span>`);
+  }
+
+  if (loadedLanguage !== 'none') {
+    chips.push(`<span class="feed-signal-chip" style="background: rgba(244,114,182,0.14); border-color: rgba(244,114,182,0.35); color: #f472b6;" title="${_('loadedLanguage')}">✍️ ${loadedLanguageLabel}</span>`);
+  }
+
+  return `<div class="feed-signals">${chips.join('')}</div>`;
+}
+
+function buildBiasPanel(topic) {
+  const bias = topic?.biasAssessment || {};
+  const overall = getBiasOverallLabel(String(bias.overallBias || 'unclear').toLowerCase());
+  const loadedLanguage = getLoadedLanguageLabel(String(bias.loadedLanguage || 'none').toLowerCase());
+  const justification = String(bias.justification || '').trim() || _('biasNoSignal');
+  const sl = topic?.sourceLeaning || {};
+  const slLeaning = getSourceLeaningLabel(sl.leaning || 'unclear');
+
+  return `
+    <div class="modal-section">
+      <div class="modal-section-title">⚖️ ${_('biasAssessment')}</div>
+      <div class="modal-section-content">
+        <strong>${_('biasOverall')}: </strong>${overall}<br>
+        <strong>${_('loadedLanguage')}: </strong>${loadedLanguage}<br>
+        <strong>${_('governmentClaimChecked')}: </strong>${bias.governmentClaimsChecked ? _('checkedYes') : _('checkedNo')}<br>
+        <strong>${_('oppositionClaimChecked')}: </strong>${bias.oppositionClaimsChecked ? _('checkedYes') : _('checkedNo')}<br><br>
+        ${justification}
+      </div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">🏛️ ${_('sourceLeaningTitle')}</div>
+      <div class="modal-section-content">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <span class="feed-signal-chip" style="${getSourceLeaningChipStyle(sl.leaning || 'unclear')}; font-weight:700; font-size:0.95rem; padding:6px 16px;">${slLeaning}</span>
+        </div>
+        ${sl.owner ? `<strong>${_('mediaOwner')}: </strong>${sl.owner}<br>` : ''}
+        ${sl.note ? `<span style="color: var(--text-muted); font-size: 0.85rem;">${sl.note}</span><br>` : ''}
+        ${sl.domain ? `<span style="color: var(--text-muted); font-size: 0.8rem;">🌐 ${sl.domain}</span>` : ''}
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(245,158,11,0.08);border-radius:8px;border:1px solid rgba(245,158,11,0.2);font-size:0.82rem;color:#f59e0b;">
+          ⚠️ ${_('sourceLeaningDisclaimer')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function buildLogicalFallaciesPanel(topic) {
+  const fallacies = Array.isArray(topic?.logicalFallacies) ? topic.logicalFallacies : [];
+
+  if (fallacies.length === 0) {
+    return `
+      <div class="modal-section">
+        <div class="modal-section-title">🧩 ${_('logicalFallacies')}</div>
+        <div class="modal-section-content">${_('noLogicalFallacies')}</div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="modal-section">
+      <div class="modal-section-title">🧩 ${_('logicalFallacies')}</div>
+      <ul class="modal-sources-list">
+        ${fallacies.map((fallacy) => `
+          <li>
+            <strong>${getFallacyTypeLabel(fallacy.type)}</strong>
+            (${_('severity')}: ${getLevelLabel(fallacy.severity)}, ${_('confidence')}: ${getLevelLabel(fallacy.confidence)})<br>
+            <span style="color: var(--text-muted)">"${fallacy.excerpt || ''}"</span><br>
+            ${fallacy.explanation || ''}
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+  `;
+}
+
 function renderTopicFeedItem(topic) {
   const party = PARTIES[topic.party];
   const verdict = VERDICTS[topic.verdict];
@@ -757,6 +1099,7 @@ function renderTopicFeedItem(topic) {
       <div class="feed-body">
         <div class="feed-title">${title}</div>
         <div class="feed-summary">${truncate(summary || '', 180)}</div>
+        ${buildFeedSignalChips(topic)}
         <div class="feed-meta">
           <span class="feed-party" style="color: ${party?.color || '#888'}">${topic.party}</span>
           <span>·</span><span>${categoryLabel}</span>
@@ -1086,7 +1429,10 @@ function renderTopicCard(topic) {
 async function renderStatistics() {
   const container = document.getElementById('statistics-content');
   if (!container) return;
-  const stats = await api('/api/stats');
+  const [stats, fairness] = await Promise.all([
+    api('/api/stats'),
+    api('/api/fairness'),
+  ]);
   if (!stats) return;
 
   const quality = stats.dataQuality || null;
@@ -1097,6 +1443,9 @@ async function renderStatistics() {
       <p class="stats-page-subtitle">${_('statsSubtitle')}</p>
       ${quality ? `<p class="stats-page-subtitle" style="font-size:0.9rem; margin-top: 8px; color: var(--text-muted);">${_('statsQualityLine', { counted: quality.countedForStats, total: quality.totalStored, excluded: quality.excludedFromStats, mode: quality.strictRealMode ? _('modeOn') : _('modeOff') })}</p>` : ''}
     </div>
+
+    ${fairness ? renderFairnessPanel(fairness) : ''}
+
     <div class="charts-grid">
       <div class="chart-panel"><div class="chart-title">🎯 ${_('verdictByParty')}</div><div class="chart-wrapper"><canvas id="chart-party-verdicts"></canvas></div></div>
       <div class="chart-panel"><div class="chart-title">🔴 ${_('problemScore')}</div><div class="chart-wrapper"><canvas id="chart-problem-score"></canvas></div></div>
@@ -1513,6 +1862,8 @@ async function openTopicModal(topicId) {
 
     <div class="modal-section"><div class="modal-section-title">📝 ${_('summary')}</div><div class="modal-section-content">${summary}</div></div>
     <div class="modal-section"><div class="modal-section-title">🧠 ${_('aiAnalysis')}</div><div class="modal-section-content">${analysis || _('noAnalysis')}</div></div>
+    ${buildBiasPanel(topic)}
+    ${buildLogicalFallaciesPanel(topic)}
 
     ${buildVerificationPanel(topic)}
 

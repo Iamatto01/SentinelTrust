@@ -11,7 +11,247 @@ import {
   isMalaysiaNationalIssueContent,
   guessParty,
   guessCategory,
+  guessSourceLeaning,
 } from './shared-constants.js';
+
+const KNOWN_FALLACY_TYPES = new Set([
+  'ad_hominem',
+  'straw_man',
+  'false_dilemma',
+  'hasty_generalization',
+  'slippery_slope',
+  'false_cause',
+  'cherry_picking',
+  'whataboutism',
+  'appeal_to_authority',
+  'appeal_to_fear',
+]);
+
+function defaultBiasAssessment() {
+  return {
+    overallBias: 'unclear',
+    justification: 'Bukti tidak mencukupi untuk menentukan kecenderungan bias dengan yakin.',
+    governmentClaimsChecked: false,
+    oppositionClaimsChecked: false,
+    loadedLanguage: 'none',
+  };
+}
+
+// Map old English bias values to new Malay-first values for backward compat
+const BIAS_COMPAT_MAP = {
+  pro_government: 'pro_kerajaan',
+  anti_government: 'pro_pembangkang',
+};
+
+function normalizeBiasAssessment(raw) {
+  const value = raw && typeof raw === 'object' ? raw : {};
+  let candidateOverall = String(value.overallBias || value.overall || '').toLowerCase();
+  // Map old values to new
+  if (BIAS_COMPAT_MAP[candidateOverall]) candidateOverall = BIAS_COMPAT_MAP[candidateOverall];
+  const overallBias = ['neutral', 'pro_kerajaan', 'pro_pembangkang', 'mixed', 'unclear'].includes(candidateOverall)
+    ? candidateOverall
+    : 'unclear';
+
+  const loadedLanguageRaw = String(value.loadedLanguage || '').toLowerCase();
+  const loadedLanguage = ['none', 'mild', 'strong'].includes(loadedLanguageRaw)
+    ? loadedLanguageRaw
+    : 'none';
+
+  const justification = String(value.justification || '').trim()
+    || defaultBiasAssessment().justification;
+
+  return {
+    overallBias,
+    justification,
+    governmentClaimsChecked: Boolean(value.governmentClaimsChecked),
+    oppositionClaimsChecked: Boolean(value.oppositionClaimsChecked),
+    loadedLanguage,
+  };
+}
+
+function normalizeLogicalFallacies(raw) {
+  if (!Array.isArray(raw)) return [];
+
+  return raw
+    .map((item) => {
+      if (!item || typeof item !== 'object') return null;
+
+      const type = String(item.type || '').trim().toLowerCase().replace(/\s+/g, '_');
+      if (!KNOWN_FALLACY_TYPES.has(type)) return null;
+
+      const severityRaw = String(item.severity || '').toLowerCase();
+      const confidenceRaw = String(item.confidence || '').toLowerCase();
+
+      const excerpt = String(item.excerpt || '').trim();
+      const explanation = String(item.explanation || '').trim();
+      if (!excerpt || !explanation) return null;
+
+      return {
+        type,
+        excerpt,
+        explanation,
+        severity: ['low', 'medium', 'high'].includes(severityRaw) ? severityRaw : 'low',
+        confidence: ['low', 'medium', 'high'].includes(confidenceRaw) ? confidenceRaw : 'low',
+      };
+    })
+    .filter(Boolean)
+    .slice(0, 5);
+}
+
+const DETERMINISTIC_FALLACY_PATTERNS = [
+  {
+    type: 'ad_hominem',
+    regex: /\b(idiot|stupid|traitor|pengkhianat|bodoh|pengkhianat bangsa)\b/i,
+    explanation: 'The claim attacks a person or group rather than addressing the argument itself.',
+  },
+  {
+    type: 'false_dilemma',
+    regex: /\b(either\s+[^.]{0,80}\s+or\s+[^.]{0,80}|hanya\s+dua\s+pilihan|only\s+two\s+choices)\b/i,
+    explanation: 'The claim frames a complex issue as if only two choices exist.',
+  },
+  {
+    type: 'slippery_slope',
+    regex: /\b(if\s+[^.]{0,80}\s+then\s+[^.]{0,80}\b(collapse|destroy|ruin|hancur)|will\s+inevitably|pasti\s+akan)\b/i,
+    explanation: 'The claim asserts an inevitable extreme outcome without sufficient causal support.',
+  },
+  {
+    type: 'hasty_generalization',
+    regex: /\b(all\s+politicians|everyone\s+knows|semua\s+ahli\s+politik|semua\s+orang\s+tahu)\b/i,
+    explanation: 'The claim generalizes broadly from limited or unspecified evidence.',
+  },
+  {
+    type: 'whataboutism',
+    regex: /\b(what\s+about|bagaimana\s+pula|tapi\s+pihak\s+lain|but\s+the\s+other\s+side)\b/i,
+    explanation: 'The claim deflects criticism by shifting attention to a different issue.',
+  },
+  {
+    type: 'appeal_to_fear',
+    regex: /\b(if\s+we\s+do\s+not\s+[^.]{0,80}\b(chaos|disaster|doom)|negara\s+akan\s+hancur)\b/i,
+    explanation: 'The claim relies on fear-triggering outcomes instead of proportional evidence.',
+  },
+  {
+    type: 'appeal_to_authority',
+    regex: /\b(experts\s+say|pakar\s+kata|because\s+\w+\s+said\s+so)\b/i,
+    explanation: 'The claim depends on authority assertion without presenting verifiable support.',
+  },
+];
+
+const STRONG_LOADED_LANGUAGE_PATTERNS = [
+  /\b(regime|dictator|pengkhianat|pengkhianat\s+bangsa|propaganda\s+murahan|hancur\s+total)\b/i,
+  /\b(corrupt\s+government|incompetent\s+government|kerajaan\s+gagal\s+total)\b/i,
+];
+
+const MILD_LOADED_LANGUAGE_PATTERNS = [
+  /\b(failed|disaster|catastrophic|spin\s+story|agenda\s+tersembunyi|berat\s+sebelah)\b/i,
+];
+
+const PRO_GOVERNMENT_FRAMING_PATTERNS = [
+  /\b(government\s+proved|government\s+clearly\s+right|institutional\s+independence\s+proven)\b/i,
+  /\b(kerajaan\s+jelas\s+betul|kejayaan\s+mutlak\s+kerajaan|kerajaan\s+berjaya)\b/i,
+];
+
+const ANTI_GOVERNMENT_FRAMING_PATTERNS = [
+  /\b(government\s+is\s+the\s+sole\s+cause|government\s+alone\s+to\s+blame)\b/i,
+  /\b(kerajaan\s+satu-satunya\s+punca|semua\s+salah\s+kerajaan|kerajaan\s+gagal)\b/i,
+];
+
+const GOVERNMENT_SIGNAL_TERMS = [
+  'government', 'kerajaan', 'cabinet', 'minister', 'prime minister', 'pm', 'federal',
+];
+
+const OPPOSITION_SIGNAL_TERMS = [
+  'opposition', 'pembangkang', 'perikatan nasional', 'pn', 'pas', 'bersatu', 'umno', 'muda',
+];
+
+function detectDeterministicFallacies(text = '') {
+  const fallacies = [];
+
+  for (const pattern of DETERMINISTIC_FALLACY_PATTERNS) {
+    const match = text.match(pattern.regex);
+    if (!match) continue;
+
+    fallacies.push({
+      type: pattern.type,
+      excerpt: String(match[0] || '').trim(),
+      explanation: pattern.explanation,
+      severity: 'low',
+      confidence: 'medium',
+    });
+
+    if (fallacies.length >= 3) break;
+  }
+
+  return fallacies;
+}
+
+function mergeLogicalFallacies(primary = [], secondary = []) {
+  const merged = [];
+  const seen = new Set();
+
+  for (const item of [...primary, ...secondary]) {
+    const type = String(item?.type || '').trim();
+    const excerpt = String(item?.excerpt || '').trim().toLowerCase();
+    if (!type || !excerpt) continue;
+
+    const key = `${type}:${excerpt}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    merged.push(item);
+
+    if (merged.length >= 5) break;
+  }
+
+  return merged;
+}
+
+function applyDeterministicGuardrails(topic = {}, rawResult = {}) {
+  const base = rawResult && typeof rawResult === 'object' ? { ...rawResult } : {};
+  const title = String(topic.title || '').trim();
+  const snippet = String(topic.snippet || topic.summary || '').trim();
+  const analysis = String(base.analysis || '').trim();
+  const combinedText = `${title} ${snippet} ${analysis}`.trim();
+  const lowerCombined = combinedText.toLowerCase();
+
+  const biasAssessment = normalizeBiasAssessment(base.biasAssessment);
+
+  const hasGovSignal = GOVERNMENT_SIGNAL_TERMS.some((term) => lowerCombined.includes(term));
+  const hasOppositionSignal = OPPOSITION_SIGNAL_TERMS.some((term) => lowerCombined.includes(term));
+
+  biasAssessment.governmentClaimsChecked = biasAssessment.governmentClaimsChecked || hasGovSignal;
+  biasAssessment.oppositionClaimsChecked = biasAssessment.oppositionClaimsChecked || hasOppositionSignal;
+
+  if (biasAssessment.loadedLanguage === 'none') {
+    if (STRONG_LOADED_LANGUAGE_PATTERNS.some((regex) => regex.test(combinedText))) {
+      biasAssessment.loadedLanguage = 'strong';
+    } else if (MILD_LOADED_LANGUAGE_PATTERNS.some((regex) => regex.test(combinedText))) {
+      biasAssessment.loadedLanguage = 'mild';
+    }
+  }
+
+  if (biasAssessment.overallBias === 'unclear') {
+    if (PRO_GOVERNMENT_FRAMING_PATTERNS.some((regex) => regex.test(combinedText))) {
+      biasAssessment.overallBias = 'pro_kerajaan';
+    } else if (ANTI_GOVERNMENT_FRAMING_PATTERNS.some((regex) => regex.test(combinedText))) {
+      biasAssessment.overallBias = 'pro_pembangkang';
+    }
+  }
+
+  if (
+    biasAssessment.justification === defaultBiasAssessment().justification
+    && biasAssessment.loadedLanguage !== 'none'
+  ) {
+    biasAssessment.justification = 'Loaded framing cues were detected, so this claim should be interpreted with caution.';
+  }
+
+  const modelFallacies = normalizeLogicalFallacies(base.logicalFallacies);
+  const deterministicFallacies = detectDeterministicFallacies(`${title} ${snippet}`);
+
+  return {
+    ...base,
+    biasAssessment,
+    logicalFallacies: mergeLogicalFallacies(modelFallacies, deterministicFallacies),
+  };
+}
 
 class AIAgent {
   constructor() {
@@ -191,21 +431,6 @@ class AIAgent {
       sources.push({ name: record.sourceName || 'Source', url: record.url, domain: record.sourceDomain || 'news.google.com', type: 'article' });
     }
 
-    // Auto-corroborate with additional sources to meet the 4+ requirement
-    const extraDomains = ['malaymail.com', 'thestar.com.my', 'bernama.com', 'astroawani.com', 'freemalaysiatoday.com', 'bharian.com.my', 'utusan.com.my']
-      .filter(d => !sources.some(s => (s.domain || '').includes(d)))
-      .sort(() => 0.5 - Math.random())
-      .slice(0, Math.max(0, 4 - sources.length));
-      
-    for (const d of extraDomains) {
-      sources.push({
-        name: d.split('.')[0].toUpperCase(),
-        url: `https://${d}/news/national/${Date.now() + Math.floor(Math.random() * 10000)}`,
-        domain: d,
-        type: 'article'
-      });
-    }
-
     return {
       title: record.title,
       snippet: record.summary || record.title,
@@ -215,7 +440,7 @@ class AIAgent {
       sourceName: record.sourceName || 'Source',
       sourceType: record.sourceType || 'internet',
       recordType: 'ai',
-      sources: sources,
+      sources,
       verification: {
         status: 'UNKNOWN',
         score: 0,
@@ -322,23 +547,39 @@ class AIAgent {
       providerUsed = 'Heuristic';
     }
 
+    analysisResult = applyDeterministicGuardrails(topic, analysisResult);
+
     const topicSources = Array.isArray(topic.sources)
       ? topic.sources
       : (topic.sourceUrl ? [{ name: topic.sourceName || 'Source', url: topic.sourceUrl }] : []);
 
+    // Detect source domain political leaning
+    const primaryDomain = topicSources[0]?.domain || '';
+    const sourceLeaning = guessSourceLeaning(primaryDomain);
+
     // Build the full topic object (NO translation here — deferred to translation cycle)
     const score = analysisResult?.confidence === 'high' ? 95 : analysisResult?.confidence === 'medium' ? 75 : 55;
+    const biasAssessment = normalizeBiasAssessment(analysisResult?.biasAssessment);
+    const logicalFallacies = normalizeLogicalFallacies(analysisResult?.logicalFallacies);
     
     const newTopic = {
       id: `st-ai-${Date.now()}`,
       title: topic.title,
       summary: analysisResult.summary || topic.snippet || topic.title,
       category: analysisResult.category || topic.category || 'General',
-      party: analysisResult.party || topic.party || 'PKR',
+      party: analysisResult.party || topic.party || 'UNSPECIFIED',
       verdict: analysisResult.verdict || 'UNVERIFIED',
       date: new Date().toISOString().split('T')[0],
       sources: topicSources,
       analysis: analysisResult.analysis || 'Analysis pending.',
+      biasAssessment,
+      logicalFallacies,
+      sourceLeaning: {
+        leaning: sourceLeaning.leaning,
+        owner: sourceLeaning.owner,
+        note: sourceLeaning.note,
+        domain: primaryDomain,
+      },
       connections: [],
       impact: analysisResult.impact || 'medium',
       region: analysisResult.region || 'National',
@@ -407,12 +648,14 @@ class AIAgent {
       verdict,
       summary: topic.snippet || topic.title,
       analysis: 'This topic was analyzed using basic heuristics because Groq keys were unavailable or rate-limited. Configure Groq key pipeline for stronger fact-checking.',
-      party: topic.party || 'PKR',
+      party: topic.party || 'UNSPECIFIED',
       category: topic.category || 'General',
       impact: 'medium',
       region: 'National',
       confidence,
-      factCheckRef: 'Pending AI verification'
+      factCheckRef: 'Pending AI verification',
+      biasAssessment: defaultBiasAssessment(),
+      logicalFallacies: [],
     };
   }
 
@@ -576,16 +819,20 @@ class AIAgent {
         const analyzed = await groqAnalyzer.analyzeTopic(input);
         if (!analyzed?.success) continue;
 
+        const guarded = applyDeterministicGuardrails(input, analyzed);
+
         const saved = dataManager.updateTopic(topic.id, {
-          summary: analyzed.summary || topic.summary,
-          analysis: analyzed.analysis || topic.analysis,
-          verdict: analyzed.verdict || topic.verdict,
-          party: analyzed.party || topic.party,
-          category: analyzed.category || topic.category,
-          impact: analyzed.impact || topic.impact,
-          region: analyzed.region || topic.region,
-          factCheckRef: analyzed.factCheckRef || topic.factCheckRef,
-          confidence: analyzed.confidence || topic.confidence,
+          summary: guarded.summary || topic.summary,
+          analysis: guarded.analysis || topic.analysis,
+          verdict: guarded.verdict || topic.verdict,
+          party: guarded.party || topic.party || 'UNSPECIFIED',
+          category: guarded.category || topic.category,
+          impact: guarded.impact || topic.impact,
+          region: guarded.region || topic.region,
+          factCheckRef: guarded.factCheckRef || topic.factCheckRef,
+          confidence: guarded.confidence || topic.confidence,
+          biasAssessment: normalizeBiasAssessment(guarded.biasAssessment || topic.biasAssessment),
+          logicalFallacies: normalizeLogicalFallacies(guarded.logicalFallacies || topic.logicalFallacies),
           aiProvider: 'Groq',
           verification: {
             ...(topic.verification || {}),

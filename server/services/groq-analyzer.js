@@ -33,6 +33,88 @@ function buildGroqKeyStates() {
   }));
 }
 
+const ALLOWED_PARTIES = new Set(['PKR', 'DAP', 'AMANAH', 'UMNO', 'PAS', 'BERSATU', 'GPS', 'MUDA', 'UNSPECIFIED']);
+const ALLOWED_BIAS = new Set(['neutral', 'pro_kerajaan', 'pro_pembangkang', 'mixed', 'unclear']);
+const ALLOWED_LOADED_LANGUAGE = new Set(['none', 'mild', 'strong']);
+const ALLOWED_FALLACY_TYPES = new Set([
+  'ad_hominem',
+  'straw_man',
+  'false_dilemma',
+  'hasty_generalization',
+  'slippery_slope',
+  'false_cause',
+  'cherry_picking',
+  'whataboutism',
+  'appeal_to_authority',
+  'appeal_to_fear',
+]);
+
+function defaultBiasAssessment() {
+  return {
+    overallBias: 'unclear',
+    justification: 'Bukti tidak mencukupi untuk menentukan kecenderungan bias dengan yakin.',
+    governmentClaimsChecked: false,
+    oppositionClaimsChecked: false,
+    loadedLanguage: 'none',
+  };
+}
+
+function normalizeParty(rawParty, fallback = 'UNSPECIFIED') {
+  const value = String(rawParty || '').trim().toUpperCase();
+  if (!value) return fallback;
+  if (ALLOWED_PARTIES.has(value)) return value;
+  return fallback;
+}
+
+function normalizeBiasAssessment(raw) {
+  const base = defaultBiasAssessment();
+  const value = raw && typeof raw === 'object' ? raw : {};
+
+  const overallCandidate = String(value.overallBias || value.overall || '').toLowerCase()
+    .replace('pro_government', 'pro_kerajaan').replace('anti_government', 'pro_pembangkang');
+  const overallBias = ALLOWED_BIAS.has(overallCandidate) ? overallCandidate : base.overallBias;
+
+  const loadedCandidate = String(value.loadedLanguage || '').toLowerCase();
+  const loadedLanguage = ALLOWED_LOADED_LANGUAGE.has(loadedCandidate) ? loadedCandidate : base.loadedLanguage;
+
+  return {
+    overallBias,
+    justification: String(value.justification || '').trim() || base.justification,
+    governmentClaimsChecked: Boolean(value.governmentClaimsChecked),
+    oppositionClaimsChecked: Boolean(value.oppositionClaimsChecked),
+    loadedLanguage,
+  };
+}
+
+function normalizeLogicalFallacies(raw) {
+  if (!Array.isArray(raw)) return [];
+
+  return raw
+    .map((item) => {
+      if (!item || typeof item !== 'object') return null;
+
+      const type = String(item.type || '').trim().toLowerCase().replace(/\s+/g, '_');
+      if (!ALLOWED_FALLACY_TYPES.has(type)) return null;
+
+      const excerpt = String(item.excerpt || '').trim();
+      const explanation = String(item.explanation || '').trim();
+      if (!excerpt || !explanation) return null;
+
+      const severityRaw = String(item.severity || '').toLowerCase();
+      const confidenceRaw = String(item.confidence || '').toLowerCase();
+
+      return {
+        type,
+        excerpt,
+        explanation,
+        severity: ['low', 'medium', 'high'].includes(severityRaw) ? severityRaw : 'low',
+        confidence: ['low', 'medium', 'high'].includes(confidenceRaw) ? confidenceRaw : 'low',
+      };
+    })
+    .filter(Boolean)
+    .slice(0, 5);
+}
+
 // ── Response caches ──
 const analysisCache = new LRUCache(200, 30 * 60 * 1000); // 30min TTL
 const translationCache = new LRUCache(200, 60 * 60 * 1000); // 1hr TTL
@@ -230,8 +312,15 @@ Your job is to:
 3. Identify the primary party involved
 4. Suggest related topics/connections
 5. Rate the impact level
+  6. Assess whether framing language leans toward the government ("pro_kerajaan") or opposition ("pro_pembangkang")
+  7. Detect logical fallacies present in the claim wording
 
-IMPORTANT: Be transparent about your confidence level. If you cannot verify a claim with high confidence, mark it as UNVERIFIED rather than guessing.`;
+  IMPORTANT:
+  - Be transparent about confidence level.
+  - If you cannot verify with high confidence, return UNVERIFIED.
+  - Do not show institutional deference. Treat government and opposition claims with the same skepticism standard.
+  - If no logical fallacy is present, return an empty array for logicalFallacies.
+  - Use "pro_kerajaan" (not pro_government) and "pro_pembangkang" (not anti_government) for Malaysian political context.`;
 
     const userPrompt = `Analyze this Malaysian political claim:
 
@@ -246,12 +335,28 @@ Return a JSON object with EXACTLY these fields:
   "verdict": "ONE OF: TRUE, HOAX, MISLEADING, PARTIALLY_TRUE, UNVERIFIED",
   "summary": "Clear 2-3 sentence summary of the claim and its context",
   "analysis": "Detailed 3-5 sentence analysis explaining why this verdict was given, with specific evidence or reasoning",
-  "party": "Primary party (ONE OF: PKR, DAP, AMANAH, UMNO, PAS, BERSATU, GPS, MUDA)",
+  "party": "Primary party (ONE OF: PKR, DAP, AMANAH, UMNO, PAS, BERSATU, GPS, MUDA, UNSPECIFIED)",
   "category": "Topic category",
   "impact": "ONE OF: high, medium, low",
   "region": "Affected region (e.g., National, Kelantan, Sabah)",
   "factCheckRef": "Which fact-checking source would verify this (e.g., Sebenarnya.my, JomCheck, MyCheck.my)",
-  "confidence": "ONE OF: high, medium, low"
+  "confidence": "ONE OF: high, medium, low",
+  "biasAssessment": {
+    "overallBias": "ONE OF: neutral, pro_kerajaan, pro_pembangkang, mixed, unclear",
+    "justification": "1-2 sentence rationale for the bias judgment",
+    "governmentClaimsChecked": "boolean",
+    "oppositionClaimsChecked": "boolean",
+    "loadedLanguage": "ONE OF: none, mild, strong"
+  },
+  "logicalFallacies": [
+    {
+      "type": "ONE OF: ad_hominem, straw_man, false_dilemma, hasty_generalization, slippery_slope, false_cause, cherry_picking, whataboutism, appeal_to_authority, appeal_to_fear",
+      "excerpt": "exact quote or short excerpt",
+      "explanation": "why this is a fallacy in context",
+      "severity": "ONE OF: low, medium, high",
+      "confidence": "ONE OF: low, medium, high"
+    }
+  ]
 }`;
 
     try {
@@ -261,8 +366,14 @@ Return a JSON object with EXACTLY these fields:
       ], this.analysisMaxTokens);
 
       const parsed = JSON.parse(result);
-      console.log(`[Groq] Analyzed: "${title}" → ${parsed.verdict}`);
-      const output = { success: true, ...parsed };
+      const output = {
+        success: true,
+        ...parsed,
+        party: normalizeParty(parsed.party, normalizeParty(party, 'UNSPECIFIED')),
+        biasAssessment: normalizeBiasAssessment(parsed.biasAssessment),
+        logicalFallacies: normalizeLogicalFallacies(parsed.logicalFallacies),
+      };
+      console.log(`[Groq] Analyzed: "${title}" → ${output.verdict}`);
 
       // ── Cache the result ──
       analysisCache.set(cacheKey, output);

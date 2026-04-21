@@ -5,12 +5,93 @@ import { LRUCache, simpleHash, extractJsonObject } from './shared-constants.js';
 
 const DEFAULT_BASE_URL = 'http://127.0.0.1:11434';
 const DEFAULT_FALLBACK_MODELS = ['llama3.1:8b', 'qwen2.5:14b', 'mistral:7b'];
+const ALLOWED_PARTIES = new Set(['PKR', 'DAP', 'AMANAH', 'UMNO', 'PAS', 'BERSATU', 'GPS', 'MUDA', 'UNSPECIFIED']);
+const ALLOWED_BIAS = new Set(['neutral', 'pro_kerajaan', 'pro_pembangkang', 'mixed', 'unclear']);
+const ALLOWED_LOADED_LANGUAGE = new Set(['none', 'mild', 'strong']);
+const ALLOWED_FALLACY_TYPES = new Set([
+  'ad_hominem',
+  'straw_man',
+  'false_dilemma',
+  'hasty_generalization',
+  'slippery_slope',
+  'false_cause',
+  'cherry_picking',
+  'whataboutism',
+  'appeal_to_authority',
+  'appeal_to_fear',
+]);
 
 function parseModelList(raw = '') {
   return String(raw || '')
     .split(',')
     .map((value) => value.trim())
     .filter(Boolean);
+}
+
+function defaultBiasAssessment() {
+  return {
+    overallBias: 'unclear',
+    justification: 'Bukti tidak mencukupi untuk menentukan kecenderungan bias dengan yakin.',
+    governmentClaimsChecked: false,
+    oppositionClaimsChecked: false,
+    loadedLanguage: 'none',
+  };
+}
+
+function normalizeParty(rawParty, fallback = 'UNSPECIFIED') {
+  const value = String(rawParty || '').trim().toUpperCase();
+  if (!value) return fallback;
+  if (ALLOWED_PARTIES.has(value)) return value;
+  return fallback;
+}
+
+function normalizeBiasAssessment(raw) {
+  const base = defaultBiasAssessment();
+  const value = raw && typeof raw === 'object' ? raw : {};
+
+  const overallCandidate = String(value.overallBias || value.overall || '').toLowerCase()
+    .replace('pro_government', 'pro_kerajaan').replace('anti_government', 'pro_pembangkang');
+  const overallBias = ALLOWED_BIAS.has(overallCandidate) ? overallCandidate : base.overallBias;
+
+  const loadedCandidate = String(value.loadedLanguage || '').toLowerCase();
+  const loadedLanguage = ALLOWED_LOADED_LANGUAGE.has(loadedCandidate) ? loadedCandidate : base.loadedLanguage;
+
+  return {
+    overallBias,
+    justification: String(value.justification || '').trim() || base.justification,
+    governmentClaimsChecked: Boolean(value.governmentClaimsChecked),
+    oppositionClaimsChecked: Boolean(value.oppositionClaimsChecked),
+    loadedLanguage,
+  };
+}
+
+function normalizeLogicalFallacies(raw) {
+  if (!Array.isArray(raw)) return [];
+
+  return raw
+    .map((item) => {
+      if (!item || typeof item !== 'object') return null;
+
+      const type = String(item.type || '').trim().toLowerCase().replace(/\s+/g, '_');
+      if (!ALLOWED_FALLACY_TYPES.has(type)) return null;
+
+      const excerpt = String(item.excerpt || '').trim();
+      const explanation = String(item.explanation || '').trim();
+      if (!excerpt || !explanation) return null;
+
+      const severityRaw = String(item.severity || '').toLowerCase();
+      const confidenceRaw = String(item.confidence || '').toLowerCase();
+
+      return {
+        type,
+        excerpt,
+        explanation,
+        severity: ['low', 'medium', 'high'].includes(severityRaw) ? severityRaw : 'low',
+        confidence: ['low', 'medium', 'high'].includes(confidenceRaw) ? confidenceRaw : 'low',
+      };
+    })
+    .filter(Boolean)
+    .slice(0, 5);
 }
 
 // ── Response cache: avoids re-analyzing identical/similar topics ──
@@ -163,8 +244,10 @@ class OllamaAnalyzer {
     }
 
     const systemPrompt = `You are SentinelTruth, a Malaysian political fact-checking assistant.
-Return strict JSON only and avoid fabricated certainty.
-If evidence is weak, use verdict UNVERIFIED.`;
+  Return strict JSON only and avoid fabricated certainty.
+  If evidence is weak, use verdict UNVERIFIED.
+  Do not show institutional deference. Apply equal skepticism to government and opposition claims.
+  If no logical fallacy is present, return an empty array for logicalFallacies.`;
 
     const userPrompt = `Analyze this Malaysian political topic and return JSON.
 
@@ -178,12 +261,28 @@ Return EXACT JSON fields:
   "verdict": "TRUE|HOAX|MISLEADING|PARTIALLY_TRUE|UNVERIFIED",
   "summary": "2-3 concise sentences",
   "analysis": "3-5 concise sentences with reasoning",
-  "party": "PKR|DAP|AMANAH|UMNO|PAS|BERSATU|GPS|MUDA",
+  "party": "PKR|DAP|AMANAH|UMNO|PAS|BERSATU|GPS|MUDA|UNSPECIFIED",
   "category": "string",
   "impact": "high|medium|low",
   "region": "string",
   "factCheckRef": "string",
-  "confidence": "high|medium|low"
+  "confidence": "high|medium|low",
+  "biasAssessment": {
+    "overallBias": "neutral|pro_kerajaan|pro_pembangkang|mixed|unclear",
+    "justification": "string",
+    "governmentClaimsChecked": "boolean",
+    "oppositionClaimsChecked": "boolean",
+    "loadedLanguage": "none|mild|strong"
+  },
+  "logicalFallacies": [
+    {
+      "type": "ad_hominem|straw_man|false_dilemma|hasty_generalization|slippery_slope|false_cause|cherry_picking|whataboutism|appeal_to_authority|appeal_to_fear",
+      "excerpt": "string",
+      "explanation": "string",
+      "severity": "low|medium|high",
+      "confidence": "low|medium|high"
+    }
+  ]
 }`;
 
     try {
@@ -207,12 +306,14 @@ Return EXACT JSON fields:
         verdict: parsed.verdict,
         summary: parsed.summary,
         analysis: parsed.analysis,
-        party: parsed.party,
+        party: normalizeParty(parsed.party, normalizeParty(topic.party, 'UNSPECIFIED')),
         category: parsed.category,
         impact: parsed.impact,
         region: parsed.region,
         factCheckRef: parsed.factCheckRef,
         confidence: parsed.confidence,
+        biasAssessment: normalizeBiasAssessment(parsed.biasAssessment),
+        logicalFallacies: normalizeLogicalFallacies(parsed.logicalFallacies),
       };
 
       // ── Cache the result ──

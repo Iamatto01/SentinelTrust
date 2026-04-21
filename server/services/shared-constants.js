@@ -82,7 +82,81 @@ export const MALAYSIAN_NEWS_DOMAINS = [
   'thestar.com.my', 'bharian.com.my', 'astroawani.com',
   'malaysiakini.com', 'thesun.my', 'sinardaily.my',
   'utusan.com.my', 'nst.com.my', 'facebook.com',
+  'harakahdaily.net', 'suaramerdeka.com.my', 'roketkini.com',
 ];
+
+// ── Source Domain Bias Map ──────────────────────────────────────
+// Known political leaning of Malaysian media outlets.
+// "pro_kerajaan"   = Generally aligns with government narrative
+// "pro_pembangkang" = Generally aligns with opposition narrative
+// "neutral"        = Relatively balanced or independent
+// "unclear"        = Not enough info to classify
+//
+// NOTE: This is an approximate classification based on media ownership
+// and editorial patterns. Readers should always evaluate content independently.
+export const SOURCE_DOMAIN_BIAS_MAP = {
+  // ── Pro-Kerajaan (Government-linked / GLC-owned) ──
+  'bernama.com':           { leaning: 'pro_kerajaan', owner: 'Kerajaan Malaysia (BERNAMA — Agensi Berita Kebangsaan)', note: 'Agensi berita rasmi kerajaan' },
+  'bharian.com.my':        { leaning: 'pro_kerajaan', owner: 'Media Prima Berhad (berkaitan UMNO)', note: 'Akhbar BM utama milik Media Prima' },
+  'nst.com.my':            { leaning: 'pro_kerajaan', owner: 'Media Prima Berhad (berkaitan UMNO)', note: 'Akhbar Inggeris milik Media Prima' },
+  'astroawani.com':        { leaning: 'pro_kerajaan', owner: 'Astro Malaysia Holdings', note: 'Portal berita bawah Astro — GLC berkaitan kerajaan' },
+  'utusan.com.my':         { leaning: 'pro_kerajaan', owner: 'Media Mulia Sdn Bhd (berkaitan UMNO)', note: 'Akhbar tradisional berkaitan UMNO' },
+  'thestar.com.my':        { leaning: 'pro_kerajaan', owner: 'Star Media Group (berkaitan MCA/BN)', note: 'Milik Star Media Group — berkaitan MCA' },
+  'sinardaily.my':         { leaning: 'pro_kerajaan', owner: 'Karangkraf Media Group', note: 'Portal berita BM — cenderung kerajaan' },
+  'thesun.my':             { leaning: 'pro_kerajaan', owner: 'Media Prima Berhad', note: 'Akhbar percuma milik Media Prima' },
+  'hmetro.com.my':         { leaning: 'pro_kerajaan', owner: 'Media Prima Berhad', note: 'Tabloid milik Media Prima' },
+  'kosmo.com.my':          { leaning: 'pro_kerajaan', owner: 'Karangkraf Media Group', note: 'Akhbar harian milik Karangkraf' },
+  'rtm.gov.my':            { leaning: 'pro_kerajaan', owner: 'Kerajaan Malaysia', note: 'Penyiar milik kerajaan' },
+
+  // ── Pro-Pembangkang (Opposition-linked) ──
+  'harakahdaily.net':      { leaning: 'pro_pembangkang', owner: 'PAS (Parti Islam Se-Malaysia)', note: 'Portal rasmi PAS' },
+  'suaramerdeka.com.my':   { leaning: 'pro_pembangkang', owner: 'Berkaitan Perikatan Nasional', note: 'Cenderung PN/PAS' },
+  'tvpas.my':              { leaning: 'pro_pembangkang', owner: 'PAS', note: 'Saluran TV rasmi PAS' },
+
+  // ── Neutral / Bebas (Independent) ──
+  'malaysiakini.com':      { leaning: 'neutral', owner: 'Mkini Dot Com Sdn Bhd (bebas)', note: 'Portal berita bebas paling lama — diiktiraf kritikal terhadap semua pihak' },
+  'freemalaysiatoday.com': { leaning: 'neutral', owner: 'FMT Media Sdn Bhd (bebas)', note: 'Bebas — sering kritis terhadap kerajaan dan pembangkang' },
+  'malaymail.com':         { leaning: 'neutral', owner: 'Malay Mail Sdn Bhd (bebas)', note: 'Bebas — liputan seimbang' },
+  'roketkini.com':         { leaning: 'pro_kerajaan', owner: 'DAP (Democratic Action Party)', note: 'Portal rasmi DAP — kini sebahagian kerajaan' },
+
+  // ── Penyemak Fakta (Fact-checkers) ──
+  'sebenarnya.my':         { leaning: 'neutral', owner: 'MCMC (Kerajaan)', note: 'Portal semakan fakta rasmi kerajaan' },
+};
+
+// ── Media Ownership & Transparency Info ─────────────────────────
+export const MEDIA_OWNERSHIP_INFO = [
+  { group: 'Media Prima Berhad', outlets: ['NST', 'Berita Harian', 'Harian Metro', 'The Sun', 'TV3', 'NTV7', '8TV'], leaning: 'pro_kerajaan', note: 'Konglomerat media terbesar — sejarah berkaitan UMNO/BN' },
+  { group: 'Star Media Group', outlets: ['The Star', 'Star2'], leaning: 'pro_kerajaan', note: 'Dimiliki berkaitan MCA (komponen BN)' },
+  { group: 'Astro Malaysia', outlets: ['Astro Awani'], leaning: 'pro_kerajaan', note: 'GLC — penyiar satelit dominan' },
+  { group: 'Karangkraf', outlets: ['Sinar Harian', 'Kosmo'], leaning: 'pro_kerajaan', note: 'Penerbit media swasta — cenderung kerajaan' },
+  { group: 'BERNAMA', outlets: ['BERNAMA'], leaning: 'pro_kerajaan', note: 'Agensi berita kebangsaan milik kerajaan' },
+  { group: 'Mkini Dot Com', outlets: ['Malaysiakini'], leaning: 'neutral', note: 'Bebas — dibiayai langganan, pengiklanan' },
+  { group: 'FMT Media', outlets: ['Free Malaysia Today'], leaning: 'neutral', note: 'Bebas — media digital' },
+  { group: 'PAS Media', outlets: ['Harakah Daily', 'TV PAS'], leaning: 'pro_pembangkang', note: 'Dimiliki PAS — parti pembangkang' },
+];
+
+/**
+ * Guess the political leaning of a source domain.
+ * Returns: { leaning, owner, note } or a default "unclear" object.
+ */
+export function guessSourceLeaning(domain = '') {
+  const normalized = String(domain || '').toLowerCase().replace(/^www\./, '');
+  if (!normalized) return { leaning: 'unclear', owner: '', note: '' };
+
+  // Direct match
+  if (SOURCE_DOMAIN_BIAS_MAP[normalized]) {
+    return SOURCE_DOMAIN_BIAS_MAP[normalized];
+  }
+
+  // Partial match (e.g. subdomain.bernama.com)
+  for (const [key, value] of Object.entries(SOURCE_DOMAIN_BIAS_MAP)) {
+    if (normalized.endsWith(`.${key}`) || normalized === key) {
+      return value;
+    }
+  }
+
+  return { leaning: 'unclear', owner: '', note: '' };
+}
 
 // ── Pre-compiled regex cache for signal matching ────────────────
 // Build regexes once at module load instead of per-call.
@@ -151,7 +225,7 @@ export function guessParty(text = '') {
   for (const [party, keywords] of Object.entries(PARTY_KEYWORDS)) {
     if (keywords.some((keyword) => lower.includes(keyword))) return party;
   }
-  return 'PKR';
+  return 'UNSPECIFIED';
 }
 
 /**
