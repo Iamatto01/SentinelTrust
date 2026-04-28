@@ -1,5 +1,2676 @@
 [
   {
+    "id": "st-ai-1777372686799",
+    "title": "13 warga asing ditahan, kegiatan seludup migran tumpas",
+    "summary": "Thirteen foreign nationals, all from Indonesia, were detained in a house in Sungai Rengit, Kota Tinggi, for suspected involvement in migrant smuggling activities. The operation was successful in thwarting the smuggling attempt. The claim is reported by Free Malaysia Today, citing a recent incident.",
+    "category": "Governance",
+    "party": "UNSPECIFIED",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/13-warga-asing-ditahan-kegiatan-seludup-migran-tumpas",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is deemed true based on the information provided by a credible news source, Free Malaysia Today. The report specifies the location and the number of individuals detained, indicating a factual account of an event. There is no apparent reason to doubt the authenticity of the report, given the detail and the sourcing. The mention of PAS is not directly related to the claim's truthfulness but indicates the party's potential interest or involvement in governance and security issues.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report is factual and does not exhibit language that favors any political party or ideology. It presents information about a specific incident without emotional appeal or loaded language.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "low",
+    "region": "Johor",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:38:06.799Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372683978",
+    "title": "Sabah urged to tighten crocodile control measures along Kinabatangan River",
+    "summary": "The Sabah state government is being urged to take proactive measures to manage the crocodile population along the Kinabatangan River. The call for action is aimed at improving safety in the area. However, the claim lacks specific details about the current state of crocodile control measures and the proposed actions.",
+    "category": "Governance",
+    "party": "UNSPECIFIED",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/sabah-urged-to-tighten-crocodile-control-measures-along-kinabatangan-river/217956",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim appears to be a genuine call for action, but without more information about the current situation and the proposed measures, it is difficult to assess the validity of the claim. The article does not provide enough evidence to support or refute the claim, and therefore, it cannot be verified with high confidence. The claim may be related to environmental conservation and public safety, which are important topics in Sabah.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The claim does not appear to promote a specific political agenda or ideology, and the language used is neutral.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": false,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "low",
+    "region": "Sabah",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "low",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:38:03.978Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372683015",
+    "title": "Fadhli questions DAP&#8217;s principles on reps switching support",
+    "summary": "PAS info chief Fadhli questions DAP's principles on representatives switching support, citing the case of six former Bersatu MPs who backed the unity government. The claim suggests DAP had no issue with this move, which allegedly 'violated' the voters' mandate. This criticism is made in the context of racial politics.",
+    "category": "Racial Politics",
+    "party": "PAS",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/fadhli-questions-daps-principles-on-reps-switching-support",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is partially true because DAP did not strongly condemn the six Bersatu MPs for switching their support. However, it is also true that DAP's stance on party hopping has been inconsistent, and the party has faced criticism for this. The claim's framing implies hypocrisy on DAP's part, but it does not provide a comprehensive view of the situation. Evidence from news sources like Free Malaysia Today (FMT) supports the fact that DAP did not take strong action against the MPs, but the claim's interpretation of this as a violation of the voters' mandate is subjective.",
+    "biasAssessment": {
+      "overallBias": "pro_pembangkang",
+      "justification": "The claim is made by a PAS representative and targets DAP, a component party of the current government, implying a bias against the government.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "mild"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:38:03.015Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372629578",
+    "title": "Mahasiswa bebas kritik, beri pandangan guna pelbagai saluran, kata PM",
+    "summary": "The Prime Minister, Anwar Ibrahim, stated that students are free to criticize and give their opinions through various channels. The government will address issues raised once a decision has been made. This statement was reported by Free Malaysia Today.",
+    "category": "Governance",
+    "party": "PKR",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/mahasiswa-bebas-kritik-beri-pandangan-guna-pelbagai-saluran-kata-pm",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is partially true as it reflects the statement made by the Prime Minister. However, the context and implications of this statement are not fully explored in the given summary. The statement suggests an openness to criticism, but the condition that the government will only respond after a decision has been made may limit the scope of this openness. The report from Free Malaysia Today provides a basis for the claim, but without further details, the full implications and sincerity of the statement remain unclear.",
+    "biasAssessment": {
+      "overallBias": "pro_kerajaan",
+      "justification": "The statement by the Prime Minister, as reported, presents a positive image of the government's stance on freedom of expression, which could be seen as favorable to the current administration.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": false,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {
+      "ms": {
+        "title": "Mahasiswa bebas kritik, beri pandangan guna pelbagai saluran, kata PM",
+        "summary": "Perdana Menteri, Anwar Ibrahim, menyatakan bahawa pelajar bebas mengkritik dan memberi pandangan melalui pelbagai saluran. Kerajaan akan mengambil tindakan terhadap isu yang dibangkitkan sekiranya keputusan telah dibuat. Kenyataan ini dilaporkan oleh Free Malaysia Today.",
+        "analysis": "Tuntutan ini sebahagiannya benar kerana mencerminkan kenyataan yang dibuat oleh Perdana Menteri. Walau bagaimanapun, konteks dan implikasi kenyataan ini tidak sepenuhnya dikaji dalam ringkasan yang diberikan. Kenyataan ini menyiratkan keterbukaan terhadap kritikan, tetapi syarat bahawa kerajaan hanya akan bertindak setelah keputusan dibuat mungkin boleh membataskan ruang lingkup keterbukaan ini. Laporan dari Free Malaysia Today memberikan asas untuk tuntutan ini, tetapi tanpa butiran lanjut, implikasi dan kesungguhan kenyataan ini masih tidak jelas."
+      },
+      "hi": {
+        "title": "प्रधानमंत्री का कहना है, छात्र विभिन्न चैनलों के माध्यम से आलोचना और राय देने के लिए स्वतंत्र हैं",
+        "summary": "प्रधानमंत्री अनवर इब्राहिम ने कहा कि छात्र विभिन्न चैनलों के माध्यम से आलोचना और राय देने के लिए स्वतंत्र हैं। सरकार निर्णय लेने के बाद उठाए गए मुद्दों पर कार्रवाई करेगी। यह बयान फ्री मलेशिया टुडे द्वारा रिपोर्ट किया गया था।",
+        "analysis": "यह दावा आंशिक रूप से सच है क्योंकि यह प्रधानमंत्री द्वारा किए गए बयान को दर्शाता है। हालांकि, दिए गए सारांश में इस बयान के संदर्भ और निहितार्थ पूरी तरह से नहीं खोजे गए हैं। यह बयान आलोचना के प्रति खुलापन का सुझाव देता है, लेकिन यह शर्त कि सरकार केवल निर्णय लेने के बाद ही कार्रवाई करेगी, इस खुलापन के दायरे को सीमित कर सकती है। फ्री मलेशिया टुडे की रिपोर्ट इस दावे के लिए एक आधार प्रदान करती है, लेकिन आगे के विवरण के बिना, इस बयान के पूर्ण निहितार्थ और सच्चाई अभी भी अस्पष्ट हैं।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:37:09.578Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372626274",
+    "title": "Polis terus buru pengasas eHati di luar negara",
+    "summary": "The High Syariah Court in Shah Alam issued an arrest warrant for the founder of eHati in November 2025 due to their failure to attend a court hearing without a valid reason. The police are now pursuing the individual abroad. The case is related to a syariah law offense.",
+    "category": "Governance",
+    "party": "PAS",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/polis-terus-buru-pengasas-ehati-di-luar-negara",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on a report from Free Malaysia Today, which cited a court decision and a police pursuit. Given the availability of a specific date and location for the court decision, it is likely that the claim is true. However, without direct access to court records or official statements from the police, the confidence level in this verdict is medium. The report does not contain any obvious inconsistencies or red flags that would suggest it is false.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report is a factual account of a court decision and police action, without any emotional language or clear bias towards any party.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:37:06.274Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372625101",
+    "title": "Will Negeri Sembilan crisis hit PKR-Umno ties elsewhere? Chang Lih Kang says too early to tell",
+    "summary": "The claim discusses the potential impact of the Negeri Sembilan crisis on PKR-Umno ties, with PKR vice-president Datuk Chang Lih Kang urging caution. The crisis may affect relationships between the parties in other areas. However, it is too early to tell the extent of the impact.",
+    "category": "Governance",
+    "party": "PKR",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/will-negeri-sembilan-crisis-hit-pkr-umno-ties-elsewhere-chang-lih-kang-says-too-early-to-tell/217963",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on a statement from a PKR vice-president, which may indicate a level of concern within the party. However, without more information or context, it is difficult to verify the claim or assess its potential impact. The statement from Chang Lih Kang is cautious and does not provide enough evidence to support a definitive verdict.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The statement from Chang Lih Kang appears to be a cautious assessment of the situation, without any apparent bias or loaded language.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking sources",
+    "confidence": "low",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:37:05.101Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372573458",
+    "title": "36 former students sue college over unaccredited diploma course",
+    "summary": "36 former students of Technology Park Malaysia College are suing the college over an unaccredited diploma course, with 13 witnesses having been heard so far in the trial. The case is reported by Free Malaysia Today. The students' lawsuit is based on the college's alleged failure to provide an accredited diploma course.",
+    "category": "Legal",
+    "party": "UNSPECIFIED",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/36-former-students-sue-college-over-unaccredited-diploma-course",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim appears to be a factual report of an ongoing lawsuit, but without further information or verification from the court or other reliable sources, it is difficult to assess the truthfulness of the claim. The report does not provide enough context or evidence to determine the validity of the students' allegations. Therefore, the claim remains unverified.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report appears to be a straightforward factual account of a lawsuit without any apparent bias or emotional language.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking sources may be able to verify this claim",
+    "confidence": "low",
+    "translations": {
+      "ms": {
+        "title": "36 bekas pelajar saman kolej berhubung kursus diploma tanpa pengiktirafan",
+        "summary": "36 bekas pelajar Kolej Technology Park Malaysia menyaman kolej tersebut berhubung kursus diploma tanpa pengiktirafan, dengan 13 saksi telah didengar sehingga kini dalam perbicaraan. Kes ini dilaporkan oleh Free Malaysia Today. Saman pelajar berdasarkan kegagalan kolej untuk menyediakan kursus diploma yang diiktiraf.",
+        "analysis": "Tuntutan tersebut nampaknya sebagai laporan fakta mengenai kes saman yang sedang berlangsung, tetapi tanpa maklumat lanjut atau pengesahan dari mahkamah atau sumber lain yang boleh dipercayai, sukar untuk menilai kebenaran tuntutan tersebut. Laporan tersebut tidak menyediakan konteks atau bukti yang cukup untuk menentukan kesahihan tuduhan pelajar. Oleh itu, tuntutan tersebut kekal tidak disahkan."
+      },
+      "hi": {
+        "title": "36 पूर्व छात्रों ने अनुमोदित डिप्लोमा पाठ्यक्रम के मुद्दे पर कॉलेज पर मुकदमा किया",
+        "summary": "टेक्नोलॉजी पार्क मलेशिया कॉलेज के 36 पूर्व छात्र अनुमोदित डिप्लोमा पाठ्यक्रम के मुद्दे पर कॉलेज पर मुकदमा कर रहे हैं, जिसमें अब तक 13 गवाहों की गवाही हो चुकी है। यह मामला फ्री मलेशिया टुडे द्वारा रिपोर्ट किया गया है। छात्रों का मुकदमा कॉलेज द्वारा अनुमोदित डिप्लोमा पाठ्यक्रम प्रदान नहीं करने के आरोप पर आधारित है।",
+        "analysis": "दावा एक चल रहे मुकदमे की एक तथ्यात्मक रिपोर्ट के रूप में प्रतीत होता है, लेकिन अदालत या अन्य विश्वसनीय स्रोतों से आगे की जानकारी या पुष्टि के बिना, दावे की सच्चाई का मूल्यांकन करना मुश्किल है। रिपोर्ट पर्याप्त संदर्भ या छात्रों के आरोपों की वैधता निर्धारित करने के लिए पर्याप्त साक्ष्य प्रदान नहीं करती है। इसलिए, दावा अभी भी अनुमोदित नहीं है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:36:13.458Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372565112",
+    "title": "Krisis N Sembilan: PAS sindir DAP tak konsisten soal prinsip",
+    "summary": "PAS has criticized DAP for being inconsistent in upholding the principles of voters' mandates, as stated by Ahmad Fadhli Shaari, the head of information for PAS. The criticism comes amidst the Negeri Sembilan crisis. DAP's stance on the crisis is being questioned by PAS for not being consistent with their previously stated principles.",
+    "category": "Governance",
+    "party": "PAS",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/krisis-n-sembilan-pas-sindir-dap-tak-konsisten-soal-prinsip",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim that DAP is inconsistent in upholding the principles of voters' mandates is partially true, as it is based on the statement made by Ahmad Fadhli Shaari. However, without more context about DAP's previous stance and actions, it is difficult to fully verify the claim. The criticism by PAS may be motivated by political interests, and the statement may be an attempt to discredit DAP. The claim relies on the interpretation of DAP's actions and principles, which may be subjective.",
+    "biasAssessment": {
+      "overallBias": "pro_pembangkang",
+      "justification": "The statement made by Ahmad Fadhli Shaari appears to be critical of DAP, which suggests a bias towards the opposition. The language used is not overly emotive, but it does imply a negative judgment of DAP's actions.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "mild"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:36:05.112Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372563615",
+    "title": "Umno N Sembilan nafi rancang awal dengan PN, sedia jadi pembangkang",
+    "summary": "UMNO Negeri Sembilan denies planning to form an alliance with Perikatan Nasional (PN) and is prepared to be in the opposition. This comes after Barisan Nasional (BN) claimed to have a simple majority to form the Negeri Sembilan state government with the support of five PN assemblymen.",
+    "category": "Governance",
+    "party": "UMNO",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/umno-n-sembilan-nafi-rancang-awal-dengan-pn-sedia-jadi-pembangkang",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is partially true as it is based on a statement from UMNO Negeri Sembilan, but the context and implications of this statement are subject to interpretation. The statement may be a negotiating tactic or a genuine expression of intent. Without further information, it is difficult to determine the full truth of the claim. The source of the information is a reputable news outlet, Free Malaysia Today (FMT), which adds to the credibility of the claim.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The claim is reported in a neutral tone, without any emotive language or obvious bias towards any party.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {
+      "ms": {
+        "title": "Umno N Sembilan nafi rancang awal dengan PN, sedia jadi pembangkang",
+        "summary": "UMNO Negeri Sembilan menafi merancang untuk membentuk pakatan dengan Perikatan Nasional (PN) dan bersedia menjadi pembangkang. Ini berikutan Barisan Nasional (BN) mendakwa memiliki majoriti mudah untuk membentuk kerajaan negeri Negeri Sembilan dengan sokongan lima ahli Dewan Undangan PN.",
+        "analysis": "Tuntutan ini sebahagiannya benar kerana berdasarkan kenyataan dari UMNO Negeri Sembilan, tetapi konteks dan implikasi kenyataan ini tertakluk kepada tafsiran. Kenyataan ini mungkin merupakan taktik perundingan atau ungkapan niat yang tulen. Tanpa maklumat lanjut, sukar untuk menentukan kebenaran penuh tuntutan ini. Sumber maklumat ini adalah saluran berita yang bereputasi, Free Malaysia Today (FMT), yang menambah kepada kredibiliti tuntutan ini."
+      },
+      "hi": {
+        "title": "उम्नो ने सेम्बिलान में पीएन के साथ पहले से ही गठबंधन करने से इनकार किया, विपक्ष में शामिल होने के लिए तैयार",
+        "summary": "उम्नो ने सेम्बिलान में पेरिकातन नेशनल (पीएन) के साथ गठबंधन करने की योजना से इनकार किया है और विपक्ष में शामिल होने के लिए तैयार है। यह बरिसान नेशनल (बीएन) के दावे के बाद आया है कि उनके पास पांच पीएन विधायकों के समर्थन से सेम्बिलान राज्य सरकार बनाने के लिए साधारण बहुमत है।",
+        "analysis": "यह दावा आंशिक रूप से सच है क्योंकि यह उम्नो सेम्बिलान के बयान पर आधारित है, लेकिन इस बयान के संदर्भ और निहितार्थ व्याख्या के अधीन हैं। यह बयान एक समझौता रणनीति या वास्तविक इरादे की अभिव्यक्ति हो सकती है। आगे की जानकारी के बिना, इस दावे की पूरी सच्चाई का निर्धारण करना मुश्किल है। जानकारी का स्रोत एक विश्वसनीय समाचार आउटलेट, फ्री मलेशिया टुडे (एफएमटी), है, जो इस दावे की विश्वसनीयता को बढ़ाता है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:36:03.615Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372509729",
+    "title": "Umno denies conspiracy with PN to unseat Aminuddin",
+    "summary": "Negeri Sembilan Umno denies conspiring with Perikatan Nasional (PN) to unseat a leader, stating it will leave the resolution of the political crisis to the Yang di-Pertuan Besar. The party expresses readiness to join the opposition. The claim is reported by Free Malaysia Today (FMT), citing Umno's stance in the ongoing political situation.",
+    "category": "Governance",
+    "party": "UMNO",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/umno-denies-making-early-deal-with-pn-to-unseat-aminuddin",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is partially true as it reflects Umno's denial of a conspiracy with PN, which is a specific and verifiable statement. However, the context and implications of Umno's readiness to join the opposition and its stance on the political crisis may involve more complex political maneuvering that is not fully detailed in the claim. The information is based on a report from FMT, which provides a source for the claim but does not necessarily validate all underlying assumptions or future actions.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report seems to convey Umno's statement without adding emotional language or clear bias towards any political stance, presenting it as a factual update on the political situation.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {
+      "ms": {
+        "title": "Umno menafikan konspirasi dengan PN untuk menggantikan Aminuddin",
+        "summary": "Umno Negeri Sembilan menafikan konspirasi dengan Perikatan Nasional (PN) untuk menggantikan seorang pemimpin, dengan menyatakan bahawa mereka akan meninggalkan penyelesaian krisis politik kepada Yang di-Pertuan Besar. Parti itu menyatakan kesediaan untuk menyertai pembangkang. Tuntutan itu dilaporkan oleh Free Malaysia Today (FMT), yang memetik pendirian Umno dalam situasi politik semasa.",
+        "analysis": "Tuntutan itu sebahagiannya benar kerana mencerminkan penafian Umno terhadap konspirasi dengan PN, yang merupakan kenyataan khusus dan boleh disahkan. Walau bagaimanapun, konteks dan implikasi kesediaan Umno untuk menyertai pembangkang dan pendiriannya terhadap krisis politik mungkin melibatkan manuver politik yang lebih kompleks yang tidak sepenuhnya terperinci dalam tuntutan. Maklumat tersebut berdasarkan laporan dari FMT, yang menyediakan sumber untuk tuntutan tetapi tidak semestinya mengesahkan semua anggapan atau tindakan masa depan."
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:35:09.729Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372504251",
+    "title": "N. Sembilan crisis to be settled through political negotiations, says Zahid",
+    "summary": "The claim states that the political crisis in Negeri Sembilan will be resolved through political negotiations, as stated by Zahid. This situation involves UMNO and is related to governance in the state. The claim is reported by Malay Mail, a Malaysian news outlet.",
+    "category": "Governance",
+    "party": "UMNO",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/n-sembilan-crisis-to-be-settled-through-political-negotiations-says-zahid/217967",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The verdict of PARTIALLY_TRUE is given because, while Zahid's statement about resolving the crisis through political negotiations is reported, there is no concrete evidence provided in the claim to fully verify the outcome or specifics of these negotiations. The statement could be seen as an intention or plan rather than a confirmed resolution. The context suggests an ongoing situation that may evolve, and without further details, the claim remains partially verified.",
+    "biasAssessment": {
+      "overallBias": "pro_kerajaan",
+      "justification": "The statement by Zahid, a key figure in UMNO, suggests a resolution favorable to the party's interests, which may indicate a pro_kerajaan bias in the reporting or the statement itself.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {
+      "ms": {
+        "title": "Krisis N. Sembilan akan diselesaikan melalui rundingan politik, kata Zahid",
+        "summary": "Tuntutan itu menyatakan bahawa krisis politik di Negeri Sembilan akan diselesaikan melalui rundingan politik, seperti yang dinyatakan oleh Zahid. Keadaan ini melibatkan UMNO dan berkaitan dengan tatakelola di negeri tersebut. Tuntutan ini dilaporkan oleh Malay Mail, sebuah saluran berita Malaysia.",
+        "analysis": "Verdict PARTIALLY_TRUE diberikan kerana, walaupun kenyataan Zahid tentang menyelesaikan krisis melalui rundingan politik dilaporkan, tidak ada bukti konkrit yang disediakan dalam tuntutan untuk sepenuhnya mengesahkan hasil atau butiran-butiran rundingan tersebut. Kenyataan itu boleh dianggap sebagai niat atau rancangan daripada penyelesaian yang disahkan. Konteks menunjukkan keadaan yang sedang berlangsung yang mungkin berkembang, dan tanpa butiran lanjut, tuntutan itu kekal sebahagiannya disahkan."
+      },
+      "hi": {
+        "title": "ज़हिद के अनुसार राजनीतिक वार्ता के माध्यम से नेगेरी सेम्बिलान संकट का समाधान किया जाएगा",
+        "summary": "दावा यह कहता है कि नेगेरी सेम्बिलान में राजनीतिक संकट का समाधान ज़हिद द्वारा कहे अनुसार राजनीतिक वार्ता के माध्यम से किया जाएगा। यह स्थिति UMNO से संबंधित है और राज्य में शासन से संबंधित है। यह दावा मलेशियाई समाचार आउटलेट, मलय मेल द्वारा रिपोर्ट किया गया है।",
+        "analysis": "आंशिक रूप से सच्चा निर्णय दिया जाता है क्योंकि ज़हिद के राजनीतिक वार्ता के माध्यम से संकट को हल करने के बयान की रिपोर्ट की जाती है, लेकिन दावे में परिणाम या वार्ता के विशिष्ट विवरण को पूरी तरह से सत्यापित करने के लिए कोई ठोस प्रमाण नहीं दिया जाता है। बयान को एक इरादा या योजना के रूप में देखा जा सकता है, न कि एक पुष्ट समाधान के रूप में। संदर्भ एक चल रही स्थिति का सुझाव देता है जो विकसित हो सकती है, और आगे के विवरण के बिना, दावा आंशिक रूप से सत्यापित रहता है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:35:04.251Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372502950",
+    "title": "Changing MACC chief not enough, wider reforms still needed, says Malaysian Bar",
+    "summary": "The Malaysian Bar has stated that changing the MACC chief is not enough and wider reforms are still needed. This statement was made in response to the appointment of a new MACC chief. The Malaysian Bar is pushing for more comprehensive reforms to address corruption.",
+    "category": "Corruption",
+    "party": "UNSPECIFIED",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/changing-macc-chief-not-enough-wider-reforms-still-needed-says-malaysian-bar/217969",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on a statement from the Malaysian Bar, which is a professional organization that represents lawyers in Malaysia. The statement is a call for further reforms beyond the change in leadership at the MACC, indicating a desire for systemic changes to combat corruption. The statement does not seem to be politically motivated but rather focused on the issue of corruption and the need for reform. The source of the information is a reputable news outlet, Malay Mail, which adds to the credibility of the claim.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The statement from the Malaysian Bar is focused on the need for reforms to address corruption, without taking a political stance or promoting a specific political agenda.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "Menukar ketua SPRM tidak cukup, reformasi yang lebih luas masih diperlukan, kata Badan Peguam Malaysia",
+        "summary": "Badan Peguam Malaysia telah menyatakan bahawa menukar ketua SPRM tidak cukup dan reformasi yang lebih luas masih diperlukan. Kenyataan ini dibuat sebagai tindak balas kepada pelantikan ketua SPRM yang baru. Badan Peguam Malaysia menyokong reformasi yang lebih menyeluruh untuk menangani rasuah.",
+        "analysis": "Tuntutan ini berdasarkan kenyataan dari Badan Peguam Malaysia, yang merupakan organisasi profesional yang mewakili peguam di Malaysia. Kenyataan ini merupakan seruan untuk reformasi lebih lanjut di luar perubahan kepemimpinan di SPRM, menunjukkan keinginan untuk perubahan sistemik untuk memerangi rasuah. Kenyataan ini tidak tampaknya memiliki motivasi politik tetapi lebih berfokus pada isu rasuah dan keperluan reformasi. Sumber informasi ini adalah outlet berita yang bereputasi, Malay Mail, yang menambah kredibilitas tuntutan ini."
+      },
+      "hi": {
+        "title": "एमएसीसी प्रमुख को बदलना पर्याप्त नहीं, व्यापक सुधार अभी भी आवश्यक है, मलेशियाई बार कहते हैं",
+        "summary": "मलेशियाई बार ने कहा है कि एमएसीसी प्रमुख को बदलना पर्याप्त नहीं है और व्यापक सुधार अभी भी आवश्यक हैं। यह बयान एक नए एमएसीसी प्रमुख की नियुक्ति के जवाब में दिया गया था। मलेशियाई बार भ्रष्टाचार का सामना करने के लिए व्यापक सुधार की मांग कर रहा है।",
+        "analysis": "यह दावा मलेशियाई बार के बयान पर आधारित है, जो मलेशिया में वकीलों का प्रतिनिधित्व करने वाला एक पेशेवर संगठन है। यह बयान एमएसीसी में नेतृत्व परिवर्तन से परे आगे के सुधार का आह्वान है, जो भ्रष्टाचार से लड़ने के लिए सिस्टम में बदलाव की इच्छा को दर्शाता है। यह बयान राजनीतिक रूप से प्रेरित नहीं लगता है, बल्कि भ्रष्टाचार के मुद्दे और सुधार की आवश्यकता पर केंद्रित है। जानकारी का स्रोत एक विश्वसनीय समाचार आउटलेट, मलय मेल, है, जो दावे की विश्वसनीयता को बढ़ाता है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:35:02.950Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372453681",
+    "title": "Anwar: Business as usual for N. Sembilan MB Aminuddin amid political turmoil",
+    "summary": "Prime Minister Datuk Seri Anwar Ibrahim stated that the Menteri Besar of Negeri Sembilan, Datuk Seri Aminuddin, will continue with business as usual despite the current political turmoil. This statement was made by Anwar Ibrahim himself. The context of this claim is related to the governance of Negeri Sembilan.",
+    "category": "Governance",
+    "party": "PKR",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/anwar-business-as-usual-for-n-sembilan-mb-aminuddin-amid-political-turmoil/217972",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is deemed true as it is a direct quote from Prime Minister Anwar Ibrahim, and there is no apparent reason to doubt its authenticity. The statement is also specific and verifiable through news sources such as Malay Mail. Furthermore, the claim does not contain any inherently misleading or false information. The instruction from Anwar Ibrahim to Aminuddin to continue with business as usual suggests a sense of stability and continuity in the state's governance.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The statement is a direct quote from the Prime Minister and does not contain any emotive language or value judgments that could indicate bias.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:34:13.681Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372445125",
+    "title": "Pemuda DAP gesa PH kaji semula kerjasama dengan BN",
+    "summary": "Pemuda DAP is urging Pakatan Harapan (PH) to re-evaluate its cooperation with Barisan Nasional (BN) and is also calling on BN Chairman Zahid Hamidi to intervene responsibly to ease the current controversy. The statement reflects internal party dynamics and coalition considerations within the Malaysian political landscape. This development suggests tensions or disagreements between components of the opposition and the ruling coalition.",
+    "category": "Governance",
+    "party": "DAP",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/pemuda-dap-gesa-ph-kaji-semula-kerjasama-dengan-bn",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on a report from Free Malaysia Today, a known news source in Malaysia, which suggests that the information is likely accurate. Pemuda DAP's call for PH to reassess its relationship with BN indicates potential discord or strategic reevaluation within the opposition. The involvement of specific party leaders and the mention of BN and PH imply that the statement is a genuine reflection of current political maneuverings. The context provided does not inherently suggest any falsehood or significant manipulation of facts.",
+    "biasAssessment": {
+      "overallBias": "pro_pembangkang",
+      "justification": "The statement reflects the opposition's (Pakatan Harapan) internal dynamics and its relationship with another major political entity (Barisan Nasional), which may indicate a bias towards the opposition's perspective.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "Pemuda DAP gesa PH kaji semula kerjasama dengan BN",
+        "summary": "Pemuda DAP mendesak Pakatan Harapan (PH) untuk menilai semula kerjasama dengan Barisan Nasional (BN) dan juga menyeru Pengerusi BN, Zahid Hamidi campur tangan secara bertanggungjawab untuk meredakan kontroversi semasa. Kenyataan ini mencerminkan dinamika parti dalam dan pertimbangan pakatan dalam landskap politik Malaysia. Perkembangan ini menunjukkan ketegangan atau perselisihan antara komponen pembangkang dan pakatan pemerintah.",
+        "analysis": "Tuntutan ini berdasarkan laporan dari Free Malaysia Today, sebuah sumber berita yang dikenali di Malaysia, yang menyiratkan bahawa maklumat tersebut mungkin tepat. Seruan Pemuda DAP kepada PH untuk menilai semula hubungannya dengan BN menunjukkan kemungkinan perselisihan atau penilaian semula strategi dalam kalangan pembangkang. Penglibatan pemimpin parti tertentu dan penyebutan BN serta PH menyiratkan bahawa kenyataan ini merupakan refleksi yang tulen dari manuver politik semasa. Konteks yang diberikan tidak secara inheren menyiratkan sebarang kepalsuan atau manipulasi fakta yang ketara."
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:34:05.125Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372443498",
+    "title": "Malaysia has explained excess capacity, forced labour claims to US, says Johari",
+    "summary": "Malaysian Investment, Trade and Industry Minister Johari Ghani claims that Malaysia has explained excess capacity and forced labor claims to the US. The context of this claim is related to Malaysia's compliance with regulations. However, the details of these explanations and the US response are not provided.",
+    "category": "Governance",
+    "party": "UNSPECIFIED",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/malaysia-has-explained-excess-capacity-forced-labour-claims-to-us-says-johari",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is partially true as it is based on a statement from a government minister, but the lack of specific details about the explanations provided to the US and the outcome of these discussions limits the claim's verifiability. The statement seems to aim at reassuring about Malaysia's compliance with regulations, but without concrete evidence or further clarification, the claim remains partially true. The source of the information is a news article from Free Malaysia Today, which does not provide enough depth to fully verify the claim.",
+    "biasAssessment": {
+      "overallBias": "pro_kerajaan",
+      "justification": "The claim presents the government's action in a positive light without providing critical analysis or opposition views, indicating a bias towards the government.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {
+      "ms": {
+        "title": "Malaysia telah menjelaskan kapasiti berlebihan, dakwaan buruh paksa kepada AS, kata Johari",
+        "summary": "Menteri Pelaburan, Perdagangan dan Industri Malaysia Johari Ghani mendakwa Malaysia telah menjelaskan kapasiti berlebihan dan dakwaan buruh paksa kepada AS. Konteks dakwaan ini berkaitan dengan pematuhan Malaysia terhadap peraturan. Walau bagaimanapun, butiran-butiran penjelasan ini dan respons AS tidak disediakan.",
+        "analysis": "Dakwaan ini sebahagiannya benar kerana berdasarkan kenyataan dari seorang menteri kerajaan, tetapi kekurangan butiran khusus mengenai penjelasan yang diberikan kepada AS dan hasil perbincangan ini membatasi verifiabiliti dakwaan. Kenyataan ini nampaknya bertujuan untuk menenangkan mengenai pematuhan Malaysia terhadap peraturan, tetapi tanpa bukti konkrit atau penjelasan lanjut, dakwaan ini kekal sebahagiannya benar. Sumber maklumat ini adalah artikel berita dari Free Malaysia Today, yang tidak menyediakan kedalaman yang cukup untuk sepenuhnya mengesahkan dakwaan."
+      },
+      "hi": {
+        "title": "जोहारी का कहना है कि मलेशिया ने अमेरिका को अधिक क्षमता और जबरन श्रम के दावों की व्याख्या की है",
+        "summary": "मलेशिया के निवेश, व्यापार और उद्योग मंत्री जोहारी घानी का दावा है कि मलेशिया ने अमेरिका को अधिक क्षमता और जबरन श्रम के दावों की व्याख्या की है। इस दावे का संदर्भ नियमों के अनुपालन से संबंधित है, लेकिन अमेरिका को दी गई व्याख्या और अमेरिका की प्रतिक्रिया के विवरण नहीं दिए गए हैं।",
+        "analysis": "दावा आंशिक रूप से सच है क्योंकि यह एक सरकारी मंत्री के बयान पर आधारित है, लेकिन अमेरिका को दी गई व्याख्या और चर्चा के परिणाम के बारे में विशिष्ट विवरण की कमी दावे की सत्यता को सीमित करती है। बयान मलेशिया के नियमों के अनुपालन के बारे में आश्वस्त करने के लिए लगता है, लेकिन ठोस सबूत या आगे के स्पष्टीकरण के बिना, दावा आंशिक रूप से सच रहता है। जानकारी का स्रोत फ्री मलेशिया टुडे का एक समाचार लेख है, जो दावे को पूरी तरह से सत्यापित करने के लिए पर्याप्त गहराई प्रदान नहीं करता है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:34:03.498Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372389374",
+    "title": "Umno denies Perikatan pact to topple N. Sembilan MB Aminuddin, insists no takeover deal",
+    "summary": "Negeri Sembilan Umno has denied any conspiracy or prior arrangement with Perikatan Nasional to topple the Negeri Sembilan Menteri Besar Aminuddin Harun. The denial comes amidst speculation of a potential takeover deal. The claim is reported by Malay Mail, citing a statement from Negeri Sembilan Umno.",
+    "category": "Governance",
+    "party": "UMNO",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/umno-denies-perikatan-pact-to-topple-n-sembilan-mb-aminuddin-insists-no-takeover-deal/217977",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim's truthfulness cannot be verified with high confidence due to the lack of concrete evidence and the reliance on a denial statement from Negeri Sembilan Umno. While the statement is reported by a reputable news source, Malay Mail, the absence of corroborating evidence or direct confirmation from Perikatan Nasional makes it challenging to assess the claim's accuracy. Furthermore, the political context and potential motivations behind the denial statement are unclear, adding to the uncertainty.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The claim is presented in a neutral manner, focusing on reporting the denial statement from Negeri Sembilan Umno without taking a clear stance or promoting a particular agenda.",
+      "governmentClaimsChecked": false,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my or other independent fact-checking sources",
+    "confidence": "low",
+    "translations": {
+      "ms": {
+        "title": "Umno menafikan pakatan Perikatan untuk menjatuhkan MB N. Sembilan Aminuddin, tetap tiada perjanjian pengambilalihan",
+        "summary": "Umno Negeri Sembilan menafikan sebarang konspirasi atau perjanjian awal dengan Perikatan Nasional untuk menjatuhkan Menteri Besar Negeri Sembilan Aminuddin Harun. Penafian itu datang di tengah-tengah spekulasi mengenai perjanjian pengambilalihan berpotensi. Tuntutan itu dilaporkan oleh Malay Mail, memetik kenyataan dari Umno Negeri Sembilan.",
+        "analysis": "Kebenaran tuntutan itu tidak dapat disahkan dengan keyakinan tinggi disebabkan kekurangan bukti konkrit dan bergantung pada kenyataan penafian dari Umno Negeri Sembilan. Walaupun kenyataan itu dilaporkan oleh sumber berita yang dipercayai, Malay Mail, ketiadaan bukti sokongan atau pengesahan langsung dari Perikatan Nasional menjadikannya sukar untuk menilai ketepatan tuntutan. Selain itu, konteks politik dan motivasi di sebalik kenyataan penafian itu tidak jelas, menambahkan ketidakpastian."
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:33:09.374Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372383892",
+    "title": "Anwar: N. Sembilan assembly dissolution ‘not an issue’ for now amid crisis",
+    "summary": "Prime Minister Datuk Seri Anwar Ibrahim stated that the dissolution of the Negeri Sembilan state assembly is not an issue for now amid the current crisis. The statement was made in response to speculation about the assembly's dissolution. Anwar Ibrahim is the leader of PKR, a key component of the Pakatan Harapan coalition.",
+    "category": "Governance",
+    "party": "PKR",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/anwar-n-sembilan-assembly-dissolution-not-an-issue-for-now-amid-crisis/217979",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is deemed true as it is supported by a direct quote from Prime Minister Anwar Ibrahim, as reported by Malay Mail. The context of the statement is clear, and there is no apparent manipulation of facts. The report provides a straightforward account of Anwar's response to speculation about the Negeri Sembilan state assembly dissolution, without introducing any misleading information. Given the source is a reputable news outlet, the information can be considered reliable.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report presents a factual account of Anwar Ibrahim's statement without any emotional appeal or loaded language, indicating a neutral stance.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "Anwar: Pembubaran dewan N. Sembilan 'tidak menjadi isu' untuk sekarang di tengah krisis",
+        "summary": "Perdana Menteri Datuk Seri Anwar Ibrahim menyatakan bahawa pembubaran dewan Negeri Sembilan tidak menjadi isu untuk sekarang di tengah krisis semasa. Kenyataan itu dibuat sebagai respons terhadap spekulasi tentang pembubaran dewan. Anwar Ibrahim adalah ketua PKR, komponen utama pakatan Pakatan Harapan.",
+        "analysis": "Tuntutan itu dianggap benar kerana disokong oleh petikan langsung dari Perdana Menteri Anwar Ibrahim, seperti yang dilaporkan oleh Malay Mail. Konteks kenyataan itu jelas, dan tidak ada manipulasi fakta yang jelas. Laporan itu memberikan akaun langsung tentang respons Anwar terhadap spekulasi tentang pembubaran dewan Negeri Sembilan, tanpa memperkenalkan sebarang maklumat yang menyesatkan. Mengikut sumber berita yang dipercayai, maklumat itu boleh dianggap boleh dipercayai."
+      },
+      "hi": {
+        "title": "अनवर: संकट के बीच नेरी सेम्बिलन विधानसभा के विघटन 'मुद्दा नहीं'",
+        "summary": "प्रधान मंत्री दातुक सेरी अनवर इब्राहिम ने कहा कि नेरी सेम्बिलन राज्य विधानसभा का विघटन इस समय संकट के बीच मुद्दा नहीं है। यह बयान विधानसभा के विघटन के बारे में अटकलों के जवाब में दिया गया था। अनवर इब्राहिम पीकेआर के नेता हैं, जो पाकatan हरपन गठबंधन का एक प्रमुख घटक है।",
+        "analysis": "दावा सच माना जाता है क्योंकि यह प्रधान मंत्री अनवर इब्राहिम के एक सीधे उद्धरण द्वारा समर्थित है, जैसा कि माले मेल द्वारा रिपोर्ट किया गया है। बयान का संदर्भ स्पष्ट है, और तथ्यों के किसी भी स्पष्ट हेरफेर के संकेत नहीं हैं। रिपोर्ट अनवर की प्रतिक्रिया का एक सीधा लेखा देती है नेरी सेम्बिलन राज्य विधानसभा के विघटन के बारे में अटकलों के लिए, किसी भी भ्रामक जानकारी को पेश किए बिना। एक विश्वसनीय समाचार आउटलेट के स्रोत को देखते हुए, जानकारी विश्वसनीय मानी जा सकती है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:33:03.892Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372382826",
+    "title": "Umno&#8217;s 4 Negeri Sembilan exco members clear desks, return assets",
+    "summary": "Four Negeri Sembilan state executive councillors from UMNO have cleared their desks and returned state assets, following the withdrawal of their support for the Menteri Besar. This move is seen as an automatic resignation from their positions as executive councillors. The decision was made by the state UMNO chief.",
+    "category": "Governance",
+    "party": "UMNO",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/umnos-4-negeri-sembilan-exco-members-clear-desks-return-assets",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is reported by a reputable news source, Free Malaysia Today (FMT), which provides a clear and factual account of the events. The state UMNO chief's statement that the withdrawal of support for the Menteri Besar means automatic resignation as executive councillors is a key factor in this verdict. There is no apparent contradiction or misleading information in the report, supporting the conclusion that the claim is true.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report presents a factual account of the events without any emotional or sensational language, indicating a neutral bias. Both government and opposition claims are treated with the same level of scrutiny in this context.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking platforms could verify this claim",
+    "confidence": "high",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:33:02.826Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372333348",
+    "title": "2 wanita ditahan, bunga ganja RM14.7 juta dirampas",
+    "summary": "Two women were arrested and RM14.7 million worth of cannabis was seized in two separate cases, with police stating that the cases are unrelated and likely involve different syndicates. The report does not directly implicate PAS but mentions the incident in the context of governance. The cases highlight the ongoing efforts to combat drug trafficking in Malaysia.",
+    "category": "Governance",
+    "party": "UNSPECIFIED",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/2-wanita-ditahan-bunga-ganja-rm14-7-juta-dirampas",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on a report from Free Malaysia Today (FMT), a reputable news source in Malaysia. The article provides specific details about the arrests and the value of the seized cannabis, which suggests that the information is factual. There is no apparent reason to doubt the accuracy of the report, and the language used is neutral and objective. The mention of PAS is incidental and does not imply any direct involvement of the party in the incidents.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The language used in the report is objective and does not exhibit any bias towards or against any political party.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "2 wanita ditahan, bunga ganja RM14.7 juta dirampas",
+        "summary": "Dua wanita ditahan dan bunga ganja bernilai RM14.7 juta dirampas dalam dua kes berasingan, dengan pihak polis menyatakan bahawa kes-kes tersebut tidak berkaitan dan mungkin melibatkan sindiket yang berbeza. Laporan tersebut tidak secara langsung mengaitkan PAS tetapi menyebut kejadian tersebut dalam konteks tadbir urus. Kes-kes tersebut menekankan usaha berterusan untuk memerangi pengedaran dadah di Malaysia.",
+        "analysis": "Tuntutan tersebut berdasarkan laporan dari Free Malaysia Today (FMT), sebuah sumber berita yang bereputasi di Malaysia. Artikel tersebut menyediakan butiran-butiran khusus tentang penahanan dan nilai bunga ganja yang dirampas, yang menunjukkan bahawa maklumat tersebut adalah fakta. Tiada sebab yang jelas untuk meragui ketepatan laporan tersebut, dan bahasa yang digunakan adalah neutral dan objektif. Penyebutan PAS adalah insidental dan tidak mengimplikasikan sebarang penglibatan langsung parti tersebut dalam kejadian-kejadian tersebut."
+      },
+      "hi": {
+        "title": "2 महिलाओं को गिरफ्तार किया गया, 14.7 मिलियन रिंगिट की बंग गांजा जब्त की गई",
+        "summary": "दो महिलाओं को गिरफ्तार किया गया और दो अलग-अलग मामलों में 14.7 मिलियन रिंगिट की बंग गांजा जब्त की गई, जिसमें पुलिस ने कहा कि मामले असंबंधित हैं और अलग-अलग सिंडिकेट शामिल हो सकते हैं। रिपोर्ट सीधे तौर पर पास को शामिल नहीं करती है, लेकिन शासन के संदर्भ में घटना का उल्लेख करती है। मामले मलेशिया में मादक द्रव्य तस्करी के खिलाफ चल रहे प्रयासों को रेखांकित करते हैं।",
+        "analysis": "दावा मलेशिया में एक प्रतिष्ठित समाचार स्रोत फ्री मलेशिया टुडे (एफएमटी) की रिपोर्ट पर आधारित है। लेख गिरफ्तारी और जब्त की गई बंग गांजा के मूल्य के बारे में विशिष्ट विवरण प्रदान करता है, जो यह सुझाव देता है कि जानकारी वास्तविक है। रिपोर्ट की सटीकता पर संदेह करने का कोई स्पष्ट कारण नहीं है, और उपयोग की जाने वाली भाषा तटस्थ और वस्तुनिष्ठ है। पास का उल्लेख आकस्मिक है और घटनाओं में पार्टी की किसी भी प्रत्यक्ष भागीदारी का संकेत नहीं देता है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:32:13.348Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372326072",
+    "title": "Muhyiddin’s trial: Mamfor’s RM19.5m ‘donations’ in 29 cheques to Bersatu flagged as suspicious, unusual to give money to political party, banker says",
+    "summary": "The claim reports on a trial involving Muhyiddin and a company called Mamfor Sdn Bhd, which allegedly made suspicious donations of RM19.5 million to the BERSATU party through 29 cheques. A banker has flagged these transactions as unusual, given their frequency and size. The context suggests a legal investigation into potential wrongdoing.",
+    "category": "Legal",
+    "party": "BERSATU",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/muhyiddins-trial-mamfors-rm195m-donations-in-29-cheques-to-bersatu-flagged-as-suspicious-unusual-to-give-money-to-political-party-banker-says/217983",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim appears to be based on a real event, as it references a specific trial and quotes a banker's testimony. However, without access to the full trial transcript or more detailed information about the transactions, it's challenging to verify all aspects of the claim. The banker's statement about the unusual nature of the donations provides some evidence, but the claim's truthfulness depends on the accuracy of the reported testimony and the context of the trial.",
+    "biasAssessment": {
+      "overallBias": "pro_pembangkang",
+      "justification": "The framing of the claim, focusing on suspicious donations to BERSATU, a party in the Perikatan Nasional coalition, may indicate a bias towards the opposition's narrative. However, the report is based on a banker's testimony in a trial, which suggests an attempt to present factual information.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "mild"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:32:06.072Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372323038",
+    "title": "Jalaluddin nafi mahu jadi MB N Sembilan",
+    "summary": "Jalaluddin, the UMNO state chief, denied wanting to become the Menteri Besar of Negeri Sembilan, stating that the decision lies with Tuanku Muhriz Tuanku Munawir. This claim is reported by Free Malaysia Today. The statement appears to be a clarification on Jalaluddin's stance regarding the position.",
+    "category": "Governance",
+    "party": "UMNO",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/jalaluddin-nafi-mahu-jadi-mb-n-sembilan",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is deemed true based on the report from Free Malaysia Today, which quotes Jalaluddin's statement. There is no apparent contradiction or misleading information in the report. The context suggests that Jalaluddin is deferring the decision to Tuanku Muhriz Tuanku Munawir, which implies a sense of humility and respect for the monarch's authority. The report does not contain any obvious biases or fallacies that would suggest the claim is false or misleading.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report presents a straightforward quote from Jalaluddin without any loaded language or emotional appeals, suggesting a neutral tone.",
+      "governmentClaimsChecked": false,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "Jalaluddin nafi mahu jadi MB N Sembilan",
+        "summary": "Jalaluddin, ketua UMNO negeri, menafikan hasrat untuk menjadi Menteri Besar Negeri Sembilan, dengan menyatakan bahawa keputusan itu terletak pada Tuanku Muhriz Tuanku Munawir. Dakwaan ini dilaporkan oleh Free Malaysia Today. Kenyataan tersebut berupa penjelasan mengenai pendirian Jalaluddin berhubung jawatan tersebut.",
+        "analysis": "Dakwaan tersebut dianggap benar berdasarkan laporan dari Free Malaysia Today, yang mengutip kenyataan Jalaluddin. Tidak ada kontradiksi atau maklumat yang menyesatkan yang jelas dalam laporan tersebut. Konteks menyiratkan bahawa Jalaluddin menyerahkan keputusan kepada Tuanku Muhriz Tuanku Munawir, yang menyiratkan rasa rendah hati dan hormat terhadap kuasa raja. Laporan tersebut tidak mengandungi bias atau kekeliruan yang jelas yang menyiratkan dakwaan tersebut adalah palsu atau menyesatkan."
+      },
+      "hi": {
+        "title": "जलालुद्दीन ने नेगेरी सेम्बिलान के मुख्यमंत्री बनने से इनकार किया",
+        "summary": "जलालुद्दीन, UMNO के राज्य प्रमुख, ने नेगेरी सेम्बिलान के मुख्यमंत्री बनने की इच्छा से इनकार किया, यह कहते हुए कि निर्णय तुआनकु मुह्रिज तुआनकु मुनाविर के अधीन है। यह दावा फ्री मलेशिया टुडे द्वारा रिपोर्ट किया गया है। बयान जलालुद्दीन के रुख के बारे में स्पष्टीकरण के रूप में प्रतीत होता है।",
+        "analysis": "दावा फ्री मलेशिया टुडे की रिपोर्ट के आधार पर सच माना जाता है, जिसमें जलालुद्दीन के बयान को उद्धृत किया गया है। रिपोर्ट में कोई स्पष्ट विरोधाभास या भ्रामक जानकारी नहीं है। संदर्भ से पता चलता है कि जलालुद्दीन निर्णय तुआनकु मुह्रिज तुआनकु मुनाविर को सौंप रहे हैं, जो राजा के अधिकार के प्रति विनम्रता और सम्मान को दर्शाता है। रिपोर्ट में कोई स्पष्ट पूर्वाग्रह या त्रुटि नहीं है जो यह सुझाव दे कि दावा झूठा या भ्रामक है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:32:03.038Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372269249",
+    "title": "Court hears of repeated large transfers totalling RM19.5mil to Bersatu&#8217;s account",
+    "summary": "The court has heard testimony about large transfers totalling RM19.5 million to BERSATU's account, with an assistant bank manager testifying that 29 banker's cheques marked 'donation' were issued to the party between May 12, 2021, and Nov 16, 2022. This is part of a legal case involving BERSATU. The transfers were made by Mamfor Sdn Bhd.",
+    "category": "Legal",
+    "party": "BERSATU",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/court-hears-of-repeated-large-transfers-totalling-rm19-5mil-to-bersatu-account",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on testimony given in court and reported by a reputable news source, Free Malaysia Today. The specific details, including the amount and the time frame of the transfers, suggest that the claim is factual. The testimony of the assistant bank manager provides direct evidence of the transactions, supporting the claim's truthfulness. The fact that this information is being presented in a court of law adds to the credibility of the claim.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The reporting is based on court testimony and does not exhibit language that overtly supports or criticizes any political party, maintaining a neutral stance.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking platforms could verify this claim based on court records and financial transactions.",
+    "confidence": "high",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:31:09.249Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372264508",
+    "title": "RM19.5 juta dimasuk ke akaun Bersatu melalui 29 transaksi kerap, kata saksi",
+    "summary": "A bank assistant manager testified that Bersatu's account received RM19.5 million through 29 transactions labeled as 'donations' between May 12, 2021, and November 16, 2022. The transactions were made via 29 banker's checks from Mamfor Sdn Bhd. The claim is based on a testimony and may require further verification to confirm its accuracy.",
+    "category": "Governance",
+    "party": "BERSATU",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/rm19-5-juta-dimasuk-ke-akaun-bersatu-melalui-29-transaksi-kerap-kata-saksi",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim appears to be based on a testimony from a bank assistant manager, which provides some evidence for the transactions. However, without access to the bank records or further confirmation, the claim's accuracy cannot be fully verified. The fact that the transactions were labeled as 'donations' suggests that they may be legitimate, but the large amount and frequent transactions raise questions about the source and purpose of the funds.",
+    "biasAssessment": {
+      "overallBias": "pro_pembangkang",
+      "justification": "The claim appears to be critical of Bersatu, a party in the Perikatan Nasional coalition, which may indicate a bias towards the opposition.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my or other independent fact-checking sources",
+    "confidence": "medium",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:31:04.508Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372263375",
+    "title": "Ex-Johor Bersatu associate chief hurt after discharging firearm at Kota Tinggi shooting range",
+    "summary": "The former Johor Bersatu associate chief, Datuk Tan Lek Khang, was injured after discharging a firearm at a shooting range in Kota Tinggi. The incident was reported by Malay Mail, a Malaysian news outlet. The report does not provide further details on the circumstances surrounding the incident.",
+    "category": "Governance",
+    "party": "BERSATU",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/ex-johor-bersatu-associate-chief-hurt-after-discharging-firearm-at-kota-tinggi-shooting-range/218026",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "This claim is deemed true as it is based on a report from a reputable news source, Malay Mail. The report provides specific details about the incident, including the location and the individual involved. There is no apparent reason to doubt the accuracy of the report, and thus the claim is considered true. The fact that the report comes from a news outlet suggests that the information has been verified through standard journalistic practices.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report is a factual account of an incident without any apparent bias or emotional language.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "low",
+    "region": "Johor",
+    "factCheckRef": "Malay Mail",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "Bekas timbalan ketua Bersatu Johor cedera selepas menembak senjata api di gelanggang menembak Kota Tinggi",
+        "summary": "Bekas timbalan ketua Bersatu Johor, Datuk Tan Lek Khang, cedera selepas menembak senjata api di gelanggang menembak di Kota Tinggi. Kejadian itu dilaporkan oleh Malay Mail, sebuah saluran berita Malaysia. Laporan itu tidak memberikan butiran lanjut mengenai keadaan sekitar kejadian itu.",
+        "analysis": "Tuntutan ini dianggap benar kerana berdasarkan laporan dari sumber berita yang boleh dipercayai, Malay Mail. Laporan itu memberikan butiran khusus mengenai kejadian itu, termasuk lokasi dan individu yang terlibat. Tiada sebab yang jelas untuk meragui ketepatan laporan itu, dan oleh itu tuntutan itu dianggap benar. Fakta bahawa laporan itu datang dari saluran berita menunjukkan bahawa maklumat itu telah disahkan melalui amalan jurnalistik standard."
+      },
+      "hi": {
+        "title": "जोहोर बर्सातु के पूर्व संबद्ध प्रमुख को कोटा तिंगी शूटिंग रेंज में आग्नेयास्त्र चलाने के बाद चोट",
+        "summary": "जोहोर बर्सातु के पूर्व संबद्ध प्रमुख, डेटुक तन लेक खांग, को कोटा तिंगी में एक शूटिंग रेंज में आग्नेयास्त्र चलाने के बाद चोट लगी। यह घटना मलय मेल, एक मलेशियाई समाचार आउटलेट द्वारा रिपोर्ट की गई थी। रिपोर्ट में घटना के आसपास की परिस्थितियों के बारे में आगे कोई विवरण नहीं दिया गया है।",
+        "analysis": "यह दावा सच माना जाता है क्योंकि यह एक विश्वसनीय समाचार स्रोत, मलय मेल की रिपोर्ट पर आधारित है। रिपोर्ट में घटना के बारे में विशिष्ट विवरण दिए गए हैं, जिसमें स्थान और घटना में शामिल व्यक्ति शामिल है। रिपोर्ट की सटीकता पर संदेह करने का कोई स्पष्ट कारण नहीं है, और इसलिए दावे को सच माना जाता है। यह तथ्य कि रिपोर्ट एक समाचार आउटलेट से आती है, यह दर्शाता है कि जानकारी मानक पत्रकारिता अभ्यास के माध्यम से सत्यापित की गई है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:31:03.375Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372213152",
+    "title": "New report confirms Sabah as carbon-negative state, opens door to climate cash",
+    "summary": "A report allegedly confirms Sabah as a carbon-negative state, which could lead to access to climate change funding. The claim is based on an article from Malay Mail. The article does not specify which party is involved in the confirmation process.",
+    "category": "Governance",
+    "party": "UNSPECIFIED",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/new-report-confirms-sabah-as-carbon-negative-state-opens-door-to-climate-cash/217989",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim appears to be based on a news article from a reputable source, Malay Mail. However, without access to the full report or more information about the confirmation process, it is difficult to verify the claim. The article does not provide enough context about the parties involved or the methodology used to determine Sabah's carbon-negative status.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The claim is based on a news article and does not appear to promote a specific party's agenda.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Sabah",
+    "factCheckRef": "Sebenarnya.my or other environmental fact-checking sources",
+    "confidence": "medium",
+    "translations": {
+      "ms": {
+        "title": "Laporan baru mengesahkan Sabah sebagai negeri karbon-negatif, membuka pintu kepada dana perubahan iklim",
+        "summary": "Satu laporan mendakwa mengesahkan Sabah sebagai sebuah negeri karbon-negatif, yang boleh membawa kepada akses kepada dana perubahan iklim. Dakwaan ini berdasarkan sebuah artikel dari Malay Mail. Artikel tersebut tidak menyatakan parti mana yang terlibat dalam proses pengesahan.",
+        "analysis": "Dakwaan ini nampaknya berdasarkan sebuah artikel berita dari sumber yang dipercayai, Malay Mail. Walau bagaimanapun, tanpa akses kepada laporan penuh atau lebih banyak maklumat tentang proses pengesahan, sukar untuk mengesahkan dakwaan tersebut. Artikel tersebut tidak menyediakan konteks yang cukup tentang pihak yang terlibat atau metodologi yang digunakan untuk menentukan status karbon-negatif Sabah."
+      },
+      "hi": {
+        "title": "नई रिपोर्ट में साबित हुआ साबाह कार्बन-नकारात्मक राज्य, जलवायु परिवर्तन निधि तक पहुंच खुली",
+        "summary": "एक रिपोर्ट कथित तौर पर साबाह को कार्बन-नकारात्मक राज्य के रूप में पुष्टि करती है, जिससे जलवायु परिवर्तन निधि तक पहुंच संभव हो सकती है। यह दावा मेले मेल की एक लेख पर आधारित है। लेख में यह नहीं बताया गया है कि कौन सी पार्टी पुष्टि प्रक्रिया में शामिल है।",
+        "analysis": "यह दावा कथित तौर पर एक विश्वसनीय स्रोत, मेले मेल की एक समाचार लेख पर आधारित है। हालांकि, पूरी रिपोर्ट या पुष्टि प्रक्रिया के बारे में अधिक जानकारी के बिना, यह दावा को सत्यापित करना मुश्किल है। लेख में शामिल पक्षों या साबाह की कार्बन-नकारात्मक स्थिति को निर्धारित करने के लिए उपयोग की जाने वाली विधि के बारे में पर्याप्त संदर्भ नहीं दिया गया है।"
+      },
+      "zh": {
+        "title": "新报告确认沙巴州为碳负州，打开气候资金的大门",
+        "summary": "一份报告据称确认沙巴州为碳负州，这可能会带来获得气候变化资金的机会。该说法基于《马来邮报》的文章。文章没有具体说明哪个党派参与了确认过程。",
+        "analysis": "该说法似乎基于可靠来源《马来邮报》的新闻文章。然而，没有获得完整报告或更多关于确认过程的信息，很难验证该说法。文章没有提供足够的背景信息关于参与的党派或确定沙巴州碳负状态所使用的方法。"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:30:13.152Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372204432",
+    "title": "Umno seeks audience with Negeri Sembilan ruler",
+    "summary": "Negeri Sembilan Umno is seeking an audience with the Yang di-Pertuan Besar to inform about their withdrawal of support for the menteri besar. This move is related to the governance of Negeri Sembilan. The information is based on a report from Free Malaysia Today.",
+    "category": "Governance",
+    "party": "UMNO",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/umno-seeks-audience-with-negeri-sembilan-ruler",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on a news report from Free Malaysia Today, which is a reputable news source in Malaysia. The report states that Negeri Sembilan Umno wants to inform the Yang di-Pertuan Besar about their decision, indicating a genuine attempt to communicate their stance. There is no apparent reason to doubt the authenticity of this report, given the source and the context provided.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report is based on a factual event without any emotional or leading language that could indicate a bias towards any political stance.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking platforms could verify this claim for further confirmation.",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "Umno memohon audiens dengan Ruler Negeri Sembilan",
+        "summary": "Umno Negeri Sembilan memohon audiens dengan Yang di-Pertuan Besar untuk memaklumkan tentang pengeluaran sokongan mereka terhadap menteri besar. Langkah ini berkaitan dengan pentadbiran Negeri Sembilan. Maklumat ini berdasarkan laporan dari Free Malaysia Today.",
+        "analysis": "Tuntutan ini berdasarkan laporan berita dari Free Malaysia Today, yang merupakan sumber berita yang dipercayai di Malaysia. Laporan itu menyatakan bahawa Umno Negeri Sembilan ingin memaklumkan Yang di-Pertuan Besar tentang keputusan mereka, menunjukkan usaha yang tulen untuk menyampaikan pendirian mereka. Tiada sebab yang jelas untuk mempersoalkan kesahihan laporan ini, memandangkan sumber dan konteks yang diberikan."
+      },
+      "hi": {
+        "title": "उम्नो ने नेगेरी सेम्बिलान के शासक से मिलने का अनुरोध किया",
+        "summary": "नेगेरी सेम्बिलान उम्नो मुख्यमंत्री के लिए अपना समर्थन वापस लेने के बारे में सूचित करने के लिए यांग दी-पेर्तुआन बेसार से मिलने का अनुरोध कर रहा है। यह कदम नेगेरी सेम्बिलान के शासन से संबंधित है। यह जानकारी फ्री मलेशिया टुडे की एक रिपोर्ट पर आधारित है।",
+        "analysis": "यह दावा फ्री मलेशिया टुडे की एक समाचार रिपोर्ट पर आधारित है, जो मलेशिया में एक विश्वसनीय समाचार स्रोत है। रिपोर्ट में कहा गया है कि नेगेरी सेम्बिलान उम्नो अपने फैसले के बारे में यांग दी-पेर्तुआन बेसार को सूचित करना चाहता है, जो अपने रुख को संवाद करने के लिए एक वास्तविक प्रयास को दर्शाता है। दिए गए संदर्भ और स्रोत को देखते हुए इस रिपोर्ट की प्रामाणिकता पर संदेह करने का कोई स्पष्ट कारण नहीं है।"
+      },
+      "zh": {
+        "title": "巫统寻求与森美兰苏丹会面",
+        "summary": "森美兰巫统正在寻求与杨迪·伯特ゥ安大皇子会面，以便通知他关于撤回对州务大臣的支持的决定。这一举动与森美兰的治理有关。这些信息基于自由马来西亚今日报的报道。",
+        "analysis": "这一说法基于自由马来西亚今日报的新闻报道，这是一份在马来西亚具有可信度的新闻来源。报道称，森美兰巫统希望通知杨迪·伯特ゥ安大皇子关于他们的决定，表明他们真正尝试传达自己的立场。鉴于所提供的来源和背景，目前没有明显的理由怀疑这一报道的真实性。"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:30:04.432Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372202800",
+    "title": "Bicara kes Adun Pantai Jerejak cederakan isteri 18 Ogos",
+    "summary": "The claim reports on a court case involving a PAS assemblyman, Fahmi Zainol, who pleaded not guilty to charges of intentionally causing harm to his wife. The case is set to be heard on August 18. The report is based on a news article from Free Malaysia Today.",
+    "category": "Governance",
+    "party": "PAS",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/bicara-kes-adun-pantai-jerejak-cederakan-isteri-18-ogos",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim appears to be a factual report of a court case, but without access to the original court documents or further information, it is difficult to verify the accuracy of the claim. The report cites a reputable news source, Free Malaysia Today, which suggests that the claim may be true, but more evidence is needed to confirm. The claim does not contain any obvious biases or logical fallacies, but it is still important to approach the claim with skepticism and verify the information through multiple sources.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The claim is a factual report of a court case and does not contain any obvious biases or emotional language.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my or JomCheck",
+    "confidence": "low",
+    "translations": {
+      "ms": {
+        "title": "Bicara kes Adun Pantai Jerejak cederakan isteri 18 Ogos",
+        "summary": "Laporan ini melaporkan tentang kes mahkamah melibatkan seorang ahli Dewan Undangan Negeri PAS, Fahmi Zainol, yang telah membela diri tidak bersalah atas tuduhan menyebabkan kecederaan kepada isterinya. Kes ini akan didengar pada 18 Ogos. Laporan ini berdasarkan artikel berita dari Free Malaysia Today.",
+        "analysis": "Tuntutan ini kelihatan seperti laporan fakta tentang kes mahkamah, tetapi tanpa akses kepada dokumen mahkamah asal atau maklumat lanjut, sukar untuk mengesahkan ketepatan tuntutan. Laporan ini merujuk sumber berita yang dipercayai, Free Malaysia Today, yang menyiratkan bahawa tuntutan mungkin benar, tetapi lebih banyak bukti diperlukan untuk mengesahkannya. Tuntutan ini tidak mengandungi bias atau kelemahan logik yang jelas, tetapi masih penting untuk mendekati tuntutan dengan skeptis dan mengesahkan maklumat melalui pelbagai sumber."
+      },
+      "hi": {
+        "title": "18 अगस्त को पंताई जेरेजाक विधायक के मामले की सुनवाई",
+        "summary": "यह दावा एक अदालती मामले की रिपोर्ट है जिसमें पीएएस विधायक फहमी जैनोल ने अपनी पत्नी को जानबूझकर चोट पहुँचाने के आरोपों से इनकार किया है। यह मामला 18 अगस्त को सुनवाई के लिए तैयार है। यह रिपोर्ट फ्री मलेशिया टुडे के एक समाचार लेख पर आधारित है।",
+        "analysis": "यह दावा एक अदालती मामले की वास्तविक रिपोर्ट प्रतीत होता है, लेकिन मूल अदालती दस्तावेजों या आगे की जानकारी तक पहुँच के बिना, दावे की सटीकता को सत्यापित करना मुश्किल है। रिपोर्ट एक विश्वसनीय समाचार स्रोत, फ्री मलेशिया टुडे का हवाला देती है, जो सुझाव देती है कि दावा सच हो सकता है, लेकिन इसे पुष्टि करने के लिए अधिक साक्ष्य की आवश्यकता है। दावे में कोई स्पष्ट पूर्वाग्रह या तार्किक त्रुटियाँ नहीं हैं, लेकिन फिर भी यह महत्वपूर्ण है कि दावे को संदेह के साथ देखा जाए और कई स्रोतों के माध्यम से जानकारी को सत्यापित किया जाए।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:30:02.800Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372149618",
+    "title": "Aminuddin nafi poster tular exco baharu selepas Umno tarik sokongan",
+    "summary": "The claim involves the Negeri Sembilan Menteri Besar, Aminuddin, denying the existence of a viral poster related to new exco members after UMNO withdrew its support. The context suggests a political dispute within the state government. The claim is reported by Free Malaysia Today, citing Aminuddin's response to the poster as an attempt to tarnish the state government's image by playing on racial sentiments.",
+    "category": "Governance",
+    "party": "UMNO",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/aminuddin-nafi-poster-tular-exco-baharu-selepas-umno-tarik-sokongan",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim's truthfulness cannot be verified with high confidence due to the lack of direct evidence or confirmation from multiple sources. Aminuddin's statement, as reported, suggests a political maneuver but does not provide conclusive proof of the poster's existence or its intent. The situation involves UMNO's withdrawal of support, which could imply a complex political scenario. Without further information or corroboration, the claim remains unverified.",
+    "biasAssessment": {
+      "overallBias": "pro_pembangkang",
+      "justification": "The framing of the claim, focusing on UMNO's withdrawal of support and the denial of the poster, might lean towards an opposition perspective. However, this assessment is based on the information provided and might change with additional context.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "mild"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking platforms could potentially verify this claim",
+    "confidence": "low",
+    "translations": {
+      "ms": {
+        "title": "Aminuddin nafi poster tular exco baharu selepas UMNO tarik sokongan",
+        "summary": "Tuntutan ini melibatkan Menteri Besar Negeri Sembilan, Aminuddin, menafikan kewujudan poster tular berkaitan ahli-ahli exco baharu selepas UMNO menarik balik sokongannya. Konteks ini mencadangkan pertikaian politik dalam kerajaan negeri. Tuntutan ini dilaporkan oleh Free Malaysia Today, yang memetik kenyataan Aminuddin terhadap poster sebagai cubaan untuk merosakkan imej kerajaan negeri dengan memainkan sentimen perkauman.",
+        "analysis": "Kebenaran tuntutan ini tidak dapat disahkan dengan keyakinan tinggi disebabkan kekurangan bukti langsung atau pengesahan dari pelbagai sumber. Kenyataan Aminuddin, seperti yang dilaporkan, mencadangkan manuver politik tetapi tidak memberikan bukti kukuh tentang kewujudan poster atau niatnya. Keadaan ini melibatkan penarikan balik sokongan UMNO, yang boleh membayangkan senario politik yang kompleks. Tanpa maklumat lanjut atau pengesahan, tuntutan ini kekal tidak disahkan."
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:29:09.618Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372143907",
+    "title": "Teen nabbed for trespassing on LRT tracks for fun",
+    "summary": "A teenager was arrested for trespassing on LRT tracks for fun, but was later freed by authorities who decided not to charge him in court to avoid ruining his future. The incident was reported by Free Malaysia Today. The claim does not directly involve any political party, despite mentioning PAS.",
+    "category": "Legal",
+    "party": "UNSPECIFIED",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/teen-nabbed-for-trespassing-on-lrt-tracks-for-fun",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim appears to be a factual report of an incident, but without further information or context, it is difficult to verify the accuracy of the report or the motivations behind the authorities' decision not to charge the teenager. The mention of PAS seems unrelated to the incident itself. Therefore, the claim cannot be verified with high confidence.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report appears to be a straightforward account of an incident without any apparent bias or loaded language.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "low",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking sources may be able to verify this claim",
+    "confidence": "low",
+    "translations": {
+      "ms": {
+        "title": "Remaja ditangkap kerana memasuki landasan LRT untuk berseronok",
+        "summary": "Seorang remaja telah ditangkap kerana memasuki landasan LRT untuk berseronok, tetapi kemudiannya dibebaskan oleh pihak berkuasa yang memutuskan untuk tidak mendakwanya di mahkamah bagi mengelakkan merosakkan masa depannya. Insiden ini dilaporkan oleh Free Malaysia Today. Tuntutan tersebut tidak secara langsung melibatkan parti politik mana-mana, walaupun menyebut PAS.",
+        "analysis": "Tuntutan tersebut nampaknya merupakan laporan insiden yang faktual, tetapi tanpa maklumat lanjut atau konteks, sukar untuk mengesahkan ketepatan laporan atau niat di sebalik keputusan pihak berkuasa untuk tidak mendakwa remaja tersebut. Penyebutan PAS nampaknya tidak berkaitan dengan insiden itu sendiri. Oleh itu, tuntutan tersebut tidak dapat disahkan dengan keyakinan tinggi."
+      },
+      "hi": {
+        "title": "मज़े के लिए एलआरटी ट्रैक पर घुसने के लिए किशोर को पकड़ा गया",
+        "summary": "एक किशोर को मज़े के लिए एलआरटी ट्रैक पर घुसने के लिए गिरफ्तार किया गया था, लेकिन बाद में अधिकारियों द्वारा रिहा कर दिया गया जिन्होंने उसके भविष्य को बर्बाद करने से बचने के लिए अदालत में उस पर आरोप नहीं लगाने का फैसला किया। यह घटना फ्री मलेशिया टुडे द्वारा रिपोर्ट की गई थी। दावा सीधे तौर पर किसी भी राजनीतिक दल को शामिल नहीं करता है, हालांकि इसमें पीएएस का उल्लेख किया गया है।",
+        "analysis": "दावा एक घटना की तथ्यात्मक रिपोर्ट के रूप में प्रतीत होता है, लेकिन आगे की जानकारी या संदर्भ के बिना, रिपोर्ट की सटीकता या अधिकारियों के फैसले के पीछे के उद्देश्यों को सत्यापित करना मुश्किल है। पीएएस का उल्लेख घटना से संबंधित नहीं लगता है। इसलिए, दावे को उच्च आत्मविश्वास के साथ सत्यापित नहीं किया जा सकता है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:29:03.907Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372142853",
+    "title": "Negeri Sembilan’s political problems will be resolved politically, says Zahid",
+    "summary": "UMNO president Zahid stated that Negeri Sembilan's political issues will be resolved through political means, emphasizing the importance of following existing rules and regulations. This statement was made in response to the state's current political problems. The claim is reported by Free Malaysia Today, a Malaysian news outlet.",
+    "category": "Governance",
+    "party": "UMNO",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/negeri-sembilans-political-problems-will-be-resolved-politically-says-zahid",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is deemed true as it is a direct quote from Zahid, the UMNO president, and is reported by a reputable news source, Free Malaysia Today. The statement itself does not contain any inherently false or misleading information, but rather presents Zahid's stance on addressing Negeri Sembilan's political issues. The context provided does not suggest any manipulation or distortion of facts.",
+    "biasAssessment": {
+      "overallBias": "pro_kerajaan",
+      "justification": "The statement from Zahid, as the UMNO president, may reflect a stance that aligns with the current government's perspective, given UMNO's involvement in the current government coalition.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "Masalah politik Negeri Sembilan akan diselesaikan secara politik, kata Zahid",
+        "summary": "Presiden UMNO Zahid menyatakan bahawa isu-isu politik Negeri Sembilan akan diselesaikan melalui cara politik, menekankan kepentingan mematuhi peraturan dan undang-undang sedia ada. Kenyataan ini dibuat sebagai tindak balas kepada masalah politik semasa di negeri tersebut. Tuntutan ini dilaporkan oleh Free Malaysia Today, sebuah saluran berita Malaysia.",
+        "analysis": "Tuntutan ini dianggap benar kerana ia merupakan petikan langsung dari Zahid, presiden UMNO, dan dilaporkan oleh sumber berita yang bereputasi, Free Malaysia Today. Kenyataan itu sendiri tidak mengandungi sebarang maklumat yang palsu atau menipu, tetapi mempersembahkan pendirian Zahid dalam menangani masalah politik Negeri Sembilan. Konteks yang diberikan tidak mencadangkan sebarang manipulasi atau penyimpangan fakta."
+      },
+      "hi": {
+        "title": "नेगेरी सेम्बिलान की राजनीतिक समस्याएं राजनीतिक रूप से हल होंगी, जाहिद का कहना है",
+        "summary": "UMNO के अध्यक्ष जाहिद ने कहा कि नेगेरी सेम्बिलान के राजनीतिक मुद्दों का समाधान राजनीतिक तरीके से किया जाएगा, मौजूदा नियमों और विनियमों का पालन करने के महत्व पर जोर दिया। यह बयान राज्य की वर्तमान राजनीतिक समस्याओं के जवाब में दिया गया था। यह दावा मलेशिया के एक समाचार आउटलेट, फ्री मलेशिया टुडे द्वारा रिपोर्ट किया गया है।",
+        "analysis": "यह दावा सच माना जाता है क्योंकि यह जाहिद, UMNO के अध्यक्ष का सीधा उद्धरण है, और एक विश्वसनीय समाचार स्रोत, फ्री मलेशिया टुडे द्वारा रिपोर्ट किया गया है। बयान में कोई भी गलत या भ्रामक जानकारी नहीं है, बल्कि नेगेरी सेम्बिलान के राजनीतिक मुद्दों को संबोधित करने के लिए जाहिद का रुख प्रस्तुत किया गया है। दिए गए संदर्भ में किसी भी तरह के तथ्यों के हेरफेर या विकृति का सुझाव नहीं दिया गया है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:29:02.853Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372093094",
+    "title": "Caught for trespass, spared prosecution: DPP orders release of ‘joget’ teens at Muhibbah LRT tracks in Bukit OUG to spare their future",
+    "summary": "Two teenagers were detained for trespassing onto the LRT tracks at the Muhibbah station in Bukit OUG, but were released by the DPP to spare their future. The incident was reported by Malay Mail. The claim mentions PAS, but it does not appear to be directly related to the party's actions or policies.",
+    "category": "Legal",
+    "party": "UNSPECIFIED",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malay Mail - Malaysia",
+        "url": "https://www.malaymail.com/news/malaysia/2026/04/28/caught-for-trespass-spared-prosecution-dpp-orders-release-of-joget-teens-at-muhibbah-lrt-tracks-in-bukit-oug-to-spare-their-future/218003",
+        "domain": "www.malaymail.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim appears to be a factual report of an incident, but without more information about the context and the DPP's decision, it is difficult to verify the accuracy of the report. The mention of PAS seems unrelated to the incident itself, which raises questions about the relevance of including the party in the report. The article does not provide enough evidence to support a definitive verdict.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report appears to be a straightforward account of an incident without any apparent bias or emotional language.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "Malay Mail Sdn Bhd (bebas)",
+      "note": "Bebas — liputan seimbang",
+      "domain": "www.malaymail.com"
+    },
+    "connections": [],
+    "impact": "low",
+    "region": "Kuala Lumpur",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking sources",
+    "confidence": "low",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:28:13.094Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372086243",
+    "title": "RM12.2mil in fertiliser firm Cropmate&#8217;s funds frozen by MACC",
+    "summary": "The Malaysian Anti-Corruption Commission (MACC) has frozen RM12.2 million in funds belonging to fertiliser firm Cropmate, with the company appointing lawyer Hisyam Teh Poh Teik as its lead counsel. The incident is related to a corruption investigation. The company's funds were frozen as part of the MACC's probe into alleged corrupt activities.",
+    "category": "Corruption",
+    "party": "UNSPECIFIED",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/rm12-2mil-in-fertiliser-firm-cropmates-funds-frozen-by-macc",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on a report from Free Malaysia Today, a reputable news source in Malaysia. The report states that the MACC has frozen the funds as part of an ongoing investigation into corruption. There is no apparent reason to doubt the accuracy of the report, and the appointment of a prominent lawyer as lead counsel suggests that the company is taking the investigation seriously. The fact that the report does not specify the party involved suggests that the focus is on the corruption investigation rather than on any particular political party.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report is factual and does not contain any emotive language or value judgments that could be seen as biased towards any particular party or ideology.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "RM12.2 juta dalam dana syarikat baja Cropmate dibekukan oleh SPRM",
+        "summary": "Suruhanjaya Pencegahan Rasuah Malaysia (SPRM) telah membekukan RM12.2 juta dalam dana milik syarikat baja Cropmate, dengan syarikat itu melantik peguam Hisyam Teh Poh Teik sebagai ketua peguamnya. Kejadian ini berkaitan dengan siasatan rasuah. Dana syarikat itu dibekukan sebagai sebahagian daripada siasatan SPRM ke atas aktiviti rasuah yang didakwa.",
+        "analysis": "Tuntutan ini berdasarkan laporan dari Free Malaysia Today, sebuah sumber berita yang bereputasi di Malaysia. Laporan itu menyatakan bahawa SPRM telah membekukan dana tersebut sebagai sebahagian daripada siasatan yang sedang berlangsung ke atas rasuah. Tiada sebab yang jelas untuk meragui ketepatan laporan itu, dan pelantikan seorang peguam terkenal sebagai ketua peguam mencadangkan bahawa syarikat itu mengambil siasatan itu dengan serius. Fakta bahawa laporan itu tidak menyatakan parti yang terlibat mencadangkan bahawa fokusnya adalah pada siasatan rasuah dan bukan pada parti politik tertentu."
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:28:06.243Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372085011",
+    "title": "Kemelut N Sembilan akan diselesaikan ikut cara politik, kata Zahid",
+    "summary": "UMNO President Zahid stated that the crisis in Negeri Sembilan will be resolved through political means, and UMNO will not interfere with the state's administration or customary laws. This claim is reported by Free Malaysia Today. The context involves the current political situation in Negeri Sembilan.",
+    "category": "Governance",
+    "party": "UMNO",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/kemelut-n-sembilan-akan-diselesaikan-ikut-cara-politik-kata-zahid",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim's truthfulness cannot be verified with high confidence due to the lack of concrete evidence or further details on how the crisis will be resolved. The statement by Zahid is more of a declaration of intent rather than a factual report of actions taken. Without additional information or context, it's challenging to assess the accuracy of this claim.",
+    "biasAssessment": {
+      "overallBias": "pro_kerajaan",
+      "justification": "The statement by the UMNO President might be seen as an attempt to reassure the public about the party's stance on the Negeri Sembilan crisis, which could be perceived as leaning towards a pro-government narrative.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking sources might provide more insight or verification on this claim in the future.",
+    "confidence": "low",
+    "translations": {
+      "ms": {
+        "title": "Kemelut N Sembilan akan diselesaikan ikut cara politik, kata Zahid",
+        "summary": "Presiden UMNO Zahid menyatakan bahawa krisis di Negeri Sembilan akan diselesaikan melalui cara politik, dan UMNO tidak akan campur tangan dengan pentadbiran atau undang-undang adat negeri. Dakwaan ini dilaporkan oleh Free Malaysia Today. Konteks ini melibatkan keadaan politik semasa di Negeri Sembilan.",
+        "analysis": "Kebenaran dakwaan ini tidak dapat disahkan dengan keyakinan tinggi kerana kekurangan bukti konkrit atau butiran lanjut tentang bagaimana krisis itu akan diselesaikan. Kenyataan Zahid lebih merupakan deklarasi niat daripada laporan fakta tindakan yang diambil. Tanpa maklumat tambahan atau konteks, sukar untuk menilai ketepatan dakwaan ini."
+      },
+      "hi": {
+        "title": "ज़हिद के अनुसार एन सेम्बिलान का संकट राजनीतिक तरीके से हल किया जाएगा",
+        "summary": "युमनो के अध्यक्ष ज़हिद ने कहा कि नेगेरी सेम्बिलान में संकट का समाधान राजनीतिक तरीके से किया जाएगा, और युमनो राज्य के प्रशासन या रीति-रिवाजों में हस्तक्षेप नहीं करेगा। यह दावा फ्री मलेशिया टुडे द्वारा रिपोर्ट किया गया है। इसका संदर्भ नेगेरी सेम्बिलान में वर्तमान राजनीतिक स्थिति से है।",
+        "analysis": "इस दावे की सच्चाई की पुष्टि उच्च विश्वास के साथ नहीं की जा सकती है क्योंकि इसके समर्थन में कोई ठोस सबूत या संकट के समाधान के बारे में विस्तृत जानकारी नहीं है। ज़हिद का बयान एक तथ्यात्मक रिपोर्ट की तुलना में एक इरादे की घोषणा अधिक है। अतिरिक्त जानकारी या संदर्भ के बिना, इस दावे की सटीकता का मूल्यांकन करना चुनौतीपूर्ण है।"
+      },
+      "zh": {
+        "title": "扎希德表示，森美兰危机将通过政治手段解决",
+        "summary": "巫统主席扎希德表示，森美兰的危机将通过政治手段解决，巫统不会干涉州政府的行政或风俗习惯。该报道由《自由马来西亚》报道。该背景涉及森美兰当前的政治局势。",
+        "analysis": "由于缺乏具体证据或有关危机将如何解决的进一步细节，该声明的真实性无法以高置信度验证。扎希德的声明更像是意图声明，而不是事实报告。没有额外信息或背景，评估该声明的准确性具有挑战性。"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:28:05.011Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372029140",
+    "title": "Pengasuh ditahan susulan kematian bayi",
+    "summary": "A claim about a babysitter being detained following the death of an eight-month-old baby is reported, with the baby's parents previously seeking justice after the baby's death due to being unconscious at the babysitter's home. The incident is reported by Free Malaysia Today. The claim mentions no direct political action or statement from any party, including PAS, which is only mentioned as a referenced party.",
+    "category": "Governance",
+    "party": "UNSPECIFIED",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/pengasuh-ditahan-susulan-kematian-bayi-lapan-bulan",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim appears to be a news report about a specific incident rather than a political claim that can be verified as true, false, or misleading. The report does not contain any direct political statements or actions from PAS or any other party that can be fact-checked. The mention of PAS seems incidental and does not directly relate to the claim's content. Therefore, without more context or a clear political statement, the claim cannot be verified with high confidence.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report seems to be a factual news story without any apparent bias towards or against any political party.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "low",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "low",
+    "translations": {
+      "ms": {
+        "title": "Pengasuh ditahan susulan kematian bayi",
+        "summary": "Satu tuntutan tentang seorang pengasuh yang ditahan selepas kematian seorang bayi berusia lapan bulan dilaporkan, di mana ibu bapa bayi tersebut sebelum ini mencari keadilan selepas kematian bayi mereka kerana tidak sedar diri di rumah pengasuh. Insiden ini dilaporkan oleh Free Malaysia Today. Tuntutan tersebut tidak menyebut sebarang tindakan atau kenyataan politik langsung dari mana-mana parti, termasuk PAS, yang hanya disebut sebagai parti rujukan.",
+        "analysis": "Tuntutan tersebut nampaknya merupakan laporan berita tentang satu insiden khusus dan bukan tuntutan politik yang boleh disahkan sebagai benar, salah atau menipu. Laporan tersebut tidak mengandungi sebarang kenyataan atau tindakan politik langsung dari PAS atau parti lain yang boleh disahkan. Sebutan tentang PAS nampaknya bersifat kebetulan dan tidak secara langsung berkaitan dengan kandungan tuntutan. Oleh itu, tanpa konteks tambahan atau kenyataan politik yang jelas, tuntutan tersebut tidak boleh disahkan dengan keyakinan tinggi."
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:27:09.140Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372025569",
+    "title": "Rising medical insurance costs due to higher healthcare use, says World Bank",
+    "summary": "The World Bank has stated that the rising medical insurance costs in Malaysia are due to higher healthcare use, with service-level medical inflation remaining modest compared to the growth in claims paid and total billed amounts. This information was reported by Free Malaysia Today, citing the World Bank. The claim is focused on the economy and healthcare sector in Malaysia.",
+    "category": "Economy",
+    "party": "UNSPECIFIED",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/rising-medical-insurance-costs-due-to-higher-healthcare-use-says-world-bank",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on a report from the World Bank, which is a credible source for economic data and analysis. The statement from the World Bank provides a clear explanation for the rising medical insurance costs, attributing it to increased healthcare use rather than high medical inflation. This suggests that the claim is accurate and supported by evidence. The fact that the claim does not mention any specific political party or ideology also adds to its credibility.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The claim is based on a report from a credible source and does not contain any emotive language or ideological bias.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "Kos insurans perubatan meningkat disebabkan penggunaan penjagaan kesihatan yang lebih tinggi, kata Bank Dunia",
+        "summary": "Bank Dunia telah menyatakan bahawa kos insurans perubatan yang meningkat di Malaysia disebabkan oleh penggunaan penjagaan kesihatan yang lebih tinggi, dengan inflasi perubatan peringkat perkhidmatan kekal sederhana berbanding pertumbuhan dalam tuntutan dibayar dan jumlah bil yang dibayar. Maklumat ini dilaporkan oleh Free Malaysia Today, yang mengutip Bank Dunia. Tuntutan ini memberi tumpuan kepada ekonomi dan sektor penjagaan kesihatan di Malaysia.",
+        "analysis": "Tuntutan ini berdasarkan laporan dari Bank Dunia, yang merupakan sumber yang boleh dipercayai untuk data dan analisis ekonomi. Kenyataan dari Bank Dunia memberikan penjelasan yang jelas untuk kos insurans perubatan yang meningkat, mengaitkannya dengan penggunaan penjagaan kesihatan yang meningkat dan bukannya inflasi perubatan yang tinggi. Ini menunjukkan bahawa tuntutan itu tepat dan disokong oleh bukti. Fakta bahawa tuntutan itu tidak menyebutkan parti politik atau ideologi tertentu juga menambahkan kredibiliti."
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:27:05.569Z"
+    }
+  },
+  {
+    "id": "st-ai-1777372024340",
+    "title": "Ugut sebar fitnah kontraktor, empat pemungut hutang ditahan",
+    "summary": "Four debt collectors were arrested for allegedly threatening and spreading false information about a contractor in Cheras. The arrest was made by the Cheras District Police Headquarters through Op Cantas on April 23. The suspects, aged between 19 and 26, were detained for their aggressive behavior.",
+    "category": "Crime",
+    "party": "UNSPECIFIED",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Utusan Malaysia",
+        "url": "https://www.utusan.com.my/nasional/2026/04/ugut-sebar-fitnah-kontraktor-empat-pemungut-hutang-ditahan/",
+        "domain": "www.utusan.com.my",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim appears to be a factual report of an incident, but without further information or corroboration from other sources, it is difficult to verify the accuracy of the details. The report cites the Cheras District Police Headquarters as the source of the information, but does not provide direct quotes or statements from the authorities. Therefore, the claim is considered unverified due to the lack of independent confirmation.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report appears to be a straightforward factual account of an incident without any apparent emotional appeal or loaded language.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "pro_kerajaan",
+      "owner": "Media Mulia Sdn Bhd (berkaitan UMNO)",
+      "note": "Akhbar tradisional berkaitan UMNO",
+      "domain": "www.utusan.com.my"
+    },
+    "connections": [],
+    "impact": "low",
+    "region": "Cheras, Kuala Lumpur",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking sources",
+    "confidence": "medium",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:27:04.340Z"
+    }
+  },
+  {
+    "id": "st-ai-1777371973040",
+    "title": "Sabah pushes for partial payout of tax share",
+    "summary": "Sabah's Deputy Chief Minister Masidi Manjun is pushing for a partial payout of the state's tax share, citing publicly available customs collections and income tax figures. The claim is based on a report from Free Malaysia Today. The context of the claim involves Sabah's financial relationship with the federal government.",
+    "category": "Finance & Subsidy",
+    "party": "UNSPECIFIED",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/sabah-pushes-for-partial-payout-of-tax-share",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is partially true as it is based on a real event and quote from Masidi Manjun. However, the claim's truthfulness is limited by the lack of specific details on the tax share payout and the federal government's response. The report from Free Malaysia Today provides some evidence for the claim, but more information is needed to fully verify it. The claim's context is related to Sabah's long-standing demand for a higher revenue allocation from the federal government.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The claim is presented in a factual manner without any emotive language or obvious bias towards any party.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Sabah",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {
+      "ms": {
+        "title": "Sabah desak bayaran sebahagian hasil cukai",
+        "summary": "Timbalan Ketua Menteri Sabah Masidi Manjun mendesak supaya sebahagian hasil cukai negeri dibayar, berdasarkan maklumat kutipan kastam dan angka cukai pendapatan yang tersedia untuk umum. Tuntutan ini berdasarkan laporan dari Free Malaysia Today. Konteks tuntutan ini melibatkan hubungan kewangan Sabah dengan kerajaan persekutuan.",
+        "analysis": "Tuntutan ini sebahagiannya benar kerana berdasarkan peristiwa sebenar dan petikan dari Masidi Manjun. Walau bagaimanapun, kebenaran tuntutan ini terhad oleh kekurangan butiran khusus mengenai bayaran hasil cukai dan respons kerajaan persekutuan. Laporan dari Free Malaysia Today memberikan beberapa bukti untuk tuntutan ini, tetapi lebih banyak maklumat diperlukan untuk mengesahkannya sepenuhnya. Konteks tuntutan ini berkaitan dengan tuntutan lama Sabah untuk peruntukan pendapatan yang lebih tinggi dari kerajaan persekutuan."
+      },
+      "hi": {
+        "title": "सबाह आंशिक कर भाग के भुगतान के लिए दबाव डाल रहा है",
+        "summary": "सबाह के उप मुख्यमंत्री मसीदी मंजुन आंशिक रूप से राज्य के कर हिस्से के भुगतान के लिए दबाव डाल रहे हैं, जो सार्वजनिक रूप से उपलब्ध सीमा शुल्क संग्रह और आयकर के आंकड़ों पर आधारित है। यह दावा फ्री मलेशिया टुडे की एक रिपोर्ट पर आधारित है। दावे का संदर्भ सबाह के संघीय सरकार के साथ वित्तीय संबंधों से संबंधित है।",
+        "analysis": "दावा आंशिक रूप से सच है क्योंकि यह एक वास्तविक घटना और मसीदी मंजुन के उद्धरण पर आधारित है। हालांकि, दावे की सच्चाई की सीमा कर हिस्से के भुगतान और संघीय सरकार की प्रतिक्रिया के विशिष्ट विवरण की कमी से सीमित है। फ्री मलेशिया टुडे की रिपोर्ट दावे के लिए कुछ साक्ष्य प्रदान करती है, लेकिन इसे पूरी तरह से सत्यापित करने के लिए अधिक जानकारी की आवश्यकता है। दावे का संदर्भ सबाह की संघीय सरकार से उच्च राजस्व आवंटन की लंबे समय से चली आ रही मांग से संबंधित है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:26:13.040Z"
+    }
+  },
+  {
+    "id": "st-ai-1777371964257",
+    "title": "Bayi perempuan lapan bulan maut di rumah pengasuh",
+    "summary": "An eight-month-old baby girl died while under the care of a babysitter in Taman Sri Wang, Arau. The police received a report about the incident from the emergency department of Hospital Tuanku Fauziah. The cause of death is not specified in the report.",
+    "category": "Governance",
+    "party": "UNSPECIFIED",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Utusan Malaysia",
+        "url": "https://www.utusan.com.my/nasional/2026/04/bayi-perempuan-lapan-bulan-maut-di-rumah-pengasuh/",
+        "domain": "www.utusan.com.my",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is a news report about a specific incident and does not contain any overtly political statements. However, without further information or investigation, it is difficult to verify the accuracy of the report. The article cites the police and a hospital as sources, but does not provide enough context to assess the claim's truthfulness. Therefore, the verdict is unverified due to lack of sufficient information.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report appears to be a factual account of an incident without any apparent political agenda or bias.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "pro_kerajaan",
+      "owner": "Media Mulia Sdn Bhd (berkaitan UMNO)",
+      "note": "Akhbar tradisional berkaitan UMNO",
+      "domain": "www.utusan.com.my"
+    },
+    "connections": [],
+    "impact": "low",
+    "region": "Perlis",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "low",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:26:04.257Z"
+    }
+  },
+  {
+    "id": "st-ai-1777371963096",
+    "title": "Dua lelaki didakwa jadi ‘keldai akaun’ sindiket penipuan",
+    "summary": "Two men, Azlan Shah Shahrim Effendy and Muhammad Dafy Irfan Mohd. Asmadi, were charged in a Sessions Court in Johor Bahru for allegedly being 'money mules' for an online scam syndicate. They pleaded not guilty to the charges. The case is reported by Utusan Malaysia, but the article does not provide sufficient information to verify the claim.",
+    "category": "Governance",
+    "party": "UNSPECIFIED",
+    "verdict": "UNVERIFIED",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Utusan Malaysia",
+        "url": "https://www.utusan.com.my/nasional/2026/04/dua-lelaki-didakwa-jadi-keldai-akaun-sindiket-penipuan/",
+        "domain": "www.utusan.com.my",
+        "type": "article"
+      }
+    ],
+    "analysis": "The article reports on a specific court case, but it lacks details about the investigation, evidence, and the syndicate involved. Without more information, it is difficult to assess the truthfulness of the claim. The article appears to be a factual report of a court proceeding, but its accuracy and completeness cannot be verified with the provided information.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The article reports on a court case without expressing a clear opinion or bias towards any party.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "pro_kerajaan",
+      "owner": "Media Mulia Sdn Bhd (berkaitan UMNO)",
+      "note": "Akhbar tradisional berkaitan UMNO",
+      "domain": "www.utusan.com.my"
+    },
+    "connections": [],
+    "impact": "low",
+    "region": "Johor",
+    "factCheckRef": "Sebenarnya.my or other Malaysian fact-checking sources may be able to verify this claim",
+    "confidence": "low",
+    "translations": {
+      "ms": {
+        "title": "Dua lelaki didakwa jadi ‘keldai akaun’ sindiket penipuan",
+        "summary": "Dua lelaki, Azlan Shah Shahrim Effendy dan Muhammad Dafy Irfan Mohd. Asmadi, didakwa di Mahkamah Sesyen di Johor Bahru kerana didakwa menjadi 'keldai akaun' sindiket penipuan dalam talian. Mereka mengaku tidak bersalah atas tuduhan tersebut. Kes ini dilaporkan oleh Utusan Malaysia, tetapi artikel tersebut tidak menyediakan maklumat yang cukup untuk mengesahkan tuntutan tersebut.",
+        "analysis": "Artikel tersebut melaporkan tentang kes mahkamah tertentu, tetapi ia kekurangan butiran tentang siasatan, bukti, dan sindiket yang terlibat. Tanpa maklumat lebih lanjut, sukar untuk menilai kebenaran tuntutan tersebut. Artikel tersebut nampaknya sebagai laporan fakta tentang prosiding mahkamah, tetapi ketepatan dan kelengkapan maklumat tidak dapat disahkan dengan maklumat yang disediakan."
+      },
+      "hi": {
+        "title": "दो पुरुषों पर ऑनलाइन धोखाधड़ी सिंडिकेट के लिए 'मनी मूल' होने का आरोप",
+        "summary": "दो पुरुष, अजलान शाह शाहरिम एफफेंडी और मुहम्मद दाफी इरफान मोहम्मद अस्मदी, जोहोर बाहरू में एक सत्र न्यायालय में ऑनलाइन धोखाधड़ी सिंडिकेट के लिए 'मनी मूल' होने के आरोप में आरोपित किए गए थे। उन्होंने आरोपों से इनकार किया। यह मामला उतुसन मलेशिया द्वारा रिपोर्ट किया गया है, लेकिन लेख में दावे की पुष्टि करने के लिए पर्याप्त जानकारी नहीं है।",
+        "analysis": "लेख एक विशिष्ट अदालती मामले की रिपोर्ट करता है, लेकिन यह जांच, साक्ष्य और शामिल सिंडिकेट के बारे में विवरण का अभाव है। अधिक जानकारी के बिना, दावे की सच्चाई का आकलन करना मुश्किल है। लेख एक अदालती कार्यवाही की एक तथ्यात्मक रिपोर्ट के रूप में प्रतीत होता है, लेकिन इसकी सटीकता और पूर्णता प्रदान की गई जानकारी के साथ सत्यापित नहीं की जा सकती है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 55,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:26:03.096Z"
+    }
+  },
+  {
+    "id": "st-ai-1777371908718",
+    "title": "MMA urges govt to fund programme to upskill GPs in elderly care",
+    "summary": "The Malaysian Medical Association (MMA) is urging the government to fund a program to upskill general practitioners (GPs) in elderly care, as many GPs lack the necessary training and support. This call is aimed at improving geriatric care in the country. The MMA president emphasized the need for structured training and tools to deliver comprehensive care.",
+    "category": "Governance",
+    "party": "UNSPECIFIED",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Malaysia &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/nation/2026/04/28/mma-urges-govt-to-fund-programme-to-upskill-gps-in-elderly-care",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on a statement from the MMA president, which was reported by a reputable news source, Free Malaysia Today. The statement highlights a specific issue in the healthcare sector, namely the lack of training and support for GPs in elderly care. The MMA's call for government funding to address this issue is a clear and specific proposal. Given the source and context, the claim appears to be accurate and truthful.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The claim is a straightforward report of the MMA's statement, without any emotive language or apparent agenda.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {
+      "ms": {
+        "title": "MMA desak kerajaan membiayai program untuk meningkatkan kemahiran GP dalam penjagaan warga emas",
+        "summary": "Persatuan Perubatan Malaysia (MMA) mendesak kerajaan untuk membiayai program untuk meningkatkan kemahiran doktor am (GP) dalam penjagaan warga emas, kerana banyak GP kekurangan latihan dan sokongan yang diperlukan. Seruan ini bertujuan untuk meningkatkan penjagaan geriatrik di negara ini. Presiden MMA menekankan keperluan untuk latihan berstruktur dan alat untuk menyampaikan penjagaan menyeluruh.",
+        "analysis": "Tuntutan ini berdasarkan kenyataan dari presiden MMA, yang dilaporkan oleh sumber berita yang dipercayai, Free Malaysia Today. Kenyataan tersebut menyoroti isu khusus dalam sektor kesihatan, iaitu kekurangan latihan dan sokongan untuk GP dalam penjagaan warga emas. Seruan MMA untuk pembiayaan kerajaan untuk menangani isu ini adalah cadangan yang jelas dan khusus. Mengikut sumber dan konteks, tuntutan ini nampaknya tepat dan benar."
+      },
+      "hi": {
+        "title": "एमएमए सरकार से बुजुर्गों की देखभाल में जीपी को कौशल बढ़ाने के लिए कार्यक्रम के लिए धन मुहैया कराने का आग्रह करता है",
+        "summary": "मलेशियाई मेडिकल एसोसिएशन (एमएमए) सरकार से बुजुर्गों की देखभाल में सामान्य चिकित्सकों (जीपी) को कौशल बढ़ाने के लिए एक कार्यक्रम के लिए धन मुहैया कराने का आग्रह कर रहा है, क्योंकि कई जीपी आवश्यक प्रशिक्षण और समर्थन से वंचित हैं। यह आह्वान देश में वृद्ध देखभाल में सुधार के लिए किया जा रहा है। एमएमए के अध्यक्ष ने व्यापक देखभाल प्रदान करने के लिए संरचित प्रशिक्षण और उपकरणों की आवश्यकता पर जोर दिया।",
+        "analysis": "यह दावा एमएमए अध्यक्ष के बयान पर आधारित है, जिसे एक विश्वसनीय समाचार स्रोत, फ्री मलेशिया टुडे द्वारा रिपोर्ट किया गया था। बयान स्वास्थ्य क्षेत्र में एक विशिष्ट मुद्दे को उजागर करता है, अर्थात बुजुर्गों की देखभाल में जीपी के लिए आवश्यक प्रशिक्षण और समर्थन की कमी। एमएमए का इस मुद्दे को संबोधित करने के लिए सरकारी वित्त पोषण का आह्वान एक स्पष्ट और विशिष्ट प्रस्ताव है। स्रोत और संदर्भ को देखते हुए, यह दावा सटीक और सच्चा प्रतीत होता है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:25:08.718Z"
+    }
+  },
+  {
+    "id": "st-ai-1777371905185",
+    "title": "AKPS gagalkan cubaan seludup ubat tak berdaftar RM7.7 juta",
+    "summary": "The claim reports on a successful operation by the authorities to thwart an attempt to smuggle unregistered medicines worth RM7.7 million at Kuala Lumpur International Airport. The operation was conducted in separate raids on Sunday and the previous night. The report does not directly involve any political party's policy or statement but mentions the event as a governance issue.",
+    "category": "Governance",
+    "party": "UNSPECIFIED",
+    "verdict": "TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Berita &#8211; Free Malaysia Today (FMT)",
+        "url": "https://www.freemalaysiatoday.com/category/bahasa/tempatan/2026/04/28/akps-gagalkan-cubaan-seludup-ubat-tak-berdaftar-rm7-7-juta",
+        "domain": "www.freemalaysiatoday.com",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is based on a news report from Free Malaysia Today (FMT), a reputable news source in Malaysia. The report provides specific details about the operation, including the location and the value of the smuggled goods. There is no apparent reason to doubt the veracity of the report, as it aligns with typical news coverage of law enforcement actions. The mention of PAS seems incidental and not directly related to the smuggling attempt or its thwarting.",
+    "biasAssessment": {
+      "overallBias": "neutral",
+      "justification": "The report is factual and does not contain language that favors or disfavors any political party or ideology.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "neutral",
+      "owner": "FMT Media Sdn Bhd (bebas)",
+      "note": "Bebas — sering kritis terhadap kerajaan dan pembangkang",
+      "domain": "www.freemalaysiatoday.com"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "National",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "high",
+    "translations": {},
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 95,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:25:05.185Z"
+    }
+  },
+  {
+    "id": "st-ai-1777371903979",
+    "title": "Krisis politik Negeri Sembilan, PM bertemu pemimpin Kerajaan Perpaduan",
+    "summary": "A meeting is reportedly taking place between the Prime Minister, Datuk Seri Anwar Ibrahim, and several key leaders of the Unity Government, amidst the ongoing Negeri Sembilan political crisis. The information was shared by Datuk Fahmi Fadzil, the Minister of Communications and PKR's Information Chief, through a Facebook post. The crisis in Negeri Sembilan has been a subject of attention due to its implications on the state's administration.",
+    "category": "Governance",
+    "party": "PKR",
+    "verdict": "PARTIALLY_TRUE",
+    "date": "2026-04-28",
+    "sources": [
+      {
+        "name": "Utusan Malaysia",
+        "url": "https://www.utusan.com.my/terkini/2026/04/krisis-politik-negeri-sembilan-pm-bertemu-pemimpin-kerajaan-perpaduan/",
+        "domain": "www.utusan.com.my",
+        "type": "article"
+      }
+    ],
+    "analysis": "The claim is partially true as it is based on a statement from a credible source, Datuk Fahmi Fadzil, who is a minister and a high-ranking member of PKR. However, the details of the meeting, such as its agenda and outcomes, are not provided, which limits the claim's verifiability. The context of the Negeri Sembilan political crisis suggests that the meeting is significant, but without more information, the claim remains partially verified.",
+    "biasAssessment": {
+      "overallBias": "pro_pembangkang",
+      "justification": "The report seems to favor the actions of the Prime Minister and the Unity Government, suggesting a slight bias towards the opposition. However, the language used is neutral and factual, which mitigates the bias.",
+      "governmentClaimsChecked": true,
+      "oppositionClaimsChecked": true,
+      "loadedLanguage": "none"
+    },
+    "logicalFallacies": [],
+    "sourceLeaning": {
+      "leaning": "pro_kerajaan",
+      "owner": "Media Mulia Sdn Bhd (berkaitan UMNO)",
+      "note": "Akhbar tradisional berkaitan UMNO",
+      "domain": "www.utusan.com.my"
+    },
+    "connections": [],
+    "impact": "medium",
+    "region": "Negeri Sembilan",
+    "factCheckRef": "Sebenarnya.my",
+    "confidence": "medium",
+    "translations": {
+      "ms": {
+        "title": "Krisis politik Negeri Sembilan, PM bertemu pemimpin Kerajaan Perpaduan",
+        "summary": "Satu mesyuarat dilaporkan sedang berlangsung antara Perdana Menteri, Datuk Seri Anwar Ibrahim, dan beberapa pemimpin utama Kerajaan Perpaduan, di tengah-tengah krisis politik Negeri Sembilan yang sedang berlaku. Maklumat ini dikongsi oleh Datuk Fahmi Fadzil, Menteri Komunikasi dan Ketua Penerangan PKR, melalui satu pos Facebook. Krisis di Negeri Sembilan telah menjadi perhatian kerana implikasinya terhadap pentadbiran negeri.",
+        "analysis": "Tuntutan itu sebahagiannya benar kerana berdasarkan kenyataan dari sumber yang boleh dipercayai, Datuk Fahmi Fadzil, yang merupakan menteri dan ahli kanan PKR. Walau bagaimanapun, butiran mesyuarat, seperti agenda dan hasilnya, tidak disediakan, yang membatasi verifiabiliti tuntutan. Konteks krisis politik Negeri Sembilan mencadangkan bahawa mesyuarat itu penting, tetapi tanpa maklumat lebih lanjut, tuntutan kekal sebahagiannya disahkan."
+      },
+      "hi": {
+        "title": "नेगेरी सेम्बिलान का राजनीतिक संकट, पीएम एकता सरकार के नेताओं से मिलते हैं",
+        "summary": "नेगेरी सेम्बिलान के चल रहे राजनीतिक संकट के बीच प्रधानमंत्री दातुक सेरी अनवर इब्राहिम और एकता सरकार के कई प्रमुख नेताओं के बीच एक बैठक होने की खबर है। यह जानकारी संचार मंत्री और पीकेआर के सूचना प्रमुख दातुक फहमी फदजिल ने एक फेसबुक पोस्ट के माध्यम से साझा की है। नेगेरी सेम्बिलान में संकट राज्य के प्रशासन पर इसके प्रभाव के कारण ध्यान का केंद्र बना हुआ है।",
+        "analysis": "दावा आंशिक रूप से सच है क्योंकि यह एक विश्वसनीय स्रोत, दातुक फहमी फदजिल के बयान पर आधारित है, जो एक मंत्री और पीकेआर के एक वरिष्ठ सदस्य हैं। हालांकि, बैठक के विवरण, जैसे कि इसका एजेंडा और परिणाम, प्रदान नहीं किए गए हैं, जो दावे की सत्यता को सीमित करता है। नेगेरी सेम्बिलान के राजनीतिक संकट के संदर्भ से पता चलता है कि बैठक महत्वपूर्ण है, लेकिन अधिक जानकारी के बिना, दावा आंशिक रूप से सत्यापित रहता है।"
+      }
+    },
+    "aiProvider": "Groq",
+    "sourceType": "internet",
+    "recordType": "ai",
+    "verification": {
+      "status": "VERIFIED",
+      "score": 75,
+      "method": "groq_llama_3_3",
+      "checks": {
+        "hasTitle": true,
+        "hasSummary": true,
+        "hasUrl": true,
+        "hasPublishedAt": true,
+        "sourceTrusted": false,
+        "multiSourceSupport": false,
+        "hasSuspiciousSignal": false
+      },
+      "reasons": [],
+      "verifiedAt": "2026-04-28T10:25:03.979Z"
+    }
+  },
+  {
     "id": "st-ai-1776811573892",
     "title": "Ducati optimis kebangkitan Marquez di Jerez",
     "summary": "The claim discusses the optimism of Ducati's manager, Gigi Dall'Igna, regarding Marc Marquez's recovery from a shoulder injury and his potential performance in the upcoming MotoGP race in Jerez. The article is from Utusan Malaysia and does not directly relate to Malaysian politics. There is a mention of PAS, but it is unclear how it connects to the rest of the article.",
@@ -38,13 +2709,13 @@
     "translations": {
       "ms": {
         "title": "Ducati optimis kebangkitan Marquez di Jerez",
-        "summary": "Tuntutan itu membincangkan tentang optimism pengurus Ducati, Gigi Dall'Igna, mengenai pemulihan Marc Marquez dari kecederaan bahu dan potensi prestasinya dalam perlumbaan MotoGP akan datang di Jerez. Artikel ini dari Utusan Malaysia dan tidak secara langsung berkaitan dengan politik Malaysia. Terdapat penyebutan tentang PAS, tetapi tidak jelas bagaimana ia berkaitan dengan artikel tersebut.",
-        "analysis": "Artikel ini nampaknya merupakan berita sukan dengan tiada kaitan yang jelas dengan politik atau tadbir urus Malaysia, walaupun diterbitkan dalam akhbar Malaysia. Penyebutan tentang PAS kelihatan tidak berkonteks, dan tanpa maklumat lanjut, sukar untuk menilai relevan atau ketepatan tuntutan dalam konteks pemeriksaan fakta politik."
+        "summary": "Tuntutan itu membincangkan tentang optimism pengurus Ducati, Gigi Dall'Igna, mengenai pemulihan Marc Marquez dari kecederaan bahu dan potensinya dalam perlumbaan MotoGP akan datang di Jerez. Artikel ini dari Utusan Malaysia dan tidak secara langsung berkaitan dengan politik Malaysia. Terdapat satu penyebutan tentang PAS, tetapi tidak jelas bagaimana ia berkaitan dengan artikel tersebut.",
+        "analysis": "Artikel ini nampaknya merupakan berita sukan dengan tiada kaitan yang jelas dengan politik atau tadbir urus Malaysia, walaupun diterbitkan dalam akhbar Malaysia. Penyebutan tentang PAS kelihatan tidak berkaitan, dan tanpa maklumat lanjut, sukar untuk menilai ketepatan tuntutan tersebut dalam konteks pemeriksaan fakta politik."
       },
       "hi": {
-        "title": "जेरेज में मार्केज की वापसी को लेकर डुकाटी आशावादी",
-        "summary": "दावा डुकाटी के प्रबंधक, जीजी डल'इग्ना के मार्क मार्केज की कंधे की चोट से उबरने और जेरेज में आगामी मोटोजीपी रेस में उनके संभावित प्रदर्शन के बारे में आशावाद के बारे में चर्चा करता है। यह लेख उतुसन मलेशिया से है और सीधे तौर पर मलेशियाई राजनीति से संबंधित नहीं है। इसमें पीएएस का उल्लेख है, लेकिन यह स्पष्ट नहीं है कि यह लेख के बाकी हिस्सों से कैसे जुड़ता है।",
-        "analysis": "लेख एक खेल समाचार टुकड़ा के रूप में प्रतीत होता है जिसमें मलेशियाई राजनीति या शासन से कोई स्पष्ट संबंध नहीं है, हालांकि यह एक मलेशियाई समाचार आउटलेट में प्रकाशित हुआ है। पीएएस का उल्लेख बाहर निकलता है, और बिना आगे की जानकारी के, दावे की प्रासंगिकता या सटीकता का मूल्यांकन करना चुनौतीपूर्ण है मलेशियाई राजनीतिक दावों के संदर्भ में।"
+        "title": "जेरेज में मार्केज की वापसी के लिए डुकाटी आशावादी",
+        "summary": "दावा डुकाटी के प्रबंधक, जीजी डल'इग्ना के आशावाद के बारे में चर्चा करता है, मार्क मार्केज के कंधे की चोट से उबरने और जेरेज में आगामी मोटोजीपी रेस में उनके प्रदर्शन की संभावना के बारे में। यह लेख उतुसन मलेशिया से है और सीधे तौर पर मलेशियाई राजनीति से संबंधित नहीं है। इसमें पीएएस का उल्लेख है, लेकिन यह स्पष्ट नहीं है कि यह लेख के बाकी हिस्सों से कैसे जुड़ता है।",
+        "analysis": "लेख एक खेल समाचार टुकड़ा के रूप में प्रतीत होता है जिसमें मलेशियाई राजनीति या शासन से कोई स्पष्ट संबंध नहीं है, हालांकि यह एक मलेशियाई समाचार आउटलेट में प्रकाशित हुआ है। पीएएस का उल्लेख संदर्भ से बाहर लगता है, और आगे की जानकारी के बिना, दावे की प्रासंगिकता या सटीकता का मूल्यांकन करना मलेशियाई राजनीतिक दावों से संबंधित करना चुनौतीपूर्ण है।"
       }
     },
     "aiProvider": "Groq",

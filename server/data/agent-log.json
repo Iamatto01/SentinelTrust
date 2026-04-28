@@ -1,1002 +1,1002 @@
 [
   {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:07:10.843Z"
-  },
-  {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:08:08.792Z"
+    "timestamp": "2026-04-21T22:50:09.109Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:08:08.792Z"
+    "timestamp": "2026-04-21T22:50:09.109Z"
   },
   {
     "type": "action",
     "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:08:12.254Z"
+    "timestamp": "2026-04-21T22:50:10.746Z"
   },
   {
     "type": "system",
     "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:08:12.255Z"
+    "timestamp": "2026-04-21T22:50:10.746Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:09:08.806Z"
+    "timestamp": "2026-04-21T22:51:09.122Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:09:08.806Z"
+    "timestamp": "2026-04-21T22:51:09.122Z"
   },
   {
     "type": "action",
     "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:09:10.798Z"
+    "timestamp": "2026-04-21T22:51:10.869Z"
   },
   {
     "type": "system",
     "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:09:10.799Z"
+    "timestamp": "2026-04-21T22:51:10.869Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:10:08.808Z"
+    "timestamp": "2026-04-21T22:52:09.125Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:10:08.808Z"
+    "timestamp": "2026-04-21T22:52:09.125Z"
   },
   {
     "type": "action",
     "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:10:11.029Z"
+    "timestamp": "2026-04-21T22:52:10.865Z"
   },
   {
     "type": "system",
     "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:10:11.029Z"
+    "timestamp": "2026-04-21T22:52:10.865Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:11:08.817Z"
+    "timestamp": "2026-04-21T22:53:09.125Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:11:08.817Z"
+    "timestamp": "2026-04-21T22:53:09.125Z"
   },
   {
     "type": "action",
     "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:11:10.852Z"
+    "timestamp": "2026-04-21T22:53:10.844Z"
   },
   {
     "type": "system",
     "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:11:10.852Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:12:08.821Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:12:08.821Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:12:12.214Z"
+    "timestamp": "2026-04-21T22:53:10.844Z"
   },
   {
     "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:12:12.214Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:13:08.823Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:13:08.823Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:13:10.842Z"
+    "message": "🚀 AI Agent started — beginning continuous analysis",
+    "timestamp": "2026-04-28T10:24:59.632Z"
   },
   {
     "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:13:10.843Z"
+    "message": "⚡ Parallel pipeline active: feed discovery + Groq key-pool analysis (batch 2) + deferred translation + reverify queue",
+    "timestamp": "2026-04-28T10:24:59.633Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:14:08.829Z"
+    "timestamp": "2026-04-28T10:24:59.635Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:14:08.829Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:14:12.347Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:14:12.348Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:15:08.832Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:15:08.832Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:15:23.882Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:15:23.882Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:16:08.843Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:16:08.844Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:16:10.746Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:16:10.746Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:17:08.857Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:17:08.858Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:17:13.358Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:17:13.358Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:18:08.862Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:18:08.862Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:18:10.742Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:18:10.743Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:19:08.873Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:19:08.873Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:19:10.796Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:19:10.796Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:20:08.875Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:20:08.876Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:20:10.907Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:20:10.907Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:21:08.882Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:21:08.882Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:21:10.780Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:21:10.780Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:22:08.884Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:22:08.884Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:22:10.806Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:22:10.806Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:23:08.885Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:23:08.885Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:23:13.186Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:23:13.187Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:24:08.887Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:24:08.887Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:24:12.553Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:24:12.553Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:25:08.888Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:25:08.888Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:25:11.181Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:25:11.181Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:26:08.898Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:26:08.899Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:26:10.864Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:26:10.864Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:27:08.904Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:27:08.904Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:27:12.371Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:27:12.371Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:28:08.915Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:28:08.915Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:28:12.111Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:28:12.111Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:29:08.924Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:29:08.924Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:29:13.963Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:29:13.964Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:30:08.934Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:30:08.935Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:30:24.009Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:30:24.010Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:31:08.942Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:31:08.942Z"
-  },
-  {
-    "type": "discovery",
-    "message": "📥 Feed search queued 1 topics",
-    "timestamp": "2026-04-21T22:31:10.981Z"
-  },
-  {
-    "type": "action",
-    "message": "📋 Queue updated: 1 topics pending analysis",
-    "timestamp": "2026-04-21T22:31:10.981Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Data belia tidak bekerja dikumpulkan\"",
-    "timestamp": "2026-04-21T22:31:11.794Z"
-  },
-  {
-    "type": "action",
-    "message": "🤖 Using Groq key-pool pipeline for analysis...",
-    "timestamp": "2026-04-21T22:31:11.795Z"
-  },
-  {
-    "type": "discovery",
-    "message": "✅ Completed: \"Data belia tidak bekerja dikumpulkan\" → PARTIALLY_TRUE (by Groq)",
-    "timestamp": "2026-04-21T22:31:12.896Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:32:08.956Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:32:08.957Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:32:10.836Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:32:10.836Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:33:08.969Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:33:08.969Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:33:10.810Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:33:10.810Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:34:08.982Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:34:08.982Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:34:12.170Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:34:12.170Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:35:08.992Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:35:08.992Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:35:12.735Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:35:12.735Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:36:08.994Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:36:08.995Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:36:12.874Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:36:12.874Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:37:09.007Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:37:09.007Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:37:10.854Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:37:10.854Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:38:09.013Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:38:09.013Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:38:10.837Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:38:10.837Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:39:09.023Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:39:09.023Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:39:10.854Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:39:10.854Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:40:09.038Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:40:09.038Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:40:14.041Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:40:14.041Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:41:09.053Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:41:09.053Z"
+    "timestamp": "2026-04-28T10:24:59.635Z"
   },
   {
     "type": "discovery",
     "message": "📥 Feed search queued 3 topics",
-    "timestamp": "2026-04-21T22:41:10.537Z"
+    "timestamp": "2026-04-28T10:25:01.494Z"
   },
   {
     "type": "action",
     "message": "📋 Queue updated: 3 topics pending analysis",
-    "timestamp": "2026-04-21T22:41:10.537Z"
+    "timestamp": "2026-04-28T10:25:01.495Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Aktiviti cuci tandas bantu bina karakter pelajar\"",
-    "timestamp": "2026-04-21T22:41:11.347Z"
-  },
-  {
-    "type": "action",
-    "message": "🤖 Using Groq key-pool pipeline for analysis...",
-    "timestamp": "2026-04-21T22:41:11.347Z"
-  },
-  {
-    "type": "discovery",
-    "message": "✅ Completed: \"Aktiviti cuci tandas bantu bina karakter pelajar\" → PARTIALLY_TRUE (by Groq)",
-    "timestamp": "2026-04-21T22:41:12.778Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Tambahan RM5 bilion untuk PMKS melalui BNM\"",
-    "timestamp": "2026-04-21T22:41:12.778Z"
+    "message": "🧠 Analyzing: \"Krisis politik Negeri Sembilan, PM bertemu pemimpin Kerajaan Perpaduan\"",
+    "timestamp": "2026-04-28T10:25:02.310Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq key-pool pipeline for analysis...",
-    "timestamp": "2026-04-21T22:41:12.778Z"
+    "timestamp": "2026-04-28T10:25:02.311Z"
   },
   {
     "type": "discovery",
-    "message": "✅ Completed: \"Tambahan RM5 bilion untuk PMKS melalui BNM\" → PARTIALLY_TRUE (by Groq)",
-    "timestamp": "2026-04-21T22:41:14.049Z"
+    "message": "✅ Completed: \"Krisis politik Negeri Sembilan, PM bertemu pemimpin Kerajaan Perpaduan\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:25:03.982Z"
   },
   {
     "type": "action",
-    "message": "🧠 Analyzing: \"Lepasan SPM perlu dapatkan nasihat pelbagai pihak pilih kurus pengajian\"",
-    "timestamp": "2026-04-21T22:41:20.873Z"
+    "message": "🧠 Analyzing: \"AKPS gagalkan cubaan seludup ubat tak berdaftar RM7.7 juta\"",
+    "timestamp": "2026-04-28T10:25:03.982Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq key-pool pipeline for analysis...",
-    "timestamp": "2026-04-21T22:41:20.873Z"
+    "timestamp": "2026-04-28T10:25:03.982Z"
   },
   {
     "type": "discovery",
-    "message": "✅ Completed: \"Lepasan SPM perlu dapatkan nasihat pelbagai pihak pilih kurus pengajian\" → UNVERIFIED (by Groq)",
-    "timestamp": "2026-04-21T22:41:22.053Z"
+    "message": "✅ Completed: \"AKPS gagalkan cubaan seludup ubat tak berdaftar RM7.7 juta\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:25:05.187Z"
   },
   {
     "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:42:09.059Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:42:09.059Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:42:12.409Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:42:12.409Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:43:09.067Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:43:09.067Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:43:10.926Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:43:10.926Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:44:09.068Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:44:09.068Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:44:15.661Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:44:15.661Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:45:09.068Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:45:09.068Z"
-  },
-  {
-    "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:45:10.545Z"
-  },
-  {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:45:10.545Z"
-  },
-  {
-    "type": "action",
-    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:46:09.077Z"
-  },
-  {
-    "type": "action",
-    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:46:09.077Z"
-  },
-  {
-    "type": "discovery",
-    "message": "📥 Feed search queued 1 topics",
-    "timestamp": "2026-04-21T22:46:11.601Z"
-  },
-  {
-    "type": "action",
-    "message": "📋 Queue updated: 1 topics pending analysis",
-    "timestamp": "2026-04-21T22:46:11.601Z"
-  },
-  {
-    "type": "action",
-    "message": "🧠 Analyzing: \"Ducati optimis kebangkitan Marquez di Jerez\"",
-    "timestamp": "2026-04-21T22:46:12.406Z"
+    "message": "🧠 Analyzing: \"MMA urges govt to fund programme to upskill GPs in elderly care\"",
+    "timestamp": "2026-04-28T10:25:07.704Z"
   },
   {
     "type": "action",
     "message": "🤖 Using Groq key-pool pipeline for analysis...",
-    "timestamp": "2026-04-21T22:46:12.406Z"
+    "timestamp": "2026-04-28T10:25:07.704Z"
   },
   {
     "type": "discovery",
-    "message": "✅ Completed: \"Ducati optimis kebangkitan Marquez di Jerez\" → UNVERIFIED (by Groq)",
-    "timestamp": "2026-04-21T22:46:13.894Z"
+    "message": "✅ Completed: \"MMA urges govt to fund programme to upskill GPs in elderly care\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:25:08.721Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:47:09.086Z"
+    "timestamp": "2026-04-28T10:25:59.710Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:47:09.086Z"
+    "timestamp": "2026-04-28T10:25:59.710Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:26:01.175Z"
   },
   {
     "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:47:10.634Z"
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:26:01.175Z"
   },
   {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:47:10.634Z"
+    "type": "action",
+    "message": "🧠 Analyzing: \"Dua lelaki didakwa jadi ‘keldai akaun’ sindiket penipuan\"",
+    "timestamp": "2026-04-28T10:26:01.989Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:26:01.990Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Dua lelaki didakwa jadi ‘keldai akaun’ sindiket penipuan\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:26:03.098Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Bayi perempuan lapan bulan maut di rumah pengasuh\"",
+    "timestamp": "2026-04-28T10:26:03.098Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:26:03.098Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Bayi perempuan lapan bulan maut di rumah pengasuh\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:26:04.259Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Sabah pushes for partial payout of tax share\"",
+    "timestamp": "2026-04-28T10:26:11.769Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:26:11.769Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Sabah pushes for partial payout of tax share\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:26:13.043Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:48:09.100Z"
+    "timestamp": "2026-04-28T10:26:59.719Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:48:09.100Z"
+    "timestamp": "2026-04-28T10:26:59.721Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:27:02.436Z"
   },
   {
     "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:48:10.729Z"
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:27:02.436Z"
   },
   {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:48:10.729Z"
+    "type": "action",
+    "message": "🧠 Analyzing: \"Ugut sebar fitnah kontraktor, empat pemungut hutang ditahan\"",
+    "timestamp": "2026-04-28T10:27:03.237Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:27:03.238Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Ugut sebar fitnah kontraktor, empat pemungut hutang ditahan\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:27:04.342Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Rising medical insurance costs due to higher healthcare use, says World Bank\"",
+    "timestamp": "2026-04-28T10:27:04.343Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:27:04.343Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Rising medical insurance costs due to higher healthcare use, says World Bank\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:27:05.571Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Pengasuh ditahan susulan kematian bayi\"",
+    "timestamp": "2026-04-28T10:27:07.823Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:27:07.824Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Pengasuh ditahan susulan kematian bayi\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:27:09.143Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:49:09.105Z"
+    "timestamp": "2026-04-28T10:27:59.719Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:49:09.106Z"
+    "timestamp": "2026-04-28T10:27:59.720Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:28:02.904Z"
   },
   {
     "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:49:10.616Z"
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:28:02.905Z"
   },
   {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:49:10.616Z"
+    "type": "action",
+    "message": "🧠 Analyzing: \"Kemelut N Sembilan akan diselesaikan ikut cara politik, kata Zahid\"",
+    "timestamp": "2026-04-28T10:28:03.720Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:28:03.720Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Kemelut N Sembilan akan diselesaikan ikut cara politik, kata Zahid\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:28:05.014Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"RM12.2mil in fertiliser firm Cropmate&#8217;s funds frozen by MACC\"",
+    "timestamp": "2026-04-28T10:28:05.014Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:28:05.014Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"RM12.2mil in fertiliser firm Cropmate&#8217;s funds frozen by MACC\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:28:06.246Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Caught for trespass, spared prosecution: DPP orders release of ‘joget’ teens at Muhibbah LRT tracks in Bukit OUG to spare their future\"",
+    "timestamp": "2026-04-28T10:28:11.902Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:28:11.903Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Caught for trespass, spared prosecution: DPP orders release of ‘joget’ teens at Muhibbah LRT tracks in Bukit OUG to spare their future\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:28:13.097Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:50:09.109Z"
+    "timestamp": "2026-04-28T10:28:59.730Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:50:09.109Z"
+    "timestamp": "2026-04-28T10:28:59.730Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:29:00.927Z"
   },
   {
     "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:50:10.746Z"
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:29:00.928Z"
   },
   {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:50:10.746Z"
+    "type": "action",
+    "message": "🧠 Analyzing: \"Negeri Sembilan’s political problems will be resolved politically, says Zahid\"",
+    "timestamp": "2026-04-28T10:29:01.738Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:29:01.738Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Negeri Sembilan’s political problems will be resolved politically, says Zahid\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:29:02.856Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Teen nabbed for trespassing on LRT tracks for fun\"",
+    "timestamp": "2026-04-28T10:29:02.856Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:29:02.857Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Teen nabbed for trespassing on LRT tracks for fun\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:29:03.909Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Aminuddin nafi poster tular exco baharu selepas Umno tarik sokongan\"",
+    "timestamp": "2026-04-28T10:29:07.944Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:29:07.944Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Aminuddin nafi poster tular exco baharu selepas Umno tarik sokongan\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:29:09.620Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:51:09.122Z"
+    "timestamp": "2026-04-28T10:29:59.743Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:51:09.122Z"
+    "timestamp": "2026-04-28T10:29:59.743Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:30:00.959Z"
   },
   {
     "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:51:10.869Z"
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:30:00.959Z"
   },
   {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:51:10.869Z"
+    "type": "action",
+    "message": "🧠 Analyzing: \"Bicara kes Adun Pantai Jerejak cederakan isteri 18 Ogos\"",
+    "timestamp": "2026-04-28T10:30:01.770Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:30:01.770Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Bicara kes Adun Pantai Jerejak cederakan isteri 18 Ogos\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:30:02.802Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Umno seeks audience with Negeri Sembilan ruler\"",
+    "timestamp": "2026-04-28T10:30:02.802Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:30:02.802Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Umno seeks audience with Negeri Sembilan ruler\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:30:04.435Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"New report confirms Sabah as carbon-negative state, opens door to climate cash\"",
+    "timestamp": "2026-04-28T10:30:11.996Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:30:11.996Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"New report confirms Sabah as carbon-negative state, opens door to climate cash\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:30:13.154Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:52:09.125Z"
+    "timestamp": "2026-04-28T10:30:59.751Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:52:09.125Z"
+    "timestamp": "2026-04-28T10:30:59.751Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:31:01.403Z"
   },
   {
     "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:52:10.865Z"
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:31:01.404Z"
   },
   {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:52:10.865Z"
+    "type": "action",
+    "message": "🧠 Analyzing: \"Ex-Johor Bersatu associate chief hurt after discharging firearm at Kota Tinggi shooting range\"",
+    "timestamp": "2026-04-28T10:31:02.403Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:31:02.403Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Ex-Johor Bersatu associate chief hurt after discharging firearm at Kota Tinggi shooting range\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:31:03.378Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"RM19.5 juta dimasuk ke akaun Bersatu melalui 29 transaksi kerap, kata saksi\"",
+    "timestamp": "2026-04-28T10:31:03.378Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:31:03.378Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"RM19.5 juta dimasuk ke akaun Bersatu melalui 29 transaksi kerap, kata saksi\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:31:04.511Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Court hears of repeated large transfers totalling RM19.5mil to Bersatu&#8217;s account\"",
+    "timestamp": "2026-04-28T10:31:08.047Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:31:08.048Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Court hears of repeated large transfers totalling RM19.5mil to Bersatu&#8217;s account\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:31:09.251Z"
   },
   {
     "type": "action",
     "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:53:09.125Z"
+    "timestamp": "2026-04-28T10:31:59.757Z"
   },
   {
     "type": "action",
     "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
-    "timestamp": "2026-04-21T22:53:09.125Z"
+    "timestamp": "2026-04-28T10:31:59.757Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:32:01.014Z"
   },
   {
     "type": "action",
-    "message": "🔁 Feed search found only duplicates",
-    "timestamp": "2026-04-21T22:53:10.844Z"
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:32:01.014Z"
   },
   {
-    "type": "system",
-    "message": "⚠️ Feed collection returned no topics and simulated data is disabled (strict real mode)",
-    "timestamp": "2026-04-21T22:53:10.844Z"
+    "type": "action",
+    "message": "🧠 Analyzing: \"Jalaluddin nafi mahu jadi MB N Sembilan\"",
+    "timestamp": "2026-04-28T10:32:01.814Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:32:01.814Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Jalaluddin nafi mahu jadi MB N Sembilan\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:32:03.040Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Muhyiddin’s trial: Mamfor’s RM19.5m ‘donations’ in 29 cheques to Bersatu flagged as suspicious, unusual to give money to political party, banker says\"",
+    "timestamp": "2026-04-28T10:32:03.040Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:32:03.040Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Muhyiddin’s trial: Mamfor’s RM19.5m ‘donations’ in 29 cheques to Bersatu flagged as suspicious, unusual to give money to political party, banker says\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:32:06.076Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"2 wanita ditahan, bunga ganja RM14.7 juta dirampas\"",
+    "timestamp": "2026-04-28T10:32:12.104Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:32:12.104Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"2 wanita ditahan, bunga ganja RM14.7 juta dirampas\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:32:13.350Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:32:59.770Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:32:59.770Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:33:00.777Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:33:00.777Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Umno&#8217;s 4 Negeri Sembilan exco members clear desks, return assets\"",
+    "timestamp": "2026-04-28T10:33:01.588Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:33:01.588Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Umno&#8217;s 4 Negeri Sembilan exco members clear desks, return assets\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:33:02.829Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Anwar: N. Sembilan assembly dissolution ‘not an issue’ for now amid crisis\"",
+    "timestamp": "2026-04-28T10:33:02.829Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:33:02.829Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Anwar: N. Sembilan assembly dissolution ‘not an issue’ for now amid crisis\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:33:03.895Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Umno denies Perikatan pact to topple N. Sembilan MB Aminuddin, insists no takeover deal\"",
+    "timestamp": "2026-04-28T10:33:08.153Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:33:08.153Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Umno denies Perikatan pact to topple N. Sembilan MB Aminuddin, insists no takeover deal\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:33:09.377Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:33:59.784Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:33:59.785Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:34:01.092Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:34:01.093Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Malaysia has explained excess capacity, forced labour claims to US, says Johari\"",
+    "timestamp": "2026-04-28T10:34:01.897Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:34:01.897Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Malaysia has explained excess capacity, forced labour claims to US, says Johari\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:34:03.500Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Pemuda DAP gesa PH kaji semula kerjasama dengan BN\"",
+    "timestamp": "2026-04-28T10:34:03.501Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:34:03.501Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Pemuda DAP gesa PH kaji semula kerjasama dengan BN\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:34:05.127Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Anwar: Business as usual for N. Sembilan MB Aminuddin amid political turmoil\"",
+    "timestamp": "2026-04-28T10:34:12.198Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:34:12.198Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Anwar: Business as usual for N. Sembilan MB Aminuddin amid political turmoil\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:34:13.684Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:34:59.786Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:34:59.787Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:35:00.890Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:35:00.890Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Changing MACC chief not enough, wider reforms still needed, says Malaysian Bar\"",
+    "timestamp": "2026-04-28T10:35:01.691Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:35:01.691Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Changing MACC chief not enough, wider reforms still needed, says Malaysian Bar\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:35:02.953Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"N. Sembilan crisis to be settled through political negotiations, says Zahid\"",
+    "timestamp": "2026-04-28T10:35:02.953Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:35:02.954Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"N. Sembilan crisis to be settled through political negotiations, says Zahid\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:35:04.253Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Umno denies conspiracy with PN to unseat Aminuddin\"",
+    "timestamp": "2026-04-28T10:35:08.261Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:35:08.262Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Umno denies conspiracy with PN to unseat Aminuddin\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:35:09.731Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:35:59.799Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:35:59.800Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:36:01.593Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:36:01.594Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Umno N Sembilan nafi rancang awal dengan PN, sedia jadi pembangkang\"",
+    "timestamp": "2026-04-28T10:36:02.409Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:36:02.410Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Umno N Sembilan nafi rancang awal dengan PN, sedia jadi pembangkang\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:36:03.618Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Krisis N Sembilan: PAS sindir DAP tak konsisten soal prinsip\"",
+    "timestamp": "2026-04-28T10:36:03.618Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:36:03.619Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Krisis N Sembilan: PAS sindir DAP tak konsisten soal prinsip\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:36:05.115Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"36 former students sue college over unaccredited diploma course\"",
+    "timestamp": "2026-04-28T10:36:12.321Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:36:12.322Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"36 former students sue college over unaccredited diploma course\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:36:13.461Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:36:59.810Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:36:59.810Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:37:03.160Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:37:03.160Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Will Negeri Sembilan crisis hit PKR-Umno ties elsewhere? Chang Lih Kang says too early to tell\"",
+    "timestamp": "2026-04-28T10:37:03.961Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:37:03.961Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Will Negeri Sembilan crisis hit PKR-Umno ties elsewhere? Chang Lih Kang says too early to tell\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:37:05.103Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Polis terus buru pengasas eHati di luar negara\"",
+    "timestamp": "2026-04-28T10:37:05.104Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:37:05.104Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Polis terus buru pengasas eHati di luar negara\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:37:06.276Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Mahasiswa bebas kritik, beri pandangan guna pelbagai saluran, kata PM\"",
+    "timestamp": "2026-04-28T10:37:08.372Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:37:08.372Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Mahasiswa bebas kritik, beri pandangan guna pelbagai saluran, kata PM\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:37:09.581Z"
+  },
+  {
+    "type": "action",
+    "message": "🔍 Searching for new Malaysian national issue topics via RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:37:59.821Z"
+  },
+  {
+    "type": "action",
+    "message": "🛰️ Feed discovery — collecting topics from RSS/Google News feeds...",
+    "timestamp": "2026-04-28T10:37:59.821Z"
+  },
+  {
+    "type": "discovery",
+    "message": "📥 Feed search queued 3 topics",
+    "timestamp": "2026-04-28T10:38:00.710Z"
+  },
+  {
+    "type": "action",
+    "message": "📋 Queue updated: 3 topics pending analysis",
+    "timestamp": "2026-04-28T10:38:00.711Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Fadhli questions DAP&#8217;s principles on reps switching support\"",
+    "timestamp": "2026-04-28T10:38:01.515Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:38:01.515Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Fadhli questions DAP&#8217;s principles on reps switching support\" → PARTIALLY_TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:38:03.018Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"Sabah urged to tighten crocodile control measures along Kinabatangan River\"",
+    "timestamp": "2026-04-28T10:38:03.018Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:38:03.018Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"Sabah urged to tighten crocodile control measures along Kinabatangan River\" → UNVERIFIED (by Groq)",
+    "timestamp": "2026-04-28T10:38:03.981Z"
+  },
+  {
+    "type": "action",
+    "message": "🧠 Analyzing: \"13 warga asing ditahan, kegiatan seludup migran tumpas\"",
+    "timestamp": "2026-04-28T10:38:04.419Z"
+  },
+  {
+    "type": "action",
+    "message": "🤖 Using Groq key-pool pipeline for analysis...",
+    "timestamp": "2026-04-28T10:38:04.419Z"
+  },
+  {
+    "type": "discovery",
+    "message": "✅ Completed: \"13 warga asing ditahan, kegiatan seludup migran tumpas\" → TRUE (by Groq)",
+    "timestamp": "2026-04-28T10:38:06.803Z"
   }
 ]
